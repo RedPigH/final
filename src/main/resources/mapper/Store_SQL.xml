@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="store">
+
+	<!-- 스토어 리스트 -->
+	<select id="selectStoreList" resultType="hashmap" parameterType="hashmap">
+		<![CDATA[
+		select 
+			s.STORE_NO, s.STORE_ITEM, s.STORE_PRICE, s.STORE_CONTENT,
+			f.FILE_NO, f.IMAGE_ORGNAME, f.IMAGE_SAVNAME, f.DEL_GB
+				FROM MC_STORE s INNER JOIN MC_STORE_FILE f 
+					ON s.STORE_NO = f.STORE_NO 
+						WHERE f.DEL_GB = 'N'
+							order by S.STORE_NO desc
+		]]>
+	</select>
+	
+	<!-- 주문한 상품 리스트 -->
+	<select id = "selectMyItem" resultType = "hashmap" parameterType = "hashmap">
+		<![CDATA[
+		SELECT s.STORE_NO, s.STORE_ITEM, f.FILE_NO, f.IMAGE_SAVNAME, i.AMOUNT, i.TOTAL
+		FROM MC_STORE s 
+		INNER JOIN MC_STORE_FILE f ON s.STORE_NO = f.STORE_NO
+		INNER JOIN MC_USER_ITEM i ON s.STORE_NO = i.STORE_NO
+		WHERE i.MEMBER_NO = #{MEMBER_NO} AND f.DEL_GB = 'N'
+		]]>
+	</select>
+
+	<!-- 스토어 세부내용 -->
+	<select id="selectStoreDetail" resultType="hashmap" parameterType="hashmap" >
+
+		<![CDATA[
+		select 
+			s.STORE_NO, s.STORE_ITEM, s.STORE_PRICE, s.STORE_CONTENT, 
+			f.FILE_NO,	f.IMAGE_ORGNAME, f.IMAGE_SAVNAME, f.DEL_GB 
+				FROM MC_STORE s INNER JOIN MC_STORE_FILE f
+					ON s.STORE_NO = f.STORE_NO
+						WHERE s.STORE_NO = #{STORE_NO} 
+						AND f.DEL_GB = 'N'
+		]]>
+	</select>
+	
+	<select id="selectStoreFileDetail" resultType="hashmap"
+		parameterType="hashmap">
+
+		<![CDATA[
+		select 
+			s.STORE_NO, f.IMAGE_ORGNAME, f.IMAGE_SAVNAME, f.DEL_GB
+				FROM MC_STORE s INNER JOIN MC_STORE_FILE f
+					ON s.STORE_NO = f.STORE_NO 
+						WHERE s.STORE_NO = #{STORE_NO} 
+						AND f.DEL_GB = 'N'
+		]]>
+	</select>
+	
+	<select id="selectFileList" resultType="hashmap" parameterType="hashmap">
+
+		<![CDATA[
+        SELECT
+            FILE_NO,
+            IMAGE_ORGNAME,
+        FROM
+            MC_STORE_FILE
+        WHERE
+            STORE_NO = #{STORE_NO}
+            AND DEL_GB = 'N'
+   		 ]]>
+	</select>
+
+	<!-- 스토어 정보 입력 -->
+	<insert id="insertStore" parameterType="hashmap" useGeneratedKeys="true" keyProperty="STORE_NO">
+		<selectKey keyProperty="STORE_NO" resultType="int" order="BEFORE">
+			select MC_STORE_NO_SEQ.NEXTVAL from DUAL
+		</selectKey>
+
+
+		<![CDATA[
+		insert into MC_STORE
+		( 
+			STORE_NO,
+			STORE_ITEM,
+			STORE_PRICE,
+			STORE_CONTENT
+		)
+		values 
+		(
+			#{STORE_NO},
+			#{STORE_ITEM},
+			#{STORE_PRICE},
+			#{STORE_CONTENT}
+		)		 		  
+		]]>
+	</insert>
+
+	<!-- 상품 사진 업로드 -->
+	<insert id="insertFile" parameterType="hashmap">
+
+		<![CDATA[
+        INSERT INTO MC_STORE_FILE
+        (
+            FILE_NO,
+            STORE_NO,
+            IMAGE_ORGNAME,
+            IMAGE_SAVNAME
+        )
+        VALUES
+        (
+            MC_STORE_FILE_NO_SEQ.NEXTVAL,
+            #{STORE_NO},
+            #{IMAGE_ORGNAME},
+            #{IMAGE_SAVNAME}
+        )      
+    	]]>
+	</insert>
+	
+	<!-- 스토어 상품 주문 -->
+	<insert id = "insertItem" parameterType = "hashmap">
+		<![CDATA[
+			INSERT INTO MC_USER_ITEM
+			(
+				MEMBER_NO,
+				STORE_NO,
+				AMOUNT,
+				TOTAL
+			)
+			VALUES
+			(
+				#{MEMBER_NO},
+				#{STORE_NO},
+				#{AMOUNT},
+				#{TOTAL}
+			)
+		]]>
+	</insert>
+
+	<!-- 스토어 정보 수정 -->
+	<update id="modifyStore" parameterType="hashmap">
+
+		<![CDATA[
+		UPDATE MC_STORE SET 
+			STORE_ITEM = #{STORE_ITEM}, 
+		    STORE_PRICE = #{STORE_PRICE}, 
+		    STORE_CONTENT = #{STORE_CONTENT}
+				WHERE STORE_NO = #{STORE_NO}
+		]]>
+	</update>
+
+	<update id="updateFileList" parameterType="hashmap">
+    	<![CDATA[
+        UPDATE MC_STORE_FILE SET
+            DEL_GB = 'Y'
+        WHERE
+            STORE_NO = #{STORE_NO}    	
+    	]]>
+	</update>
+
+	<update id="modifyFile" parameterType="hashmap">
+		<![CDATA[
+		UPDATE MC_STORE_FILE SET
+            DEL_GB = 'N'
+        WHERE
+            FILE_NO = #{FILE_NO}  
+        
+        ]]>
+	</update>
+
+	<!-- 스토어 삭제 -->
+	<delete id="deleteStore" parameterType="hashmap" >
+
+		<![CDATA[
+		DELETE FROM MC_STORE 
+			WHERE STORE_NO = #{STORE_NO}
+		
+		]]>
+	</delete>
+
+	<delete id="deleteFile" parameterType="hashmap">
+
+		<![CDATA[
+		DELETE FROM MC_STORE_FILE
+			where STORE_NO = #{STORE_NO}
+		]]>
+	</delete>
+	
+	<!-- 스토어 검색-->
+	<select id="storeSearch0" resultType="hashmap" parameterType="hashmap">
+		select 
+			s.STORE_NO, s.STORE_ITEM, s.STORE_PRICE,
+			f.FILE_NO, f.IMAGE_ORGNAME, f.IMAGE_SAVNAME, f.DEL_GB
+				FROM MC_STORE s INNER JOIN MC_STORE_FILE f 
+					ON s.STORE_NO = f.STORE_NO 
+						WHERE f.DEL_GB = 'N' AND
+						s.STORE_ITEM like #{search} 
+							order by S.STORE_NO desc
+	</select>
+
+</mapper>

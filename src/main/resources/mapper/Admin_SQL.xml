@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<!-- 회원 리스트 -->
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_AGE, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_RANK, MEMBER_MILE, MEMBER_REGDATE
+			FROM MC_MEMBER
+			ORDER BY MEMBER_NO DESC
+		]]>
+	</select>
+
+	<!-- 회원 검색 -->
+	<select id="memberSearch" resultType="hashmap" parameterType="hashmap">
+		select * from MC_MEMBER 
+		where 
+			<choose>
+				<when test = "MEMBER_ID != NULL">
+					MEMBER_ID like '%'||#{MEMBER_ID}||'%'
+				</when>
+				<when test = "MEMBER_NAME != NULL">
+					MEMBER_NAME like '%'||#{MEMBER_NAME}||'%'
+				</when>
+				<when test = "MEMBER_RANK != NULL">
+					MEMBER_RANK like '%'||#{MEMBER_RANK}||'%'
+				</when>
+			</choose>
+		order by MEMBER_NO desc
+	</select>
+
+	<!-- 회원 삭제 -->
+	<delete id="memberDelete" parameterType="hashmap" >
+		DELETE FROM MC_MEMBER
+			WHERE MEMBER_NO = #{MEMBER_NO}
+	</delete>
+</mapper>
+

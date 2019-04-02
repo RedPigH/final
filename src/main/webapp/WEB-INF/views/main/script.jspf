@@ -1,0 +1,622 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/bootstrap/js/popper.js"></script>
+<script src="/moviecube/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/select2/select2.min.js"></script>
+<script>
+			$(".js-select2").each(function() {
+				$(this).select2({
+					minimumResultsForSearch : 20,
+					dropdownParent : $(this).next('.dropDownSelect2')
+				});
+			})
+		</script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/slick/slick.min.js"></script>
+<script src="/moviecube/resources/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/parallax100/parallax100.js"></script>
+<script>
+			$('.parallax100').parallax100();
+		</script>
+<!--===============================================================================================-->
+<script
+	src="/moviecube/resources/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script>
+			$('.gallery-lb').each(function() { // the containers for all your galleries
+				$(this).magnificPopup({
+					delegate : 'a', // the selector for gallery item
+					type : 'image',
+					gallery : {
+						enabled : true
+					},
+					mainClass : 'mfp-fade'
+				});
+			});
+		</script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/vendor/sweetalert/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/moviecube/resources/vendor/sweetalert/package/dist/sweetalert2.min.css">
+
+<script>
+
+			$('.js-addwish-detail').each(
+					function() {
+						var nameProduct = $(this).parent().parent().parent()
+								.find('.js-name-detail').html();
+
+						$(this).on('click',function() {
+									Swal.fire(nameProduct, "보고싶은 영화로 등록 !",
+											"success");
+
+									$(this).addClass('js-addedwish-detail');
+									$(this).off('click');
+								});
+					});
+
+			
+
+			$('.js-addcart-detail').each(
+					function() {
+						var nameProduct = $(this).parent().parent().parent()
+								.parent().find('.js-name-detail').html();
+						$(this).on('click', function() {
+							Swal.fire(nameProduct, "보고싶은 영화로 등록 !", "success");
+						});
+					});
+</script>
+
+<!--===============================================================================================-->
+<!-- wishList -->
+<script type="text/javascript">
+function addWishList(MOVIE_NO) {
+			
+			var movie_no = MOVIE_NO;
+			
+			var allData = {
+				"MOVIE_NO" : movie_no
+			};
+
+			jQuery.ajaxSettings.traditional = true;
+
+			$.ajax({
+				type : "POST",
+				url : "<c:url value='/insertWishList.do'/>",
+				cache : false,
+				dataType : "json",
+				data : allData,
+				
+				success : function(data) {
+					
+							var nameProduct = $('#'+MOVIE_NO).parent().parent().find('.js-name-b2').html();
+							Swal.fire(nameProduct, "보고싶은 영화로 등록 !","success")
+							$('.'+MOVIE_NO).children().addClass('js-addedwish-b2');
+							$('.'+MOVIE_NO).children().attr("onclick", 'deleteWishList('+MOVIE_NO+');');
+							$('.'+MOVIE_NO).children().off('click');
+					
+						
+							
+							$(".js-show-cart").attr("data-notify", data.WishList.length);
+							
+							if(!(!$("#emptyWishListNotice"))){
+							$("#emptyWishListNotice").remove().end();
+							};
+							
+							$("li").remove("#MyWishMovie").end();
+							
+							for (var idx = 0; idx < data.WishList.length; idx++) {
+									$("#myWishList").append(
+											'<li class="header-cart-item flex-w flex-t m-b-12" id="MyWishMovie" style="align-items: center;">'
+											+'<input type="checkbox" id="'+data.WishList[idx].WISH_NO+'" name="wishCheckBox" style="margin-right: 10px">'
+											+'<div class="wishCheckBox" style="display: none">'+data.WishList[idx].WISH_NO+'</div>'
+											+'<div class="wishMovieNo" style="display: none">'+data.WishList[idx].MOVIE_NO+'</div>'
+											+'<div class="header-cart-item-img">'
+											+'<img src="resources/upload/movie/poster/'+data.WishList[idx].POSTER_SAVNAME+'" alt="IMG">'
+											+'</div>'
+
+											+'<div class="p-t-8">'
+											+'<a href="javascript:void(0);" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-show-modal1 js-hide-cart" id="toModal'+data.WishList[idx].MOVIE_NO+'" onclick="toModal('+data.WishList[idx].MOVIE_NO+')">'
+											+data.WishList[idx].MOVIE_NAME+'</a> <span class="header-cart-item-info">'
+											+data.WishList[idx].MOVIE_GENRE+'&nbsp;/&nbsp;감독:'+data.WishList[idx].MOVIE_DIRECTOR+'</span>'
+											+'</div>'
+											+'</li>'
+											)
+						}
+							
+							$('#WishListLength').empty();
+							$("#WishListLength").html('총 : '+data.WishList.length+'편');
+							show_modal1();
+							hide_modal1();
+				},
+
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("오류가 발생하였습니다.");
+				}
+			}); 
+		}
+	</script>
+	
+
+<!--===============================================================================================-->
+<!-- wishList -->
+<script type="text/javascript">
+function deleteWishList(MOVIE_NO) {
+	
+			
+			var movie_no = MOVIE_NO;
+			
+			var allData = {
+				"MOVIE_NO" : movie_no
+			};
+
+			jQuery.ajaxSettings.traditional = true;
+
+			$.ajax({
+				type : "POST",
+				url : "<c:url value='/deleteWishList.do'/>",
+				cache : false,
+				dataType : "json",
+				data : allData,
+				
+				success : function(data) {
+					
+						
+							var nameProduct = $('#'+MOVIE_NO).parent().parent().find('.js-name-b2').html();
+							Swal.fire(nameProduct, "보고싶은 영화, 해제","error");
+							$('.'+MOVIE_NO).children().removeClass('js-addedwish-b2');
+							$('.'+MOVIE_NO).children().attr("onclick", 'addWishList('+MOVIE_NO+');');
+							$('.'+MOVIE_NO).children().off('click');
+							
+					
+							$(".js-show-cart").attr("data-notify", data.WishList.length);
+					
+							$('li').remove("#MyWishMovie").end();
+							
+							if(data.WishList.length == 0){
+								$("#myWishList").append(
+										'<li class="header-cart-item flex-w flex-t m-b-12" id="emptyWishListNotice" style="margin-left: 30px;">'
+										+'<div class="header-cart-item-txt p-t-8">'
+										+'<a href="javascript:void(0);" class="header-cart-item-name m-b-18 hov-cl1 trans-04">'
+										+'보고싶은 영화가 없네요ㅠㅠ</a>'
+										+'</div>'
+										+'</li>'	
+								)
+							} else {
+							for (var idx = 0; idx < data.WishList.length; idx++) {
+									$("#myWishList").append(
+											'<li class="header-cart-item flex-w flex-t m-b-12" id="MyWishMovie" style="align-items: center;">'
+											+'<input type="checkbox" id="'+data.WishList[idx].WISH_NO+'" name="wishCheckBox" style="margin-right: 10px">'
+											+'<div class="wishCheckBox" style="display: none">'+data.WishList[idx].WISH_NO+'</div>'
+											+'<div class="wishMovieNo" style="display: none">'+data.WishList[idx].MOVIE_NO+'</div>'
+											+'<div class="header-cart-item-img">'
+											+'<img src="resources/upload/movie/poster/'+data.WishList[idx].POSTER_SAVNAME+'" alt="IMG">'
+											+'</div>'
+
+											+'<div class="p-t-8">'
+											+'<a href="javascript:void(0);" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-show-modal1 js-hide-cart" id="toModal'+data.WishList[idx].MOVIE_NO+'" onclick="toModal('+data.WishList[idx].MOVIE_NO+')">'
+											+data.WishList[idx].MOVIE_NAME+'</a> <span class="header-cart-item-info">'
+											+data.WishList[idx].MOVIE_GENRE+'&nbsp;/&nbsp;감독:'+data.WishList[idx].MOVIE_DIRECTOR+'</span>'
+											+'</div>'
+											+'</li>'
+											)
+											 
+						}
+							}
+							
+							$('#WishListLength').empty();
+							$("#WishListLength").html('총 : '+data.WishList.length+'편');
+							show_modal1();
+							hide_modal1();
+				},
+
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("오류가 발생하였습니다.");
+				}
+			}); 
+		}
+	</script>
+<!--===============================================================================================-->
+<script type="text/javascript">
+function deleteWishList2() {
+			
+			if($("input[name=wishCheckBox]:checked").length >= 1){
+				var CheckedBoxList = new Array();
+			
+				$("input[name=wishCheckBox]:checked").each(function() {
+		        	 CheckedBoxList += ($(this).parent().find('.wishCheckBox').html()) + ",";
+		        	 $('.'+$(this).parent().find('.wishMovieNo').html()).children().removeClass('js-addedwish-b2');
+					 $('.'+$(this).parent().find('.wishMovieNo').html()).children().attr("onclick", 'addWishList('+$(this).parent().find('.wishMovieNo').html()+');');
+				  });
+			} else {
+				Swal.fire("선택된 영화가 없습니다");
+				return false;
+			}
+			
+			var allData = {
+				"WISH_NO_LIST" : CheckedBoxList
+			};
+
+			jQuery.ajaxSettings.traditional = true;
+
+			$.ajax({
+				type : "POST",
+				url : "<c:url value='/deleteWishList.do'/>",
+				cache : false,
+				dataType : "json",
+				data : allData,
+				
+				success : function(data) {
+					
+							$(".js-show-cart").attr("data-notify", data.WishList.length);
+					
+							$('li').remove("#MyWishMovie").end();
+							
+							if(data.WishList.length == 0){
+								$("#myWishList").append(
+										'<li class="header-cart-item flex-w flex-t m-b-12" id="emptyWishListNotice" style="margin-left: 30px;">'
+										+'<div class="header-cart-item-txt p-t-8">'
+										+'<a href="javascript:void(0);" class="header-cart-item-name m-b-18 hov-cl1 trans-04">'
+										+'보고싶은 영화가 없네요ㅠㅠ</a>'
+										+'</div>'
+										+'</li>'	
+								)
+							} else {
+							for (var idx = 0; idx < data.WishList.length; idx++) {
+								
+									$("#myWishList").append(
+											'<li class="header-cart-item flex-w flex-t m-b-12" id="MyWishMovie" style="align-items: center;">'
+											+'<input type="checkbox" id="'+data.WishList[idx].WISH_NO+'" name="wishCheckBox" style="margin-right: 10px">'
+											+'<div class="wishCheckBox" style="display: none">'+data.WishList[idx].WISH_NO+'</div>'
+											+'<div class="wishMovieNo" style="display: none">'+data.WishList[idx].MOVIE_NO+'</div>'
+											+'<div class="header-cart-item-img">'
+											+'<img src="resources/upload/movie/poster/'+data.WishList[idx].POSTER_SAVNAME+'" alt="IMG">'
+											+'</div>'
+
+											+'<div class="p-t-8">'
+											+'<a href="javascript:void(0);" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-show-modal1 js-hide-cart" id="toModal'+data.WishList[idx].MOVIE_NO+'" onclick="toModal('+data.WishList[idx].MOVIE_NO+')">'
+											+data.WishList[idx].MOVIE_NAME+'</a> <span class="header-cart-item-info">'
+											+data.WishList[idx].MOVIE_GENRE+'&nbsp;/&nbsp;감독:'+data.WishList[idx].MOVIE_DIRECTOR+'</span>'
+											+'</div>'
+											+'</li>'
+											)
+						}
+							}
+							$('#WishListLength').empty();
+							$("#WishListLength").html('총 : '+data.WishList.length+'편');
+							show_modal1();
+							hide_modal1();
+				},
+
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("오류가 발생하였습니다.");
+				}
+			}); 
+		}
+	</script>
+<!--===============================================================================================-->
+<script
+	src="/moviecube/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+			$('.js-pscroll').each(function() {
+				$(this).css('position', 'relative');
+				$(this).css('overflow', 'hidden');
+				var ps = new PerfectScrollbar(this, {
+					wheelSpeed : 1,
+					scrollingThreshold : 1000,
+					wheelPropagation : false,
+				});
+
+				$(window).on('resize', function() {
+					ps.update();
+				})
+			});
+		</script>
+<!--===============================================================================================-->
+<script src="/moviecube/resources/js/main.js"></script>
+
+
+<!--===============================================================================================-->
+<script type="text/javascript">
+    function add_item(MOVIE_NAME){
+    	
+        var length = $(".AddedMovieList").length;
+        
+        if(length < 4){
+        var div = document.createElement('div');
+        var movie_name = MOVIE_NAME;
+        div.setAttribute("id", "AddedMovieList"+movie_name);
+        div.setAttribute("value", movie_name);
+        div.setAttribute("class", "AddedMovieList");
+        div.innerHTML = document.getElementById(movie_name).innerHTML;
+        document.getElementById('field').appendChild(div);
+        } else {
+        	Swal.fire("","더 이상 영화를 추가할 수 없습니다", "warning");
+        	return false;
+        }
+    }
+ 
+    function remove_item(MOVIE_NAME){
+        // obj.parentNode 를 이용하여 삭제
+        document.getElementById('field').removeChild(MOVIE_NAME);
+    }
+</script>
+
+
+<!--===============================================================================================-->
+	<!-- 예약 페이지1 / 상영시간표 Ajax -->
+	<script type="text/javascript">
+		function movieSelect() {
+			
+			
+			if(!(!document.getElementById('TimeTable'))){
+			$('div').remove('#TimeTable');
+			};
+			
+			
+			/* 날짜 변수 저장 */
+			var selectedDate = $("#datepicker").val();
+			
+			/* 극장 변수 저장 */
+			var cinemaNo = [];
+			$("select[name='selectCinema']").each(function(i) {	//4개
+				if ($(this).val() == "") {
+				} else {
+					cinemaNo.push($(this).val());
+				}
+			});
+			
+			/* 영화 변수 저장 */
+			var movieName = [];
+			$("div[class='AddedMovieList']").each(function(i) {	//4개
+					movieName.push($(this).attr('value'));
+				});
+			
+
+			
+			/* 상영시간표 쪽에 안내 멘트 출력 */
+			if(selectedDate.trim() == "" || !cinemaNo.length || !movieName.length){
+				
+				if(!document.getElementById('movieSelectNotice')){
+					$("#timeList").append(
+							'<div class="flex-w flex-t bor12 p-t-15 p-b-15" id="Notice">'
+							+'<div class="size-196 p-t-35 p-b-35 flex-c-m" id="movieSelectNotice">'
+								+'<span class="mtext-110 cl2" style="font-family: MaplestoryBold"></span>'
+							+'</div>'
+					+'</div>'
+						)	
+					};
+			
+					if(selectedDate.trim() != "" && !cinemaNo.length && !movieName.length){
+						$("#movieSelectNotice").find("span").remove().end().append(
+						'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">극장, 영화를 선택해주세요.</span>');
+				} else if(selectedDate.trim() == "" && !(!cinemaNo.length) && !movieName.length){
+						$("#movieSelectNotice").find("span").remove().end().append(
+						'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">날짜, 영화를 선택해주세요.</span>');
+				} else if(selectedDate.trim() == "" && !cinemaNo.length && !(!movieName.length)){
+						$("#movieSelectNotice").find("span").remove().end().append(
+						'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">날짜, 극장을 선택해주세요.</span>');
+						
+				} else if(selectedDate.trim() != "" && !(!cinemaNo.length) && !movieName.length){
+					$("#movieSelectNotice").find("span").remove().end().append(
+					'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">영화를 선택해주세요.</span>');
+				} else if(selectedDate.trim() != "" && !cinemaNo.length && !(!movieName.length)){
+					$("#movieSelectNotice").find("span").remove().end().append(
+					'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">극장을 선택해주세요.</span>');
+				} else if(selectedDate.trim() == "" && !(!cinemaNo.length) && !(!movieName.length)){
+					$("#movieSelectNotice").find("span").remove().end().append(
+					'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">날짜를 선택해주세요.</span>');
+				} else if(selectedDate.trim() == "" && !cinemaNo.length && !movieName.length){
+					$("#movieSelectNotice").find("span").remove().end().append(
+					'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">날짜, 극장, 영화를 선택해주세요.</span>');
+				}
+					
+					
+					
+					
+			/* DB에서 상영시간표 가져오기 */		
+			} else if(selectedDate.trim() != "" && !(!cinemaNo.length) && !(!movieName.length)){
+			
+			var allData = {
+				"selectedDate" : selectedDate,
+				"cinemaNo" : cinemaNo,
+				"movieName" : movieName
+			};
+
+			jQuery.ajaxSettings.traditional = true;
+
+			$.ajax({
+				type : "POST",
+				url : "<c:url value='/reserve/movieSelect.do'/>",
+				dataType : "json",
+				data : allData,
+				
+				success : function(data) {
+					
+					$("#timeList").find("#Notice").remove().end();
+					
+					if(data.optionTimeList.length != 0){
+							for (var idx = 0; idx < data.optionTimeList.length; idx++) {
+								$("#timeList").append(
+								'<div class="flex-w flex-t bor12 p-t-15 p-b-15" id="TimeTable"><a href="/moviecube/reserve_selectSeat.do?time_no='+data.optionTimeList[idx].TIME_NO+'&screen_no='+data.optionTimeList[idx].SCREEN_NO+'"'
+									+'class="flex-col-m stext-101 cl0 size-111 bg1 bor1 hov-btn2 p-lr-20 trans-04">'
+										+'<div class="size-196">'
+											+'<span class="mtext-110 cl2"'
+												+'style="font-family: NanumGothicExtraBold">['+data.optionTimeList[idx].MOVIE_NAME+']</span>'
+										+'</div>'
+										+'<div class="flex-sb size-196">'
+										+'<span class="mtext-110 cl2">'+data.optionTimeList[idx].CINEMA_NAME+'</span> <span'
+										+'class="mtext-110 cl2">'+data.optionTimeList[idx].MOVIE_TYPE+'</span> <span'
+										+'class="mtext-110 cl2">'+data.optionTimeList[idx].START_TIME+"~"+data.optionTimeList[idx].END_TIME
+										+'</span>'
+										+'</div>'
+										+'</a>'
+										+'</div>')
+							}
+					} else {
+						$("#timeList").append(
+								'<div class="flex-w flex-t bor12 p-t-15 p-b-15" id="Notice">'
+								+'<div class="size-196 p-t-35 p-b-35 flex-c-m" id="movieSelectNotice">'
+									+'<span class="mtext-110 cl2" style="font-family: MaplestoryBold">상영 중인 영화가 없습니다.</span>'
+								+'</div>'
+						+'</div>'
+								)						
+					}
+				},
+
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("오류가 발생하였습니다.");
+				}
+			}); 
+		}
+		}
+	</script>
+	
+<!--===============================================================================================-->
+<!-- <script type="text/javascript" src="/moviecube/resources/vendor/reserveSeat/jquery-1.11.0.min.js"></script> -->
+<script type="text/javascript" src="/moviecube/resources/vendor/reserveSeat/jquery.seat-charts.min.js"></script>
+
+<!--===============================================================================================-->
+<script>
+function loginAlert(){
+	Swal.fire("로그인이 필요합니다");
+	return false;
+}
+</script>
+
+<!--===============================================================================================-->
+<!-- selectedReserve -->
+<script type="text/javascript">
+function selectedReserve() {
+	
+			if($("input[name=wishCheckBox]:checked").length >= 5){
+				Swal.fire("4편까지만", "동시 예매 가능합니다", "error");
+			} else {
+				var CheckedBoxList = new Array();
+				
+				$("input[name=wishCheckBox]:checked").each(function() {
+		        	 CheckedBoxList += ($(this).parent().find('.header-cart-item-name').html()) + ",";
+		     	 });
+				
+				location.href="/moviecube/reserve.do?CheckedBoxList="+CheckedBoxList;
+				
+			}
+}
+	</script>
+	
+	
+<!-- selectedReserve2 -->
+<script type="text/javascript">
+function selectedReserve2(MOVIE_NAME) {
+	
+	var movie_name = MOVIE_NAME
+	
+	var CheckedBoxList = new Array();
+	CheckedBoxList += (movie_name + ",");
+	location.href="/moviecube/reserve.do?CheckedBoxList="+CheckedBoxList;
+			
+	
+}
+</script>
+		
+		
+		
+<!--===============================================================================================-->
+<!-- 상세보기 모달 -->		
+<script type="text/javascript">
+function toModal(movie_no) {
+   writeToModal(movie_no);
+    
+   /* Ajax를 해봅시다 */
+   /* 여기부터는 바로 스틸컷 슬라이드 부분입니다.항! */
+   $("div").remove("#comment_start");
+   $("#review").val(''); // textarea 값 초기화
+   
+   jQuery.ajaxSettings.traditional = true;
+   stillcut_list = new Array();
+   var data = {
+         "movie_no" : movie_no
+   }
+   
+         $.ajax({
+            type : "POST",
+            url : "<c:url value='/stillcut.do'/>",
+            dataType : "json",
+            data : data,
+
+            success : function(data) {
+               
+               var stillcut_length = data.stillcut_list.length;
+               
+               var for_label_prev = "&#x2039;";
+               var for_label_next = "&#x203a;"
+               
+               var img_tag = "<img src='/moviecube/resources/upload/movie/stillcut/";
+               var label_prev = "";
+               var label_next = "";
+               
+               $('#stillcut-slide').children().remove();
+               
+               for(var i = 0 ; i < data.stillcut_list.length; i++) {
+                  img_tag = "<img src='/moviecube/resources/upload/movie/stillcut/";
+                  var input_tag = "<input type='radio' name='radio-btn' id='img-" + (i+1) + "' />" // i = 0일때 checked 해줘야됨.
+                  if(i == 0) {
+                     input_tag = "<input type='radio' name='radio-btn' id='img-1' checked />";
+                  }
+                  var savname = data.stillcut_list[i].STILLCUT_SAVNAME + "'/>";
+                  
+                  img_tag = img_tag + savname;
+                  
+                  if(i == 0) { // 만약 i가 처음 값이면 이전 버튼 눌렀을 때 마지막 사진을 띄워줘야됨.
+                     label_prev = "<label for = 'img-" + (stillcut_length) + "' class='prev'>" + for_label_prev + "</label>";
+                  } else {
+                     label_prev = "<label for = 'img-" + (i) + "' class='prev'>" + for_label_prev + "</label>";
+                  }
+                  if( i == (stillcut_length - 1) ) { // 만약 i가 끝값이면 다음 눌렀을 때 처음으로 돌아가게 해줘야됨 
+                     label_next = "<label for = 'img-1' class='next'>" + for_label_next + " </label>";
+                  }
+                  
+                  label_next = "<label for = 'img-" + (i+2) + "' class='next'>" + for_label_next +  "</label>";
+                  
+                  $("#stillcut-slide").append(
+                        input_tag + "<li class='slide-container'>" + 
+                        "<div class='slide'>" + img_tag + "</div>" + 
+                        "<div class='nav'>" + label_prev + label_next + "</div>" + "</li>"
+                        );
+               } // for문 끝
+            },
+
+            error : function() {
+               alert("오류가 발생하였습니다.");
+            }
+         });
+}
+</script>
+
+<!--===============================================================================================-->
+<!-- 메인 키워드 검색 -->
+<script>
+         $(document).ready(function(){
+             $("#keywordSearch").keypress(function (e) {
+              if (e.which == 13){
+            	  keywordSearchJS();  // 실행할 이벤트
+              }
+          });
+    	  });
+
+</script>
+
+<script>
+         function keywordSearchJS() {
+        	 location.href="/moviecube/movieSearch.do?searchKeyword="+$("#keywordSearch").val()
+         }
+</script>
