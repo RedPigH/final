@@ -1,4 +1,4 @@
-package com.moviecube.mypage;
+package com.moviecube.member;
 
 import java.util.List;
 import java.util.Map;
@@ -31,9 +31,9 @@ public class MypageController {
 		
 		commandMap.put("MEMBER_NO", user.get("MEMBER_NO"));
 
-		List<Map<String, Object>> resList = reserveService.MyReservation(commandMap.getMap());
+		List<Map<String, Object>> ResList = reserveService.MyReservation(commandMap.getMap());
 
-		mv.addObject("resList", resList);
+		mv.addObject("ResList", ResList);
 
 		return mv;
 	}
@@ -44,4 +44,5 @@ public class MypageController {
 
 		return mv;
 	}
+	
 }

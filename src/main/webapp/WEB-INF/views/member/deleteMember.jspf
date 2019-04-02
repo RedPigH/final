@@ -28,10 +28,11 @@
 			<div class="row" style = "margin: 0 0;">
 				<div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto">
 					<div class="p-tb-30 p-l-30 m-lr-15-sm">
-						<form id="dl" name="dl" method="post"></form>
+						<form id="dl" name="dl" method="post">
 						<input type="hidden" name="MEMBER_NO" value="${sessionScope.userLoginInfo.MEMBER_NO}">
 						<button id="ok" class="stext-111 size-214 cl0 bg1 bor2 hov-btn4 trans-04" onclick="deleteMember()">네</button>
 						<button type="button" class="stext-111 size-214 m-l-35 cl0 bg1 bor2 hov-btn4 trans-04 cancelbtn js-hide-modal4">아니요</button>
+						</form>
 					</div>
 				</div>
 			</div>
