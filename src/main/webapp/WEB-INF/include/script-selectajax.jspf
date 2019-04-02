@@ -1,0 +1,26 @@
+<script type="text/javascript">
+$("#selectCinema").change(function(){
+	var project = {}
+	project = $('#selectCinema').val();
+	
+	$.ajax({
+		type: 'post',
+		url: '/selectscreenList.do',
+		data: JSON.stringify(data),
+		success: function(result){
+			
+			alert(result);
+
+			<!-- var cshpr = {};
+			for (var i = 0; i < project.length; i++) {
+				cshpr += '<option value="' + project[i].CIDX + '">' + project[i].CSHPR + '</option>';
+			}
+			alert(cshpr);
+			$('#CSHPR').html(cshpr); -->
+		},
+		error: function(project) {
+			alert("error");
+		}
+	})
+});
+</script>

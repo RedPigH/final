@@ -1,0 +1,248 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!-- Event List -->
+<section class="sec-product bg0 p-t-100 p-b-50">
+	<div class="container">
+
+		<!-- Tab01 -->
+		<div class="tab01" style="margin-top: 70px">
+			<div class="flex-col-c p-b-10">
+				<h3 class="ltext-105 cl5">EVENT LIST</h3>
+			</div>
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist" style="margin-left: 0px">
+
+				<li class="nav-item p-b-10"><a class="nav-link active"
+					data-toggle="tab" href="#all" role="tab">전체 이벤트</a></li>
+
+				<li class="nav-item p-b-10"><a class="nav-link"
+					data-toggle="tab" href="#best-seller" role="tab">무비큐브 이벤트</a></li>
+
+				<li class="nav-item p-b-10"><a class="nav-link"
+					data-toggle="tab" href="#featured" role="tab">영화 이벤트</a></li>
+
+				<li class="nav-item p-b-10"><a class="nav-link"
+					data-toggle="tab" href="#sale" role="tab">제휴 이벤트</a></li>
+
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content p-t-50">
+				<!-- 전체 이벤트- -->
+				<div class="tab-pane fade show active" id="all" role="tabpanel">
+					<!-- Slide2 -->
+					<div class="wrap-slick2">
+						<div class="slick2">
+
+							<c:choose>
+								<c:when test="${fn:length(eventList) > 0 }">
+									<c:forEach items="${eventList }" var="row">
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2" style="border: 1px solid #d9d9d9;">
+												<div class="block2-pic hov-img0" id="forEventModal">
+													<img
+														src="/moviecube/resources/upload/event/${row.EVENT_SAVNAME}"
+														width="200px" height="350px" alt="이벤트" /> <a href="#"
+														id="gahyun" onclick="writeToModal(${row.EVENT_NO });"
+														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+														상세보기 </a>
+
+												</div>
+
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l ">
+														<a href="resources/product-detail.html"
+															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+															style="font-size: 16px"> ${row.EVENT_NAME}</a>
+														<p>
+															<strong class="stext-105 cl3 p-b-5 p-l-20"
+																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
+																: </strong>
+														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
+															style="font-size: 12px">
+															<c:set var="TextValue" value="${row.EVENT_OPENDATE }" />
+															${fn:substring(TextValue,0,10)} ~
+															<c:set var="TextValue" value="${row.EVENT_CLOSEDATE} " />
+															${fn:substring(TextValue,0,10)}
+														</p>
+													</div>
+
+													<div class="block2-txt-child2 flex-r p-t-3"></div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div>이벤트 없음</div>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+				<!-- 무비큐브 이벤트- -->
+				<div class="tab-pane fade" id="best-seller" role="tabpanel">
+					<!-- Slide2 -->
+					<div class="wrap-slick2">
+						<div class="slick2">
+							<c:choose>
+								<c:when test="${fn:length(mceventList) > 0 }">
+									<c:forEach items="${mceventList }" var="row">
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2" style="border: 1px solid #d9d9d9;">
+												<div class="block2-pic hov-img0" id="forEventModal">
+													<img
+														src="/moviecube/resources/upload/event/${row.EVENT_SAVNAME}"
+														width="350" height="350" alt="이벤트" /> <a href="#"
+														id="gahyun" onclick="writeToModal(${row.EVENT_NO });"
+														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+														상세보기 </a>
+
+												</div>
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l ">
+														<a href="resources/product-detail.html"
+															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+															style="font-size: 16px"> ${row.EVENT_NAME}</a>
+														<p>
+															<strong class="stext-105 cl3 p-b-5 p-l-20"
+																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
+																: </strong>
+														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
+															style="font-size: 12px">
+															<c:set var="TextValue" value="${row.EVENT_OPENDATE }" />
+															${fn:substring(TextValue,0,10)} ~
+															<c:set var="TextValue" value="${row.EVENT_CLOSEDATE} " />
+															${fn:substring(TextValue,0,10)}
+														</p>
+													</div>
+
+													<div class="block2-txt-child2 flex-r p-t-3"></div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+				이벤트가 없습니다.
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+
+				<!-- 영화이벤트 -->
+				<div class="tab-pane fade" id="featured" role="tabpanel">
+					<!-- Slide2 -->
+					<div class="wrap-slick2">
+						<div class="slick2">
+							<c:choose>
+								<c:when test="${fn:length(meventList) > 0 }">
+									<c:forEach items="${meventList }" var="row">
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2" style="border: 1px solid #d9d9d9;">
+												<div class="block2-pic hov-img0">
+													<img
+														src="/moviecube/resources/upload/event/${row.EVENT_SAVNAME}"
+														width="350" height="350" alt="이벤트" /> <a href="#"
+														id="gahyun" onclick="writeToModal(${row.EVENT_NO });"
+														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+														상세보기 </a>
+
+												</div>
+
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l ">
+														<a href="resources/product-detail.html"
+															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+															style="font-size: 16px"> ${row.EVENT_NAME}</a>
+														<p>
+															<strong class="stext-105 cl3 p-b-5 p-l-20"
+																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
+																: </strong>
+														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
+															style="font-size: 12px">
+															<c:set var="TextValue" value="${row.EVENT_OPENDATE }" />
+															${fn:substring(TextValue,0,10)} ~
+															<c:set var="TextValue" value="${row.EVENT_CLOSEDATE} " />
+															${fn:substring(TextValue,0,10)}
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div>이벤트 없음</div>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+				<!-- - 제휴 이벤트-->
+				<div class="tab-pane fade" id="sale" role="tabpanel">
+					<!-- Slide2 -->
+					<div class="wrap-slick2">
+						<div class="slick2">
+							<c:choose>
+								<c:when test="${fn:length(alleventList) > 0 }">
+									<c:forEach items="${alleventList }" var="row">
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2" style="border: 1px solid #d9d9d9;">
+												<div class="block2-pic hov-img0">
+													<img
+														src="/moviecube/resources/upload/event/${row.EVENT_SAVNAME}"
+														width="350" height="350" alt="이벤트" /> <a href="#"
+														id="gahyun" onclick="writeToModal(${row.EVENT_NO });"
+														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+														상세보기 </a>
+												</div>
+																							<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l ">
+														<a href="resources/product-detail.html"
+															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20" style="font-size:16px">
+															${row.EVENT_NAME}</a>								
+															<p>
+															<strong class="stext-105 cl3 p-b-5 p-l-20"
+															id="MOVIE_GENRE" style="font-size:12px">이벤트 기간 : </strong>
+															<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20" style="font-size:12px">
+															<c:set var="TextValue"  value="${row.EVENT_OPENDATE }"/>
+															${fn:substring(TextValue,0,10)}
+															 ~
+															 <c:set var="TextValue" value="${row.EVENT_CLOSEDATE} " />
+															${fn:substring(TextValue,0,10)}
+															</p>
+													</div>
+													<div class="block2-txt-child2 flex-r p-t-3"></div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div
+										class="col-sm-12 col-md-12 col-lg-12 p-b-35 isotope-item women">
+										<div class="size-196 p-t-35 p-b-35 flex-c-m m-tb-50"
+											id="movieSelectNotice">
+											<span class="mtext-110 cl2"
+												style="font-family: MaplestoryLight; font-size: 25px">이벤트가
+												없습니다ㅠㅠ</span>
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

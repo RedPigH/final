@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wishlist">
+
+	<!-- 찜하기 목록 --> 
+	<select id = "selectWishList" parameterType = "hashmap" resultType = "hashmap">
+			SELECT w.WISH_NO, mb.MEMBER_NO, mb.MEMBER_NAME, m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_DIRECTOR, m.MOVIE_GENRE, f.FILE_NO, f.POSTER_SAVNAME
+			FROM MC_WISHLIST w
+			INNER JOIN MC_MOVIE m ON w.MOVIE_NO = m.MOVIE_NO
+			INNER JOIN MC_MOVIE_FILE f ON w.MOVIE_NO = f.MOVIE_NO
+			INNER JOIN MC_MEMBER mb ON w.MEMBER_NO = mb.MEMBER_NO
+			WHERE w.MEMBER_NO = #{MEMBER_NO} and f.DEL_GB = 'N'
+	</select>
+	
+	
+	<!-- 찜하기 -->
+	<insert id="insertWishList" parameterType="hashmap" useGeneratedKeys="true" keyProperty="WISH_NO">
+		<selectKey keyProperty="WISH_NO" resultType="int" order="BEFORE">
+			select MC_WISHLIST_NO_SEQ.NEXTVAL from DUAL
+		</selectKey>
+		<![CDATA[
+		insert into MC_WISHLIST
+		( 
+			WISH_NO,
+			MEMBER_NO,
+			MOVIE_NO	
+		)
+		values 
+		(
+			#{WISH_NO},
+			#{MEMBER_NO},
+			#{MOVIE_NO}
+		)		 		  
+		]]>
+	</insert>
+	
+	<!-- 찜하기 삭제 -->
+	<delete id = "deleteWishList" parameterType = "hashmap">
+      <![CDATA[
+      DELETE FROM MC_WISHLIST
+      WHERE 
+      ]]>
+      <choose>
+            <when test = "WISH_NO != NULL">
+               WISH_NO = #{WISH_NO}
+            </when>
+            <otherwise>
+               MEMBER_NO = #{MEMBER_NO} AND MOVIE_NO = #{MOVIE_NO}
+            </otherwise>
+      </choose>
+   </delete>
+
+</mapper>

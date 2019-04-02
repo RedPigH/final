@@ -1,0 +1,32 @@
+
+#find_id_easy ul {
+	padding: 58px 0 57px 62px;
+}
+
+#find_pw_easy ul {
+    padding: 58px 0 57px 62px;
+}
+
+
+.submit_wrap {
+	height: 60px;
+    padding-top: 29px;
+    border-top: 1px solid #e8e7e7;
+}
+
+.icheckbox_minimal ins, .iradio_minimal ins {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    background: url(http://image2.megabox.co.kr/mop/home/bg_input.png) 0 0 no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+::placeholder { /* 파이어폭스 51+, 크롬 57+ */
+   color: #9e9e9e;
+   opacity:  1;
+}

@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<script type="text/javascript">
+	function login() {
+		var form = document.lgfm;
+
+		//아이디에서 입력 필수 조건문
+		if (form.MEMBER_ID.value == "") {
+			alert("아이디를 입력해야 합니다!");
+			form.MEMBER_ID.focus();//포커스를 id박스로 이동.
+			return;
+		}
+
+		if (form.MEMBER_PASSWD1.value == "") {
+			alert("패스워드를 입력 해야 합니다!");
+			form.MEMBER_PASSWD1.focus();//포커스를 Password박스로 이동.
+			return;
+		}
+		
+		form.action="/moviecube/member/login.do"
+		form.submit();
+
+	}
+</script>
+
+
+
+<!-- modal2 -->
+<div class="wrap-modal2 js-modal2 p-t-60 p-b-20">
+	<div class="overlay-modal2 js-hide-modal2"></div>
+
+	<div class="container" style="max-width: 500px; margin-top: 150px">
+		<div class="bg0 p-lr-15-lg how-pos3-parent" style="border-radius: 20px">
+			<button class="how-pos3 hov3 trans-04 js-hide-modal2">
+				<img src="/moviecube/resources/images/icons/icon-close.png" alt="CLOSE">
+			</button>
+
+			<div class="row" style="margin: 0 0;">
+				<div class="flex-w flex-sb-m p-t-22 p-lr-50 p-lr-15-sm">
+					<h4 class="mtext-109 cl2" style="padding-bottom: 0px">로그인</h4>
+				</div>
+			</div>
+
+			<div class="row" style="margin: 0 0;">
+
+				<form name="lgfm" id="lgfm" method="post"
+					style="border-top: 1px solid #f1f1f1; width: -webkit-fill-available; padding-bottom: 20px;">
+
+					<div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto p-t-30">
+						<div class="p-b-30 m-lr-15-sm">
+							<label for="uname"><b>아이디</b></label> <input
+								class="stext-104 cl2 plh4 size-127 bor13 p-lr-20 m-r-10 m-tb-5"
+								type="text" name="MEMBER_ID" placeholder="아이디 입력"
+								autocomplete="off"> <label for="psw" class="p-t-20"><b>비밀번호</b></label>
+							<input
+								class="stext-104 cl2 plh4 size-127 bor13 p-lr-20 m-r-10 m-tb-5"
+								type="password" name="MEMBER_PASSWD1" placeholder="비밀번호 입력"
+								autocomplete="off">
+						</div>
+					</div>
+
+					<div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto">
+						<div class="p-b-30 m-lr-15-sm">
+						<label> <input type="checkbox" checked="checked"
+								name="remember" style="float: left;">자동저장
+							</label>
+							
+							<button id="lg"
+								class="stext-101 cl0 size-128 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+								onclick="login();">로그인</button>
+							<button type="button" class="stext-101 cl0 size-128 bg1 bor1 hov-btn1 p-lr-15 trans-04 cancelbtn js-hide-modal2">취소</button>
+							<span class="float-r flex-w flex-t p-t-20">
+								<ul>
+									<li><a href="/moviecube/term.do"
+										class="stext-107 cl7 hov-cl1 trans-04">회원가입</a></li>
+									<li><a href="/moviecube/member/findForm.do"
+										class="stext-107 cl7 hov-cl1 trans-04">아이디/비밀번호 찾기</a></li>
+								</ul>
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
