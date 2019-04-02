@@ -49,4 +49,24 @@ public class MemberDAO extends AbstractDAO {
 	public void updateRank(Map<String, Object> map) throws Exception {
 		update("member.updateRank", map);
 	}
+	
+	public void updateMember(Map<String, Object> map) throws Exception{
+		update("member.informUpdate", map);
+	}
+	
+	public void updatePass(Map<String, Object> map) throws Exception{
+		update("member.passwdUpdate", map);
+	}
+	
+	public void deleteMember(Map<String, Object> map) throws Exception{
+		delete("member.deleteMember", map);
+	}
+	
+	public void insertMyPage(Map<String, Object> map) throws Exception {
+		insert("member.insertMyPage", map);
+	}
+	
+	public void insertFile(Map<String, Object> filelist) throws Exception {
+		insert("member.insertFile", filelist);
+	}
 }

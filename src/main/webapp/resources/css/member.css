@@ -1,152 +1,156 @@
 .width-fixed{
-	width: 970px;
-	max-width: 970px;
-	min-width: 970px;
-	margin-top: 150px;
-	margin-left: auto;
-	margin-right: auto;
+   width: 970px;
+   max-width: 970px;
+   min-width: 970px;
+   margin-top: 150px;
+   margin-left: auto;
+   margin-right: auto;
 }
 
-.row3 {
-	overflow:hidden;
+.row {
+   overflow:hidden;
 }
 
 .cols{
-	width: 316px;
-	float: left;
+   width: 316px;
+   float: left;
 }
 
 .cols.col2{
-	margin: 0 11px;
+   margin: 0 11px;
 }
 
 .cols.col1
 .mypage_myInfo{
-	margin-bottom: 10px;
-	padding: 29px 24px 0 24px;
-	height: 253px;
-	border: 1px solid #e1e1e1;
-	background-color: #f2f2f2;
+   margin-bottom: 10px;
+   padding: 29px 24px 0 24px;
+   height: 253px;
+   border: 1px solid #e1e1e1;
+   background-color: #f2f2f2;
 }
 
 .mypage_main_box {
-	margin-bottom: 10px;
-	padding: 25px 20px;
-	border: 1px solid #ddd;
+   margin-bottom: 10px;
+   padding: 25px 20px;
+   border: 1px solid #ddd;
 }
 
 .mypage_main_box
 ul {
-	margin: 0px !important;
+   margin: 0px !important;
 }
 
 .h3_wrap{
-	overflow: hidden;
-	margin: 0;
+   overflow: hidden;
+   margin: 0;
 }
 
 .mb35{
-	margin-bottom: 35px !important;
+   margin-bottom: 35px !important;
 }
 
 .h3_wrap>h3{
-	float: left;
-	width: auto;
-	height: 18px;
-	line-height: 18px;
+   float: left;
+   width: auto;
+   height: 18px;
+   line-height: 18px;
 }
 
 .h3_wrap button{
-	display: block;
-	float: right;
+   display: block;
+   float: right;
 }
 
 .glop{
-	float: left;
-	width: auto;
-	height: 18px;
-	line-height: 18px;
+   float: left;
+   width: auto;
+   height: 18px;
+   line-height: 18px;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul{
-	margin: 0 !important;
+   margin: 0 !important;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li {
-	margin-bottom: 14px;
-	vertical-align: middle;
-	overflow: hidden;
-	font-size: 13px;
+   margin-bottom: 14px;
+   vertical-align: middle;
+   overflow: hidden;
+   font-size: 13px;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li strong{
-	vertical-align: middle;
-	display: block;
-	float: left;
+   vertical-align: middle;
+   display: block;
+   float: left;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li span {
-	vertical-align: middle;
-	display: block;
-	float: right;
+   vertical-align: middle;
+   display: block;
+   float: right;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li span.btn_sms
 button.no.active{
-	background-position: 0 -22px;
+   background-position: 0 -22px;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li span.btn_sms button{
-	width: 39px;
-	height: 22px;
-	overflow: hidden;
-	text-indent: -9999px;
-	background: url(http://image2.megabox.co.kr/mop/home/mypage/main_btn7.jpg) 0 0 no-repeat;
+   width: 39px;
+   height: 22px;
+   overflow: hidden;
+   text-indent: -9999px;
+   background: url(http://image2.megabox.co.kr/mop/home/mypage/main_btn7.jpg) 0 0 no-repeat;
 }
 
-.row3 .cols.col1
+.row .cols.col1
 .mypage_myInfo ul li span.btn_sms button.yes{
-	width: 38px;
-	background-position: -39px -22px;
+   width: 38px;
+   background-position: -39px -22px;
 }
 
 .mypage_main_box
 ul.mypage_main_moviestory li a {
-	padding-left: 20px;
-	padding-right: 20px;
-	overflow: hidden;
-	display: block;
+   padding-left: 20px;
+   padding-right: 20px;
+   overflow: hidden;
+   display: block;
 }
 
 .mypage_main_box
 ul.mypage_main_moviestory li a span,
 .mypage_main_box
 ul.mypage_main_moviestory li a strong{
- 	height: 50px;
- 	line-height: 38px;
- 	color: #333;
+    height: 50px;
+    line-height: 38px;
+    color: #333;
  }
  
 .c_red{
-	color: #ff5959 !important;
+   color: #ff5959 !important;
 }
 
 .pull-right{
-	float: right !important;
+   float: right !important;
 }
 
 .m10{
-	margin-bottom: 10px !important;
+   margin-bottom: 10px !important;
 }
 
 .h3_wrap.mb38 {
-	margin-bottom: 38px;
+   margin-bottom: 38px;
+}
+
+.h3_wrap.pb38 {
+   padding-bottom: 38px;
 }
 
 .h3_wrap.pb38 {
@@ -154,7 +158,7 @@ ul.mypage_main_moviestory li a strong{
 }
 
 .positionR {
-	position: relative !important;
+   position: relative !important;
 }
 
 .mypage_main_box
@@ -164,7 +168,7 @@ ul.type1{
 
 .mypage_main_wrap .mypage_main_box 
 ul.type1 li{
-	padding-bottom: 13px;
+   padding-bottom: 13px;
     margin-bottom: 11px;
     font-size: 13px;
     border-bottom: 1px solid #e1e1e1;
@@ -173,43 +177,43 @@ ul.type1 li{
 
 .mypage_main_wrap .mypage_main_box 
 ul.type1 li:last-child{
-	margin-bottom: 0;
+   margin-bottom: 0;
     padding-bottom: 0;
     border: none;
 }
 
 .pa30{
-	padding: 30px !important;
+   padding: 30px !important;
 }
 
 .positionA{
-	position: absolute !important;
+   position: absolute !important;
 }
 
 img{
-	display: inline !important;
+   display: inline !important;
 }
 
 /* 회원정보 수정 */
 
 .mypage_membership_wrap{
-	position: relative;
+   position: relative;
 }
 
 .h2_mypage{
-	position: relative;
-	margin-bottom: 27px;
+   position: relative;
+   margin-bottom: 27px;
 }
 
 .h2_mypage h3.sub_title{
-	font-size: 20px;
-	display: inline-block;
+   font-size: 20px;
+   display: inline-block;
 }
 
 .h2_mypage span{
-	font-size: 13px;
-	padding-left: 1rem;
-	letter-spacing: -0.05em;
+   font-size: 13px;
+   padding-left: 1rem;
+   letter-spacing: -0.05em;
 }
 
 .h2_mypage.marktingAgree {
@@ -227,28 +231,28 @@ h2>.sub_title {
 }
 
 .personal_info_last{
-	position: absolute;
-	right: 0;
-	text-align: right;
+   position: absolute;
+   right: 0;
+   text-align: right;
 }
 
 
 .mr6{
-	margin-right: 6px !important;
+   margin-right: 6px !important;
 }
 
 .img_btn{
-	display: block;
+   display: block;
     overflow: hidden;
     background-repeat: no-repeat;
     vertical-align: middle;
 }
 
 .img_btn.psw_change{
-	display: inline-block;
-	width: 120px;
-	height: 22px;
-	background-position: -550px -450px
+   display: inline-block;
+   width: 120px;
+   height: 22px;
+   background-position: -550px -450px
 }
 
 .img_btn.personal_quit {
@@ -259,8 +263,8 @@ h2>.sub_title {
 }
 
 .clearfix:before, .clearfix:after {
-	display: table;
-	content: " ";
+   display: table;
+   content: " ";
 }
 
 .clearfix:after {
@@ -268,22 +272,22 @@ h2>.sub_title {
 }
 
 .mb10{
-	margin-bottom: 10px !important;
+   margin-bottom: 10px !important;
 }
 
 .text-sub{
-	color: #666;
+   color: #666;
     font-size: 12px;
     display: inline-block;
 }
 
 .user_wrap .myInfoArea1{
-	margin-left: 20px;
+   margin-left: 20px;
     margin-bottom: -30px;
 }
 
 .user_wrap .myInfoArea1 .textArea{
-	margin-top: 38px;
+   margin-top: 38px;
     margin-left: 20px;
 }
 
@@ -307,7 +311,7 @@ h2>.sub_title {
 }
 
 .form-style h4{
-	font-size: 13px;
+   font-size: 13px;
     padding-left: 1rem;
     letter-spacing: -0.05em;
     margin: 40px 0 10px;
@@ -356,7 +360,7 @@ h2>.sub_title {
 }
 
 .blind2{
-	width: 0;
+   width: 0;
     height: 0;
     overflow: hidden;
     font-size: 0;
@@ -383,7 +387,7 @@ h2>.sub_title {
 }
 
 .form-style input{
-	width: 200px;
+   width: 200px;
     border: 1px solid #d9d9d9;
     line-height: 26px;
     height: 26px;
@@ -580,8 +584,8 @@ h2>.sub_title {
 }
 
 .radio-inline{
-	padding-left: 20px;
-	color: #666;
+   padding-left: 20px;
+   color: #666;
     font-size: 12px;
     margin-bottom: 0;
     font-weight: normal;
@@ -589,7 +593,7 @@ h2>.sub_title {
 }
 
 .btn_wrap{
-	overflow: hidden;
+   overflow: hidden;
     margin: 50px auto 0;
 }
 
@@ -615,5 +619,5 @@ h2>.sub_title {
 }
 
 .mb50{
-	margin-bottom: 50px !important;
+   margin-bottom: 50px !important;
 }

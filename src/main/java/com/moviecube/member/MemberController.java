@@ -31,7 +31,7 @@ public class MemberController {
 	  @Resource(name="memberService")
 	  private MemberServiceImpl memberService;
 	  
-
+	  //���Ǽ�
 	  
 	  @RequestMapping(value="/term.do")
 	  public ModelAndView terms(CommandMap commandMap) throws Exception{
@@ -40,7 +40,7 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-
+	  //ȸ������ ��
 	  
 	  @RequestMapping(value="/member/joinForm.do")
 	  public ModelAndView joinForm(CommandMap commandMap) throws Exception{
@@ -49,7 +49,7 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-
+	  //�ߺ�Ȯ��
 	  @RequestMapping("/member/checkId.do")
 	  @ResponseBody
 	   public Map<String, Object> findUsedID(@RequestBody String id) throws Exception{
@@ -64,7 +64,7 @@ public class MemberController {
 		  
 	  }
 	  
-
+	  //ȸ������
 	  @RequestMapping(value="/member/join.do")
 	  public String join(CommandMap commandMap) throws Exception{
 		  try {
@@ -75,7 +75,7 @@ public class MemberController {
 		  	return "redirect:/main.do";
 	  }
 	  
-
+	  //�α��� ��
 	  @RequestMapping(value="/member/loginForm.do")
 	  public ModelAndView loginForm(CommandMap commandMap) throws Exception{
 		  ModelAndView mv = new ModelAndView("/member/loginForm");
@@ -83,7 +83,7 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-
+	  //�α���
 	  @RequestMapping(value="/member/login.do")
 	  public ModelAndView login(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		  ModelAndView mv = new ModelAndView();
@@ -114,7 +114,7 @@ public class MemberController {
 	  }
 	  
 	    
-
+	  //�α׾ƿ�
 	  @RequestMapping(value="/member/logout.do")
 	  public ModelAndView logout(HttpSession session) {
 		  ModelAndView mv = new ModelAndView("redirect:/main.do");
@@ -123,7 +123,7 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-
+	  //���̵� ��й�ȣ ã�� ��
 	  @RequestMapping(value="/member/findForm.do")
 	  public ModelAndView findForm(CommandMap commandMap) throws Exception{
 		  ModelAndView mv = new ModelAndView("/member/findIdAndPassword");
@@ -131,6 +131,8 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+	
+	  //���̵� ��й�ȣ ã��
 	  
 	  @RequestMapping(value="/member/find.do", method = RequestMethod.POST)
 	  @ResponseBody
@@ -155,7 +157,7 @@ public class MemberController {
 		  Map<String, Object> map = new HashMap<String, Object>();
 		  
 		  map.put("MEMBER_ID", id);
-		  map.put("MEMBER_NAME1", name1);
+		  map.put("MEMBER_NAME1", name1); // �����̴� 24���̴�.
 		  map.put("MEMBER_PHONE1" , phone1);
 		  
 		  String pw = memberService.findPasswd(map);
@@ -163,5 +165,58 @@ public class MemberController {
 		  map.put("pw", pw);
 		  
 		  return map;
+	  }
+	  
+	
+	  //ȸ�� ���� ����
+	  
+	  @RequestMapping(value="/member/updateMember.do")
+	  public ModelAndView updateMember(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception{
+		  ModelAndView mv = new ModelAndView();
+		  Map <String, Object> user = new HashMap<String, Object>();
+		  Map <String, Object> infoUpdate = new HashMap<String, Object>();
+		  
+		  user = memberService.checkUserIdAndPassword(commandMap.getMap());
+		  
+		  if(user != null) {
+			  memberService.updateMember(commandMap.getMap());
+			  
+			  infoUpdate = memberService.checkUserIdAndPassword(commandMap.getMap());
+			  session.setAttribute("userLoginInfo", infoUpdate);
+			  mv.setViewName("redirect:/member/myPage.do");
+			  return mv;
+		  }
+		  
+		  mv.setViewName("/member/passwordError");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(value="/member/updatePassword.do")
+	  public ModelAndView updateMember(CommandMap commandMap) throws Exception{
+		  ModelAndView mv = new ModelAndView();
+		  Map <String, Object> pass = new HashMap<String, Object>();
+		  
+		  pass = memberService.checkUserIdAndPassword(commandMap.getMap());
+		  
+		  if(pass!=null) {
+		 	memberService.updatePass(commandMap.getMap());
+		 	mv.setViewName("redirect:/member/updateMemberForm.do");
+		 	
+		 	return mv;
+		  }
+		  
+		  mv.setViewName("/member/passwordError");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(value="/member/deleteMember.do")
+	  public ModelAndView deleteMember(CommandMap commandMap, HttpSession session) throws Exception{
+		  ModelAndView mv = new ModelAndView("/member/deleteSuccess");
+		  
+		  memberService.deleteMember(commandMap.getMap());
+		  session.setAttribute("userLoginInfo", null);
+		  session.setAttribute("WishList", null);
+		  
+		  return mv;
 	  }
 }
