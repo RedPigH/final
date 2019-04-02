@@ -62,10 +62,10 @@ function get_reviews(currentPage) {
 				"</div>" + 
 				"<div class='size-207'>" + 
 				"<div class='flex-w flex-sb-m p-b-17'>" + 
-				"<span class='mtext-107 cl2 p-r-20' style='font-size:20px;'>" + cmt_id + "</span>" + 
+				"<span class='mtext-107 cl1 p-r-20' style='font-size:20px;'>" + cmt_id + "</span>" + 
 				"<span class='fs-18 cl11'>" + 
 				rating_text +  "</span>" +  "</div>" + 
-				"<textarea class='stext-118 cl13' style='float: left; width:600px; height:83px;'>" + cmt_content + "</textarea>" + delete_button2 + "</div>" +  " </div>" +
+				"<textarea class='stext-118 cl10' style='float: left; width:600px; height:83px;'>" + cmt_content + "</textarea>" + delete_button2 + "</div>" +  " </div>" +
 				"<hr>";
 				
 			} // for문 끝
