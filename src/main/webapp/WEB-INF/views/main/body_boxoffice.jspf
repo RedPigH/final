@@ -112,7 +112,11 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<div>영화 없음</div>
+									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -214,7 +218,11 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<div>영화 없음</div>
+									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -316,7 +324,11 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<div>영화 없음</div>
+									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>

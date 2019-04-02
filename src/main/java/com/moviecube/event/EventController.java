@@ -41,8 +41,6 @@ public class EventController {
 
 		List<Map<String, Object>> eventList = eventService.selectEventList(commandMap);
 		mv.addObject("event_no", event_no);
-		
-		
 		mv.addObject("eventList", eventList);
 
 		System.out.println("혜쮸는쨩이얍" + commandMap.get("event_no"));
@@ -103,10 +101,7 @@ public class EventController {
 		
 		String open_date = map2.get("EVENT_OPENDATE").toString().substring(0, 10);
 		String end_date = map2.get("EVENT_CLOSEDATE").toString().substring(0, 10);
-		String event_url = "";
-		if(map2.get("EVENT_URL") != null) {
-			event_url = map2.get("EVENT_URL").toString();
-		}
+		String event_url = map2.get("EVENT_URL").toString();
 		mv.addObject("file_list", file_list);
 		
 		mv.addObject("event_url", event_url);
@@ -133,7 +128,7 @@ public class EventController {
 
 	@RequestMapping(value = "/eventModify.do")
 	public ModelAndView modifyEvent(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/eventList.do");
+		ModelAndView mv = new ModelAndView("/admin/event/eventList");
 
 		/*
 		 * String EVENT_NO = (String)commandMap.get("EVENT_NO");
@@ -153,7 +148,7 @@ public class EventController {
 
 	@RequestMapping(value = "/eventDelete.do")
 	public ModelAndView eventDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/eventList.do");
+		ModelAndView mv = new ModelAndView("/admin/event/eventList");
 
 		eventService.deleteEvent(commandMap.getMap(), request);
 

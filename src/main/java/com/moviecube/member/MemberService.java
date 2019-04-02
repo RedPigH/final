@@ -19,10 +19,4 @@ public interface MemberService {
 	 void updateMile(Map<String, Object> map) throws Exception;
 	 
 	 void updateRank(Map<String, Object> map) throws Exception;
-	 
-	 void updateMember(Map<String, Object> map) throws Exception;
-	 
-	 void updatePass(Map<String, Object> map) throws Exception;
-	 
-	 void deleteMember(Map<String, Object> map) throws Exception;
 }

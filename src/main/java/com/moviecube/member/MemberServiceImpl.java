@@ -52,19 +52,4 @@ public class MemberServiceImpl implements MemberService {
 	  public void updateRank(Map<String, Object> map ) throws Exception{
 		  memberDAO.updateRank(map);
 	  }
-	  
-	  @Override
-	  public void updateMember(Map<String, Object> map) throws Exception{
-		  memberDAO.updateMember(map);
-	  }
-	  
-	  @Override
-	  public void updatePass(Map<String, Object> map) throws Exception{
-		  memberDAO.updatePass(map);
-	  }
-	  
-	  @Override
-	  public void deleteMember(Map<String, Object> map) throws Exception{
-		  memberDAO.deleteMember(map);
-	  }
 }

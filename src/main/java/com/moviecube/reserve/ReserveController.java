@@ -230,11 +230,21 @@ public class ReserveController {
 		
 		if(MemberInfoMap.get("MEMBER_RANK").equals("일반") && Integer.parseInt(MemberInfoMap.get("MEMBER_MILE").toString()) >= 10000) {
 			userMap.put("MEMBER_RANK", "우수");
-			
+
 			memberService.updateRank(userMap.getMap());
 		}
 		
 		return mv;
 	}
-
+	
+	@RequestMapping(value = "/reserve_delete.do")
+	public ModelAndView deleteReservation(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/member/myPage.do");
+		String res_no = request.getParameter("res_no");
+		commandMap.put("RES_NO", res_no);
+		
+		reserveService.deleteReservation(commandMap.getMap());
+		
+		return mv;
+	}
 }

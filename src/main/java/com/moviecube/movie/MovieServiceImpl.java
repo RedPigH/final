@@ -36,6 +36,11 @@ public class MovieServiceImpl implements MovieService{
 	}
 	
 	@Override
+	public Map<String, Object> selectHotMovie(Map<String, Object> map) throws Exception{
+		return MovieDAO.selectHotMovie(map);
+	}
+	
+	@Override
 	public List<Map<String, Object>> LatelyMovieList(Map<String, Object> map) throws Exception{
 		return MovieDAO.LatelyMovieList(map);
 	}

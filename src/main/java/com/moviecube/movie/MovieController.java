@@ -77,6 +77,11 @@ public class MovieController {
 		
 		Map<String, Object> map3 = movieService.selectCommentCount(commandMap.getMap()); // 코멘트 카운트 가져올려고
 		mv.addObject("comment_count", map3.get("COMMENT_CNT"));
+		/*
+		map3.clear();
+		map3 = movieService.selectHotMovie(commandMap.getMap());
+		map.put("RANKING", map3.get("RNUM"));
+		*/
 
 		mv.addObject("map", map.get("map"));
 

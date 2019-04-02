@@ -368,34 +368,4 @@ $('.js-hide-modal2').on('click',function(){
     $("body").removeClass("no-scrolling");
 });
 
-/*==================================================================
-[ Show modal3 ] 로그인 창 */
-$('.js-show-modal3').on('click',function(e){
-    e.preventDefault();
-    $('.js-modal3').addClass('show-modal3');
-    $("input[name='MEMBER_ID']").focus();
-    // 승현이가 추가함
-    $("body").addClass("no-scrolling");
-});
-
-$('.js-hide-modal3').on('click',function(){
-    $('.js-modal3').removeClass('show-modal3');
-    $("body").removeClass("no-scrolling");
-});
-
-/*==================================================================
-[ Show modal3 ] 회원탈퇴 */
-$('.js-show-modal4').on('click',function(e){
-    e.preventDefault();
-    $('.js-modal4').addClass('show-modal4');
-    $("input[name='MEMBER_ID']").focus();
-    // 승현이가 추가함
-    $("body").addClass("no-scrolling");
-});
-
-$('.js-hide-modal4').on('click',function(){
-    $('.js-modal4').removeClass('show-modal4');
-    $("body").removeClass("no-scrolling");
-});
-
 })(jQuery);

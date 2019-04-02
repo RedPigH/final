@@ -350,6 +350,11 @@ img {
 	display: block;
 }
 
+
+img.modal-poster {
+	width: 400px;
+	height: 620px;
+
 img.event {
 	width: 700px;
 	height: 1100px;

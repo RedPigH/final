@@ -74,52 +74,49 @@ function selectFaqType(num){
 
 <%@ include file="../main/body_header.jspf" %> 
 	
-	<div class="bg0 p-t-75 p-b-85">
-		<div class="container">
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				
-			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>
-					
-			        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE1" value="영화예매" onClick="selectFaqType(1)">영화예매</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE2" value="영화관" onClick="selectFaqType(2)">영화관</button>
-					
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="상영관" onClick="selectFaqType(3)">상영관</button>
-						
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE4" value="기타" onClick="selectFaqType(4)">기타</button>
-					 
-			        <!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  value="영화예매">영화예매</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  value="영화관">영화관</button>
-					
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  value="상영관">상영관</button>
-						
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  value="기타">기타</button>  -->
-					
-				</div>
-			</div>
 			
-			<div class="row" style="border-width:0px" >
+			
+			
+			
+	<form class="bg0 p-t-75 p-b-85">
+		<div class="container">
+			<div class="col-lg-10 col-xl-7 m-lr-auto m-t-50">
+			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm">
+					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px">자주 묻는 질문들
+					</h4>
+				</div>
+				</div>
+				
+				
+				<div class="col-lg-10 col-xl-7 filter-tope-group m-tb-10 m-lr-auto">
+			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>
+			        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE1" value="영화예매" onClick="selectFaqType(1)">영화예매</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE2" value="영화관" onClick="selectFaqType(2)">영화관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="상영관" onClick="selectFaqType(3)">상영관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE4" value="기타" onClick="selectFaqType(4)">기타</button>
+				</div>
+				
+				
+				<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-					<h3 class="flex-c-m stext-101 cl0 size-112 bg1 bor14 hov-btn3 p-lr-15">FAQ </h3> 
-						<div class="wrap-table-shopping-cart" style="margin: 10px" id="faqType">
-							<table class="table-shopping-cart">
-								<tbody id="faqList">
-								<tr class="table_head">
-									<th class="column-1">글번호</th>
-									<th class="column-2">자주묻는질문</th>
-									<th class="column-3">분류</th>
-									
-								</tr>
-								
-								<c:choose>
+					<div class="m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart" style="margin: 0 0 0 0;">
+								<tbody>
+									<tr class="table_head">
+										<th class="column-1">글번호</th>
+										<th class="column-2">제목</th>
+										<th class="column-3">종류</th>
+									</tr>
+
+
+									<c:choose>
 									<c:when test="${fn:length(faqList) > 0}">
             							<c:forEach items="${faqList}" var="row">
 			
-								<tr class="table_row">
+								<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 									<td class="column-1">${row.FAQ_NO}</td>
-									<td class="column-2"><a href="#this" name="FAQ_SUB">${row.FAQ_SUB}
+									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">${row.FAQ_SUB}
 									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
 									<td class="column-3">${row.FAQ_TYPE}</td>		
 								</tr>
@@ -127,40 +124,49 @@ function selectFaqType(num){
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									등록된 게시물이 없습니다
+									<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
+									<td class="column-1"></td>
+									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">등록된 게시물이 없습니다.
+									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
+									<td class="column-3"></td>		
+								</tr>
 								</c:otherwise>
 								</c:choose>
+
 								</tbody>
 							</table>
 						</div>
-						
-						<%-- <div class="paging">${pagingHtml}</div> --%>
-					<form>
-						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-							<div class="size-198 respon6-next">
-								<div class="rs1-select2 bor8 bg0">
-							
-								 <select  class="js-select2" name="searchNum">
-									<option value="0">질문</option>
-									<option value="1">내용</option>
-								</select>
-									<div class="dropDownSelect2"></div>
-								</div>							
-								
+
+						<div
+							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-l-40 p-lr-15-sm">
+							<div class="flex-w flex-m m-r-20 m-tb-5">
+								<div class="paging">${pagingHtml}</div>
 							</div>
-							<input name="isSearch" class="stext-111 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" placeholder="검색내용을 입력하세요">
-							<span class="flex-c-m stext-102 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								<input type="submit" value="검색" />
-							</span>
+
+							<div class="flex-c-m stext-101 cl2 size-119 p-lr-15 trans-04 m-tb-10">
+							<div class="rs1-select2 bor8 bg0" style="width: 100px">
+
+									<select class="js-select2" name="searchNum">
+										<option value="0">제목</option>
+										<option value="1">내용</option>
+									</select>
+									<div class="dropDownSelect2"></div>
+								</div>
+								<input
+									class="stext-104 cl2 plh4 size-117 bor4 p-lr-20 m-r-10 m-tb-5"
+									type="text" name="isSearch" placeholder="제목,내용을 입력해주세요">
+								<input type="submit" class="flex-c-m stext-106 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-10" value="검색">
+									
+							</div>
 						</div>
-					</form>
-						<div class="paging">${pagingHtml}</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</form>
 
-	
+			
+			
 	<div class="container-menu-desktop">
 			<div class="btn-back-to-top" id="myBtn">
 				<span class="symbol-btn-back-to-top"> 
