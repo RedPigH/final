@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seat">
+
+	<!-- 좌석 리스트 -->
+	<select id="selectSeatList" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[ 
+		SELECT s.SEAT_NO, s.SEAT_ROW, s.SEAT_COL, c.SCREEN_NAME
+			FROM SEAT s, SCREEN c
+			WHERE s.SCREEN_NO = c.SCREEN_NO
+			ORDER BY SEAT_NO ASC
+		]]>
+	</select>
+		
+	<!-- 상영관 별 좌석 리스트 -->
+	<select id="selectScreenSeat" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT s.SEAT_NO, s.SEAT_ROW, s.SEAT_COL, c.SCREEN_NAME
+			FROM SEAT s INNER JOIN SCREEN c 
+			ON s.SCREEN_NO = c.SCREEN_NO
+			WHERE s.SCREEN_NO = #{SCREEN_NO}
+			ORDER BY SEAT_NO ASC
+		]]>
+	</select>
+	
+	<!-- 상영관 별 좌석 행,열 개수 -->
+	<select id="ScreenSeatNum" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			select (
+				select count(seat_row) from (
+					select distinct seat_row from seat where SCREEN_NO = #{SCREEN_NO})) as row_num,
+				(select count(seat_col) from (
+					select distinct seat_col from seat where SCREEN_NO = #{SCREEN_NO})) as col_num
+				from dual
+		]]>
+	</select>
+	
+	<!-- 상영시간 별 좌석 리스트 -->
+	<select id="selectTimeSeat" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT t.SEAT_NO, s.SEAT_ROW, s.SEAT_COL, t.STATUS 
+			FROM TIME_SEAT t INNER JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO
+			WHERE t.TIME_NO = #{TIME_NO}
+		]]>
+	</select>
+	
+	<!-- 선택 좌석 정보 -->
+	<select id = "selectSeat" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT SEAT_ROW, SEAT_COL FROM SEAT
+			WHERE SEAT_NO = #{SEAT_NO}
+		]]>
+	</select>
+	
+	<!-- 좌석번호 찾기 -->
+	<select id = "selectSeatNo" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT SEAT_NO FROM SEAT
+			WHERE SCREEN_NO = #{SCREEN_NO} AND SEAT_ROW = #{SEAT_ROW} AND SEAT_COL = #{SEAT_COL}
+		]]>
+	</select>
+
+	<!-- 좌석 입력 -->
+	<insert id="insertSeat" parameterType="hashmap" useGeneratedKeys="true" keyProperty="SEAT_NO">
+		<selectKey keyProperty="SEAT_NO" resultType="int" order="BEFORE">
+			SELECT SEAT_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+	<![CDATA[
+		INSERT INTO SEAT
+		(
+			SEAT_NO,
+			SCREEN_NO,
+			SEAT_ROW,
+			SEAT_COL
+		)
+		VALUES
+		(
+			#{SEAT_NO},
+			#{SCREEN_NO},
+			#{SEAT_ROW},
+			#{SEAT_COL}
+		)
+	]]>
+	</insert>
+	
+	<!-- 일정별 좌석 생성 -->
+	<insert id = "insertTimeSeat" parameterType = "hashmap">
+	<![CDATA[
+		INSERT INTO TIME_SEAT
+		(
+			SEAT_NO,
+			TIME_NO
+		)
+		VALUES
+		(
+			#{SEAT_NO},
+			MC_TIME_NO_SEQ.CURRVAL
+		)
+	]]>
+	</insert>
+	
+	<!-- 일정별 예매 좌석 -->
+	<insert id = "insertResSeat" parameterType = "hashmap">
+	<![CDATA[
+		INSERT INTO RES_SEAT
+		(
+			RES_NO,
+			SEAT_NO
+		)
+		VALUES
+		(
+			RESERVATION_NO_SEQ.CURRVAL,
+			#{SEAT_NO}
+		)
+	]]>
+	</insert>
+	
+	<!-- 일정별 좌석 예매 상태 변경 -->
+	<update id="updateSeatStatus" parameterType = "hashmap">
+		UPDATE TIME_SEAT SET 
+			STATUS = #{STATUS}
+		WHERE
+			SEAT_NO = #{SEAT_NO} AND TIME_NO = #{TIME_NO}
+	</update>
+	
+	<!-- 상영관 좌석 삭제 -->
+	<delete id="deleteSeat" parameterType = "hashmap">
+		DELETE FROM SEAT
+		WHERE SEAT_NO = #{SEAT_NO}
+	</delete>
+	
+	<select id="seatSearch0" resultType="hashmap" parameterType="hashmap">
+		SELECT s.SEAT_NO, s.SEAT_ROW, s.SEAT_COL, c.SCREEN_NAME
+			FROM SEAT s, SCREEN c
+			WHERE s.SCREEN_NO = c.SCREEN_NO
+			AND c.SCREEN_NAME like #{search} 
+			ORDER BY SEAT_NO ASC
+	</select>
+</mapper>

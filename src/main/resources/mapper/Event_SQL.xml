@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="event">
+
+	<!-- 이벤트 리스트 -->
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectEventList">
+
+			<![CDATA[
+			select
+			e.EVENT_NO,
+			e.EVENT_NAME,
+			e.EVENT_TYPE,
+			e.EVENT_OPENDATE,
+			e.EVENT_CLOSEDATE,
+			e.EVENT_URL,
+			f.FILE_NO,
+			f.EVENT_ORGNAME,
+			f.EVENT_SAVNAME
+			FROM MC_EVENT e INNER JOIN (select * from mc_event_file where rowid in(select min(rowid) from mc_event_file where del_gb = 'N' group by event_no)) f
+			ON e.EVENT_NO = f.EVENT_NO
+			order by e.EVENT_NO desc
+			]]>
+	</select>
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectMovieCubeEventList">
+	
+			<![CDATA[
+			select
+			e.EVENT_NO,
+			e.EVENT_NAME,
+			e.EVENT_TYPE,
+			e.EVENT_OPENDATE,
+			e.EVENT_CLOSEDATE,
+			e.EVENT_URL,
+			f.FILE_NO,
+			f.EVENT_ORGNAME,
+			f.EVENT_SAVNAME
+			FROM MC_EVENT e INNER JOIN (select * from mc_event_file where rowid in(select min(rowid) from mc_event_file where del_gb = 'N' group by event_no)) f
+			ON e.EVENT_NO = f.EVENT_NO and EVENT_TYPE = '무비큐브 이벤트'
+			order by e.EVENT_NO desc
+				]]>
+	</select>
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectMovieEventList">
+	
+		<![CDATA[
+				select
+			e.EVENT_NO,
+			e.EVENT_NAME,
+			e.EVENT_TYPE,
+			e.EVENT_OPENDATE,
+			e.EVENT_CLOSEDATE,
+			e.EVENT_URL,
+			f.FILE_NO,
+			f.EVENT_ORGNAME,
+			f.EVENT_SAVNAME
+			FROM MC_EVENT e INNER JOIN (select * from mc_event_file where rowid in(select min(rowid) from mc_event_file where del_gb = 'N' group by event_no)) f
+			ON e.EVENT_NO = f.EVENT_NO and EVENT_TYPE = '영화 이벤트'
+			order by e.EVENT_NO desc
+		]]>
+	</select>
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectAllianceEventList">
+	
+			<![CDATA[
+			select
+		e.EVENT_NO,
+		e.EVENT_NAME,
+		e.EVENT_TYPE,
+		e.EVENT_OPENDATE,
+		e.EVENT_CLOSEDATE,
+		e.EVENT_URL,
+		f.FILE_NO,
+		f.EVENT_ORGNAME,
+		f.EVENT_SAVNAME
+		FROM MC_EVENT e INNER JOIN (select * from mc_event_file where rowid in(select min(rowid) from mc_event_file where del_gb = 'N' group by event_no)) f
+		ON e.EVENT_NO = f.EVENT_NO and EVENT_TYPE = '제휴 이벤트'
+		order by e.EVENT_NO desc
+			]]>
+	</select>
+
+	<insert parameterType="hashmap" id="insertEvent"
+		keyProperty="EVENT_NO" useGeneratedKeys="true">
+
+		<selectKey resultType="int" keyProperty="EVENT_NO"
+			order="BEFORE">select MC_EVENT_NO_SEQ.NEXTVAL from DUAL </selectKey>
+
+			<![CDATA[
+			insert into MC_EVENT
+			(
+			EVENT_NO,
+			EVENT_NAME,
+			EVENT_TYPE,
+			EVENT_OPENDATE,
+			EVENT_CLOSEDATE,
+			EVENT_URL
+			)
+			values
+			(
+			#{EVENT_NO},
+			#{EVENT_NAME},
+			#{EVENT_TYPE},
+			#{EVENT_OPENDATE},
+			#{EVENT_CLOSEDATE},
+			#{EVENT_URL}
+			)
+			]]>
+
+	</insert>
+
+	<insert parameterType="hashmap" id="insertFile">
+	<![CDATA[
+	INSERT INTO MC_EVENT_FILE
+	(
+	FILE_NO,
+	EVENT_NO,
+	EVENT_ORGNAME,
+	EVENT_SAVNAME,
+	DEL_GB
+	)
+	VALUES
+	(
+	MC_EVENT_FILE_NO_SEQ.NEXTVAL,
+	#{EVENT_NO},
+	#{EVENT_ORGNAME},
+	#{EVENT_SAVNAME},
+	'N'
+	)
+	]]>
+
+	</insert>
+	<!-- <select id="selectEventDetail" parameterType="hashmap" resultType="hashmap"> 
+		파일 없을 때 상세보기 <![CDATA[ SELECT EVENT_NO, EVENT_NAME, EVENT_TYPE, EVENT_OPENDATE, 
+		EVENT_CLOSEDATE, EVENT_URL FROM MC_EVENT WHERE EVENT_NO = #{EVENT_NO} ]]> 
+		</select> -->
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectEventDetail">
+	
+	<![CDATA[
+	SELECT
+	 EVENT_NO,
+	 EVENT_NAME, 
+	 EVENT_TYPE,
+	 EVENT_OPENDATE,
+	 EVENT_CLOSEDATE,
+	 EVENT_URL
+	 FROM
+	 MC_EVENT
+	 WHERE EVENT_NO = #{EVENT_NO}
+	 ]]>
+	</select>
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectEventDetail2">
+	
+	<![CDATA[
+	select
+	e.EVENT_NO,
+	e.EVENT_NAME, 
+	e.EVENT_TYPE,
+	e.EVENT_OPENDATE,
+	e.EVENT_CLOSEDATE,
+	e.EVENT_URL,
+	f.FILE_NO,
+	f.EVENT_ORGNAME,
+	f.EVENT_SAVNAME
+	FROM MC_EVENT e INNER JOIN MC_EVENT_FILE f
+	ON e.EVENT_NO = f.EVENT_NO
+	WHERE e.EVENT_NO = #{EVENT_NO} AND f.DEL_GB = 'N'
+	 ]]>
+	</select>
+
+	<select parameterType="hashmap" resultType="hashmap"
+		id="selectEventFileDetail">
+	
+	<![CDATA[
+	select
+	e.EVENT_NO,
+	f.FILE_NO,
+	f.EVENT_ORGNAME,
+	f.EVENT_SAVNAME,
+	f.DEL_GB
+	FROM MC_EVENT e INNER JOIN MC_EVENT_FILE f
+	ON e.EVENT_NO = f.EVENT_NO
+	WHERE e.EVENT_NO = #{EVENT_NO} AND f.DEL_GB = 'N'
+	]]>
+	</select>
+
+	<update parameterType="hashmap" id="modifyEvent">
+	
+	<![CDATA[
+	update MC_EVENT set
+	EVENT_NAME = #{EVENT_NAME},
+	EVENT_TYPE = #{EVENT_TYPE},
+	EVENT_OPENDATE = #{EVENT_OPENDATE},
+	EVENT_CLOSEDATE = #{EVENT_CLOSEDATE},
+	EVENT_URL = #{EVENT_URL}
+	where EVENT_NO = #{EVENT_NO}
+	]]>
+	</update>
+
+	<update parameterType="hashmap" id="updateFileList">
+	
+	<![CDATA[
+	UPDATE MC_EVENT_FILE SET
+	DEL_GB = 'Y'
+	WHERE
+	EVENT_NO = #{EVENT_NO}
+	]]>
+	</update>
+
+	<update parameterType="hashmap" id="modifyFile">
+	<![CDATA[
+	UPDATE MC_EVENT_FILE SET
+	DEL_GB = 'N'
+	WHERE
+	FILE_NO = #{FILE_NO}
+	]]>
+	</update>
+
+	<!-- <select id="checkEventFile" parameterType="hashmap" resultType="hashmap"> 
+		<![CDATA[ SELECT COUNT(*) AS CNT FROM MC_EVENT_FILE WHERE EVENT_NO = #{EVENT_NO} 
+		AND DEL_GB = 'N' ]]></select> -->
+	<delete parameterType="hashmap" id="deleteEvent">
+	
+	<![CDATA[
+	delete from MC_EVENT
+	where EVENT_NO = #{EVENT_NO}
+	]]>
+	</delete>
+
+	<update id="deleteFileList" parameterType="hashmap">
+	<![CDATA[
+	UPDATE MC_EVENT_FILE SET
+	DEL_GB = 'Y'
+	WHERE
+	EVENT_NO = #{EVENT_NO}
+	]]></update>
+</mapper>
