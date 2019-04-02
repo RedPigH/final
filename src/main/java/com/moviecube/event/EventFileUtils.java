@@ -18,7 +18,11 @@ import com.moviecube.common.CommonUtils;
 
 @Component("eventFileUtils")
 public class EventFileUtils {
+<<<<<<< HEAD
 	private static final String filePath = "C:\\moviecubefinal\\moviecubefinal\\src\\main\\webapp\\resources\\upload\\event\\"; // Event �씠誘몄�
+=======
+	private static final String filePath = "C:\\finalProject\\moviecube\\src\\main\\webapp\\resources\\upload\\event\\"; // Event �씠誘몄�
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 																											// �뙆�씪 ���옣 �쐞移�
 
 	public List<Map<String, Object>> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request)

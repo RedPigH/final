@@ -49,6 +49,7 @@ public class MemberDAO extends AbstractDAO {
 	public void updateRank(Map<String, Object> map) throws Exception {
 		update("member.updateRank", map);
 	}
+<<<<<<< HEAD
 	
 	public void updateMember(Map<String, Object> map) throws Exception{
 		update("member.informUpdate", map);
@@ -61,4 +62,6 @@ public class MemberDAO extends AbstractDAO {
 	public void deleteMember(Map<String, Object> map) throws Exception{
 		delete("member.deleteMember", map);
 	}
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 }

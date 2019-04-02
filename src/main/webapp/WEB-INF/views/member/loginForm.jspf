@@ -34,7 +34,11 @@
 	<div class="container" style="max-width: 500px; margin-top: 150px">
 		<div class="bg0 p-lr-15-lg how-pos3-parent" style="border-radius: 20px">
 			<button class="how-pos3 hov3 trans-04 js-hide-modal2">
+<<<<<<< HEAD
 				<img src="/moviecube/resources/images/icons/icon-close.png" alt="CLOSE">
+=======
+				<img src="resources/images/icons/icon-close.png" alt="CLOSE">
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 			</button>
 
 			<div class="row" style="margin: 0 0;">
@@ -70,7 +74,11 @@
 							<button id="lg"
 								class="stext-101 cl0 size-128 bg1 bor1 hov-btn1 p-lr-15 trans-04"
 								onclick="login();">로그인</button>
+<<<<<<< HEAD
 							<button type="button" class="stext-101 cl0 size-128 bg1 bor1 hov-btn1 p-lr-15 trans-04 cancelbtn js-hide-modal2">취소</button>
+=======
+							<button type="button" class="stext-101 cl0 size-128 bg1 bor1 hov-btn1 p-lr-15 trans-04 cancelbtn" onclick="history.go(-1);">취소</button>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 							<span class="float-r flex-w flex-t p-t-20">
 								<ul>
 									<li><a href="/moviecube/term.do"

@@ -52,6 +52,7 @@ public class MemberServiceImpl implements MemberService {
 	  public void updateRank(Map<String, Object> map ) throws Exception{
 		  memberDAO.updateRank(map);
 	  }
+<<<<<<< HEAD
 	  
 	  @Override
 	  public void updateMember(Map<String, Object> map) throws Exception{
@@ -67,4 +68,6 @@ public class MemberServiceImpl implements MemberService {
 	  public void deleteMember(Map<String, Object> map) throws Exception{
 		  memberDAO.deleteMember(map);
 	  }
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 }

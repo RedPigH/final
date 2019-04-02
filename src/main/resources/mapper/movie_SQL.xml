@@ -46,6 +46,25 @@
 	      order by rev_cnt desc, m.movie_name asc
 	]]>
 	</select>
+<<<<<<< HEAD
+=======
+	
+	<!-- 인기 영화 리스트(예매율순) -->
+	<select id="selectHotMovie" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[
+			select rownum rnum from (select h.movie_no, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
+	         m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname, (select count(*) from reservation where movie_no = h.movie_no) as rev_cnt
+	      from (select * from (select * from reservation r inner join time t on r.time_no = t.time_no)
+	      where rowid in(select max(rowid) from (select * from reservation r inner join time t on r.time_no = t.time_no) group by movie_no)) h
+	      inner join mc_movie m on h.movie_no = m.movie_no
+	      inner join mc_movie_file f on h.movie_no = f.movie_no
+	      where f.del_gb = 'N'
+	      order by rev_cnt desc, m.movie_name asc) where movie_no = {#movie_no}
+	]]>
+	</select>
+	
+	
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 	<!-- 최근 개봉 영화 리스트 -->
 	<select id="LatelyMovieList" resultType="hashmap"

@@ -114,6 +114,7 @@
 	<!-- 회원 정보 수정 -->
 	<!-- 1. 비밀번호 변경 -->
 	<update id="passwdUpdate" parameterType = "hashmap">
+<<<<<<< HEAD
 		<![CDATA[
 			UPDATE
 			 MC_MEMBER
@@ -123,10 +124,14 @@
 			WHERE
 			 MEMBER_ID=#{MEMBER_ID} AND MEMBER_PASSWD1=#{MEMBER_PASSWD1}
 		]]>
+=======
+		
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	</update>
 	
 	<!-- 2. 기본 정보 변경 -->
 	<update id = "informUpdate" parameterType = "hashmap">
+<<<<<<< HEAD
 		<![CDATA[
 			UPDATE
 			 MC_MEMBER
@@ -141,6 +146,9 @@
 			WHERE
 			 MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWD1=#{MEMBER_PASSWD1}
 		]]>
+=======
+		
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	</update>
 	
 	<!-- 3. 마일리지 update -->

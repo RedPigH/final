@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<<<<<<< HEAD
+=======
+<%@ include file="head.jspf" %>
+<%@ include file="body_moviecube.jspf" %>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 <%
 	String cp = request.getContextPath();
 %>

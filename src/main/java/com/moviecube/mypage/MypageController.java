@@ -31,9 +31,15 @@ public class MypageController {
 		
 		commandMap.put("MEMBER_NO", user.get("MEMBER_NO"));
 
+<<<<<<< HEAD
 		List<Map<String, Object>> ResList = reserveService.MyReservation(commandMap.getMap());
 
 		mv.addObject("ResList", ResList);
+=======
+		List<Map<String, Object>> resList = reserveService.MyReservation(commandMap.getMap());
+
+		mv.addObject("resList", resList);
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 		return mv;
 	}

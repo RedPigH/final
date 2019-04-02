@@ -368,6 +368,7 @@ $('.js-hide-modal2').on('click',function(){
     $("body").removeClass("no-scrolling");
 });
 
+<<<<<<< HEAD
 /*==================================================================
 [ Show modal3 ] 로그인 창 */
 $('.js-show-modal3').on('click',function(e){
@@ -398,4 +399,6 @@ $('.js-hide-modal4').on('click',function(){
     $("body").removeClass("no-scrolling");
 });
 
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 })(jQuery);

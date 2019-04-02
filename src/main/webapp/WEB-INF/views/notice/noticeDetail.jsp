@@ -21,10 +21,17 @@
 				</div>
 			</div>
 			
+<<<<<<< HEAD
 			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 				<h4 class="mtext-109 cl2 p-b-30"> NOTICE Detail </h4>
 				<div class="flex-w flex-t bor12 p-b-13">
 					<div class="size-208" style="margin-top: 20px">
+=======
+			<div class="col-sm-10 col-lg-7 col-xl-7 m-lr-auto m-b-50">
+				<h4 class="mtext-109 cl2 p-b-30"> 공지사항 </h4>
+				<div class="flex-w flex-t bor12 p-b-13">
+					<div class="size-198" style="margin-top: 20px">
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 						<span class="mtext-110 cl2" >글번호 </span>
 					</div>
 					<div class="size-209" style="margin-top: 20px">
@@ -33,7 +40,11 @@
 				</div>
 				
 				<div class="flex-w flex-t bor12 p-b-13">
+<<<<<<< HEAD
 					<div class="size-208" style="margin-top: 20px">
+=======
+					<div class="size-198" style="margin-top: 20px">
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 						<span class="mtext-110 cl2" >제목 </span>
 					</div>
 					<div class="size-209" style="margin-top: 20px">
@@ -42,7 +53,11 @@
 				</div>
 				
 				<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+<<<<<<< HEAD
 					<div class="size-208 w-full-ssm">
+=======
+					<div class="size-198 w-full-ssm">
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 						<span class="stext-110 cl2"> 내용 </span>
 					 </div>
 					<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
@@ -53,6 +68,7 @@
 					</div>
 				</div>
 
+<<<<<<< HEAD
 				<div class="flex-w flex-t p-t-27 p-b-33">
 					
 					
@@ -65,6 +81,18 @@
 						onclick="location.href='main.do' ">
 						홈페이지 메인으로 
 					</a>
+=======
+				<div class="flex-w flex-t p-t-27 p-b-33" style="float: right;">
+					
+					
+					<div class="flex-c-m stext-106 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-10" onclick="location.href='noticeList.do?currentPage=${currentPage}' ">
+						목록으로 
+					</div>
+					
+					<div class="flex-c-m stext-106 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-10" onclick="location.href='main.do' ">
+						메인으로 
+					</div>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 				</div>
 			</div>
 		</div>

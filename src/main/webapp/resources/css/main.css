@@ -245,12 +245,15 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
+<<<<<<< HEAD
 /*//////////////////////////////////////////////////////////////////
 [ Header ]*/
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Desktop ]*/
 
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .container-menu-desktop {
   height: auto;
   width: 100%;
@@ -693,15 +696,21 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 110px;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .main-menu > li.active-menu > a {
   color: #ff5959;
 }
 
 
 
+<<<<<<< HEAD
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Mobile ]*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .wrap-header-mobile {
   display: -webkit-box;
   display: -webkit-flex;
@@ -721,8 +730,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   -ms-box-shadow: 0 0px 3px 0px rgba(0,0,0,0.2);
 }
 
+<<<<<<< HEAD
 /*------------------------------------------------------------------
 [ Logo mobile ]*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .logo-mobile {
   display: block;
   position: relative;
@@ -744,9 +756,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
+<<<<<<< HEAD
 
 /*------------------------------------------------------------------
 [ btn show menu ]*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .hamburger {
   display: -webkit-box;
   display: -webkit-flex;
@@ -766,7 +781,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 @media (max-width: 991px){
   .wrap-header-mobile {
     display: -webkit-box;
@@ -778,8 +797,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .container-menu-desktop {display: none;}
 }
 
+<<<<<<< HEAD
 /*==================================================================
 [ Menu mobile ]*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .menu-mobile {
   width: 100%;
   background-color: white;
@@ -845,7 +867,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   transform: rotate(90deg);
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .sub-menu-m {
   background-color: #fff;
   padding: 10px 15px 10px 32px;
@@ -927,14 +952,20 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   }
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .sidebar-content {
   flex-grow: 1;
   overflow: auto;
   align-content: space-between;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .wrap-item-gallery {
   width: calc((100% - 20px) / 3);
 }
@@ -1025,7 +1056,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   right: 0;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .header-cart-title {
   width: 260px;
   max-width: 100%;
@@ -1043,7 +1077,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   flex-grow: 1;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .header-cart-item-img {
   width: 60px;
   position: relative;
@@ -1084,7 +1121,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .header-cart-item-txt {
   width: calc(100% - 80px);
 }
@@ -1112,7 +1152,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   line-height: 1.3;
 }
 
+<<<<<<< HEAD
 /*---------------------------------------------*/
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 @media (max-width: 575px) {
   .header-cart {
     padding: 30px;
@@ -1978,7 +2022,11 @@ input.num-product::-webkit-inner-spin-button {
 .wrap-modal1 {
   position: fixed;
   width: 100%;
+<<<<<<< HEAD
   height: auto;
+=======
+  height: 100%;
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
   top: 0;
   left: 0;
   z-index: 9000;
@@ -2061,6 +2109,7 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+<<<<<<< HEAD
 /* 명이 추가함 */
 
 /* [ Modal3 ] */
@@ -2107,6 +2156,8 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 /*//////////////////////////////////////////////////////////////////
 [ Table Shopping Cart ]*/
 
@@ -2346,7 +2397,10 @@ input.num-product::-webkit-inner-spin-button {
 .cl12 {color: #ccc;}
 .cl13 {color: #777;}
 
+<<<<<<< HEAD
 /* 異붽� �뤌 */
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 .cl13{color:#ff5959;}
 
@@ -2415,7 +2469,11 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-111 {
+<<<<<<< HEAD
   font-family: Poppins-Regular;
+=======
+  font-family: MaplestoryLight;
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
   font-size: 13px;
   line-height: 1.6923;
 }
@@ -2469,6 +2527,16 @@ input.num-product::-webkit-inner-spin-button {
     line-height: 1.7;
 }
 
+<<<<<<< HEAD
+=======
+.stext-120 {
+	font-family: MaplestoryBold;
+    font-size: 30px;
+    line-height: 1.7;
+    color:#333;
+}
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 /*---------------------------------------------*/
 .stext-301 {
@@ -2814,7 +2882,16 @@ input.num-product::-webkit-inner-spin-button {
   height: 40px;
 }
 
+<<<<<<< HEAD
 /* 異붽� �뤌 */
+=======
+.size-129 {
+	min-width: 60px;
+    height: 43px;
+    max-width: 100px;
+}
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 .size-129{
   min-width: 100%;
@@ -2827,11 +2904,20 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .size-131{
+<<<<<<< HEAD
   min-width: 270px;
   height: 35px;
 }
 
 
+=======
+	min-width: 40px;
+	height: 25px;
+}
+
+
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 /*//////////////////////////////////////////////////////////////////
 [ Width ]*/
 .size-196 {
@@ -2965,6 +3051,10 @@ input.num-product::-webkit-inner-spin-button {
 .bg7 {background-color: #333;}
 .bg8 {background-color: #fff;}
 .bg9 {background-color: rgba(255,255,255,0.9);}
+<<<<<<< HEAD
+=======
+.bg10 {background-color: #ff5959;}
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 
 /*---------------------------------------------*/
 .bg-overlay1::before {
@@ -3095,12 +3185,22 @@ input.num-product::-webkit-inner-spin-button {
   border-radius: 15px;
 }
 
+<<<<<<< HEAD
 /* 異붽� �뤌 */
 
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 .bor22{
 	border-bottom: 2px solid #e1e1e1;
 }
 
+<<<<<<< HEAD
+=======
+.bor23{
+	border-radius:8px;
+}
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 /*==================================================================
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
 ==================================================================*/

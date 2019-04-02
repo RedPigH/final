@@ -5,7 +5,11 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
+<<<<<<< HEAD
 <title>FAQ</title>
+=======
+<title>FAQs</title>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 <script src="/moviecube/resources/js/admin_common.js"></script>
 <%@ include file="/WEB-INF/views/main/head.jspf"%>
 </head>
@@ -17,6 +21,7 @@
 	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
+<<<<<<< HEAD
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" href="faqList.do">전체 FAQ</a>
 					<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" href="faqList1.do">영화 예매</a> 
@@ -29,6 +34,25 @@
 			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 <!-- 			<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"> -->
 				<h4 class="mtext-109 cl2 p-b-30"> FAQ Detail </h4>
+=======
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">		
+				</div>
+			</div>
+			
+			<div class="col-sm-10 col-lg-7 col-xl-7 m-lr-auto m-b-50">
+<!-- 			<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"> -->
+				<h4 class="mtext-109 cl2 p-b-30"> FAQ 상세보기 </h4>
+				
+				<div class="filter-tope-group m-tb-10 m-lr-auto">
+			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>
+			        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE1" value="영화예매" onClick="selectFaqType(1)">영화예매</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE2" value="영화관" onClick="selectFaqType(2)">영화관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="상영관" onClick="selectFaqType(3)">상영관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE4" value="기타" onClick="selectFaqType(4)">기타</button>
+				</div>
+				
+				
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 				<div class="flex-w flex-t bor12 p-b-13">
 					<div class="size-208" style="margin-top: 20px">
 						<span class="mtext-110 cl2" >분류 </span>
@@ -59,6 +83,7 @@
 					</div>
 				</div>
 
+<<<<<<< HEAD
 				<div class="flex-w flex-t p-t-27 p-b-33">
 					
 					
@@ -71,6 +96,18 @@
 						onclick="location.href='main.do' ">
 						홈페이지 메인으로  
 					</a>
+=======
+				<div class="flex-w flex-t p-t-27 p-b-33" style="float: right;">
+					
+				
+					<div class="flex-c-m stext-106 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-10" onclick="location.href='faqList.do?currentPage=${currentPage}' ">
+						목록으로 
+					</div>
+					
+					<div class="flex-c-m stext-106 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-10" onclick="location.href='main.do' ">
+						메인으로 
+					</div>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 				</div>
 			</div>
 		</div>
@@ -94,6 +131,7 @@
 	
 </body>
 </html>
+<<<<<<< HEAD
 
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -210,3 +248,5 @@
 		</div>
 	</div>
 </div> --%>
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9

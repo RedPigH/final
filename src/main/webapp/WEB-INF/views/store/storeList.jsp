@@ -48,11 +48,14 @@
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
+<<<<<<< HEAD
 		 <div class="flex-col-c p-b-10" style="margin-top: 40px">
          <h3 class="ltext-105 cl5">STORE LIST</h3>
       </div>
 		
 		
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button
@@ -102,11 +105,15 @@
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
+<<<<<<< HEAD
 				 <div class="col-sm-12 col-md-12 col-lg-12 p-b-35 isotope-item women">
             	<div class="size-196 p-t-35 p-b-35 flex-c-m m-tb-50" id="movieSelectNotice">
 								<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">상품이 없습니다ㅠㅠ</span>
 				</div>
 				</div>
+=======
+					<div>상품 없음</div>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 				</c:otherwise>
 			</c:choose>
 			</div>

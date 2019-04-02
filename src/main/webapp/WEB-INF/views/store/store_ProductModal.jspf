@@ -4,6 +4,10 @@
 <script src="/moviecube/resources/js_test/jquery-1.12.4.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<<<<<<< HEAD
+=======
+<!-- <script type="text/javascript" src="/moviecube/resources/vendor/sweetalert/sweetalert.min.js"></script> -->
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 <script>
 function buyItem() {
 	var store_no = $("#h_modal_store_no").val();
@@ -12,9 +16,16 @@ function buyItem() {
 	var amount = $("#amount").val();
 		
 	if(member_no.length == 0){
+<<<<<<< HEAD
 		Swal.fire("로그인 후 이용하세요","", "error");
 		return;
 	}else if($("#amount").val() == 0) {
+=======
+		$("#storemodal").modal("hide");
+		Swal.fire("로그인 후 이용하세요","", "error");
+		return;
+	}else if($("#amount").val() == "") {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		Swal.fire("수량을 선택하세요","", "error");
 		return;
 	}else{ 
@@ -48,12 +59,21 @@ function buyItem() {
 }
 </script>
 
+<<<<<<< HEAD
 <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 	<div class="overlay-modal1 js-hide-modal1"></div>
 
 	<div class="container">
 		<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent" style="border-radius: 20px">			
 		<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+=======
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id = "storemodal">
+	<div class="overlay-modal1 js-hide-modal1"></div>
+
+	<div class="container">
+		<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+			<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 				<img src="resources/images/icons/icon-close.png" alt="CLOSE">
 			</button>
 

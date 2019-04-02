@@ -32,7 +32,11 @@ public class QnaController {
 
 	/* "/qna/inquiryList" */
 	@RequestMapping(value = "/qnaList.do")
+<<<<<<< HEAD
 	public ModelAndView QnAList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+=======
+	public ModelAndView inquiryList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView();
 
 		List<Map<String, Object>> Qnalist = qnaService.selectQnaList(commandMap.getMap());
@@ -67,7 +71,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaWriteForm.do")
+<<<<<<< HEAD
 	public ModelAndView writeQnAForm(CommandMap commandMap) throws Exception {
+=======
+	public ModelAndView writeInquiryForm(CommandMap commandMap) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("qna/qnaWrite");
 
 		return mv;
@@ -75,7 +83,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaWrite.do")
+<<<<<<< HEAD
 	public ModelAndView writeQnA(CommandMap commandMap, HttpServletRequest request) throws Exception {
+=======
+	public ModelAndView writeInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("redirect:/main.do");
 		qnaService.insertQna(commandMap.getMap(), request);
 		return mv;
@@ -103,7 +115,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaModifyForm.do")
+<<<<<<< HEAD
 	public ModelAndView modifyQnAForm(CommandMap commandMap) throws Exception {
+=======
+	public ModelAndView modifyInquiryForm(CommandMap commandMap) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("/qna/qnaModify");
 
 		Map<String, Object> cmap = qnaService.checkQnaFile(commandMap.getMap());
@@ -124,7 +140,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaModify.do")
+<<<<<<< HEAD
 	public ModelAndView modifyQnA(CommandMap commandMap, HttpServletRequest request) throws Exception {
+=======
+	public ModelAndView modifyInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("redirect:/qnaList.do");
 		
 		qnaService.updateQna(commandMap.getMap(), request);
@@ -140,7 +160,11 @@ public class QnaController {
 
 
 	@RequestMapping(value = "/qnaDelete.do")
+<<<<<<< HEAD
 	public ModelAndView deleteQnA(CommandMap commandMap) throws Exception {
+=======
+	public ModelAndView deleteInquiry(CommandMap commandMap) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("redirect:/qnaList.do");
 		qnaService.deleteQna(commandMap.getMap());
 
@@ -148,7 +172,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaReplyForm.do")
+<<<<<<< HEAD
 	public ModelAndView replyQnAForm(CommandMap commandMap) throws Exception {
+=======
+	public ModelAndView replyInquiryForm(CommandMap commandMap) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		Map<String, Object> map1 = qnaService.selectQnaDetail1(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("qna/qnaReplyForm");
 
@@ -165,7 +193,11 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qnaReply.do")
+<<<<<<< HEAD
 	public ModelAndView replyQnA(CommandMap commandMap, HttpServletRequest request) throws Exception {
+=======
+	public ModelAndView replyInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		ModelAndView mv = new ModelAndView("redirect:/qnaList.do");
 
 		Set keyset = commandMap.keySet();

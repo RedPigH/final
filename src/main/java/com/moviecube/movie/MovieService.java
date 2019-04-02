@@ -11,6 +11,11 @@ public interface MovieService {
 	
 	List<Map<String, Object>> HotMovieList(Map<String, Object> map) throws Exception;
 	
+<<<<<<< HEAD
+=======
+	Map<String, Object> selectHotMovie(Map<String, Object> map) throws Exception;
+	
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	List<Map<String, Object>> LatelyMovieList(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> ExpectedMovieList(Map<String, Object> map) throws Exception;

@@ -101,7 +101,11 @@
 												</div>
 											</div>
 											<div class="column-2"
+<<<<<<< HEAD
 												style="font-family: MaplestoryBold; font-size: 20px">${row.MOVIE_NAME}</div>
+=======
+												style="font-family: MaplestoryBold; text-align: -webkit-center; font-size: 20px; width:50%">${row.MOVIE_NAME}</div>
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 											<div class="column-3">
 												<button
 													onclick="remove_item(document.getElementById('AddedMovieList${row.MOVIE_NAME}')); movieSelect();"

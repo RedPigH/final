@@ -31,7 +31,11 @@ public class MemberController {
 	  @Resource(name="memberService")
 	  private MemberServiceImpl memberService;
 	  
+<<<<<<< HEAD
 	  //동의서
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  
 	  @RequestMapping(value="/term.do")
 	  public ModelAndView terms(CommandMap commandMap) throws Exception{
@@ -40,7 +44,11 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  //회원가입 폼
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  
 	  @RequestMapping(value="/member/joinForm.do")
 	  public ModelAndView joinForm(CommandMap commandMap) throws Exception{
@@ -49,7 +57,11 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  //중복확인
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping("/member/checkId.do")
 	  @ResponseBody
 	   public Map<String, Object> findUsedID(@RequestBody String id) throws Exception{
@@ -64,7 +76,11 @@ public class MemberController {
 		  
 	  }
 	  
+<<<<<<< HEAD
 	  //회원가입
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping(value="/member/join.do")
 	  public String join(CommandMap commandMap) throws Exception{
 		  try {
@@ -75,7 +91,11 @@ public class MemberController {
 		  	return "redirect:/main.do";
 	  }
 	  
+<<<<<<< HEAD
 	  //로그인 폼
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping(value="/member/loginForm.do")
 	  public ModelAndView loginForm(CommandMap commandMap) throws Exception{
 		  ModelAndView mv = new ModelAndView("/member/loginForm");
@@ -83,7 +103,11 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  //로그인
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping(value="/member/login.do")
 	  public ModelAndView login(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		  ModelAndView mv = new ModelAndView();
@@ -114,7 +138,11 @@ public class MemberController {
 	  }
 	  
 	    
+<<<<<<< HEAD
 	  //로그아웃
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping(value="/member/logout.do")
 	  public ModelAndView logout(HttpSession session) {
 		  ModelAndView mv = new ModelAndView("redirect:/main.do");
@@ -123,7 +151,11 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  //아이디 비밀번호 찾기 폼
+=======
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  @RequestMapping(value="/member/findForm.do")
 	  public ModelAndView findForm(CommandMap commandMap) throws Exception{
 		  ModelAndView mv = new ModelAndView("/member/findIdAndPassword");
@@ -131,8 +163,11 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	
 	  //아이디 비밀번호 찾기
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 	  
 	  @RequestMapping(value="/member/find.do", method = RequestMethod.POST)
 	  @ResponseBody
@@ -157,7 +192,11 @@ public class MemberController {
 		  Map<String, Object> map = new HashMap<String, Object>();
 		  
 		  map.put("MEMBER_ID", id);
+<<<<<<< HEAD
 		  map.put("MEMBER_NAME1", name1); // 주현이는 24세이다.
+=======
+		  map.put("MEMBER_NAME1", name1);
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 		  map.put("MEMBER_PHONE1" , phone1);
 		  
 		  String pw = memberService.findPasswd(map);
@@ -166,6 +205,7 @@ public class MemberController {
 		  
 		  return map;
 	  }
+<<<<<<< HEAD
 	  
 	
 	  //회원 정보 수정
@@ -219,4 +259,6 @@ public class MemberController {
 		  
 		  return mv;
 	  }
+=======
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 }

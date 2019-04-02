@@ -350,6 +350,14 @@ img {
 	display: block;
 }
 
+<<<<<<< HEAD
+=======
+
+img.modal-poster {
+	width: 400px;
+	height: 620px;
+
+>>>>>>> ebdbccbfdff85f23768ebe1f80a42883fd1861e9
 img.event {
 	width: 700px;
 	height: 1100px;
