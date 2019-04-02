@@ -22,7 +22,7 @@ public class EventController {
 	@Resource(name = "eventService")
 	private EventService eventService;
 
-	@RequestMapping(value = "/eventList.do")
+	@RequestMapping(value = "/admin/eventList.do")
 	public ModelAndView eventList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/event/eventList");
 
@@ -32,7 +32,7 @@ public class EventController {
 		return mv;
 	}
 
-	@RequestMapping(value = "userEventList.do")
+	@RequestMapping(value = "/userEventList.do")
 
 	public ModelAndView userEventList(Map<String, Object> commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/event/userEventList");
