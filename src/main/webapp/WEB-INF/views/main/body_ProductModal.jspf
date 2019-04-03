@@ -292,7 +292,7 @@ function writeToModal(movie_no) {
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-50 p-lr-0-lg">
 						<div style="float:left; marging-bottom:0px;">
-								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.PNG" style="margin-top:11px; margin-right:8px;">
+								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.png" style="margin-top:11px; margin-right:8px;">
 						</div>
 						<h4 id="h_modal_movie_name" class="stext-119 cl2" style="margin-bottom:-10px;">
 							<!-- Jquery로 값 자동으로들어감 -->

@@ -1654,7 +1654,7 @@ button.mfp-close {
 
 .tab01 .nav-link {
   font-family: MaplestoryLight;
-  font-size: 15px;
+  font-size: 16px;
   color: #888;
   line-height: 1.2;
 
@@ -2308,7 +2308,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-105 {
-  font-family: MaplestoryBold;
+  font-family: MaplestoryLight;
   font-size: 16px;
   line-height: 1.466667;
   letter-spacing: 1px;
