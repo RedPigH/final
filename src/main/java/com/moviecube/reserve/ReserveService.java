@@ -16,6 +16,8 @@ public interface ReserveService {
 	List<Map<String, Object>> selectMovieList(Map<String, Object> map) throws Exception;
 	
 	List<Map<String ,Object>> MyReservation(Map<String, Object> map) throws Exception;
+	
+	List<Map<String ,Object>> MyAllReservation(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> selectOneMovie(Map<String, Object> map) throws Exception;
 
