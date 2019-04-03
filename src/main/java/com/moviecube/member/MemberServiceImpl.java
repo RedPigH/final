@@ -111,4 +111,16 @@ public class MemberServiceImpl implements MemberService {
 		        }
 		    }
 		}
+
+	@Override
+	public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }
