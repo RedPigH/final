@@ -52,7 +52,7 @@ function selectFaqType(num){
         				  $("#faqList").append(
         						  '<tr class="table_row">'
         							+'<td class="column-1">'+data.faqList[idx].FAQ_NO+'</td>'
-        							+'<td class="column-2">'
+        							+'<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;">'
         							+'<a href="/moviecube/faqDetail.do?faq_no='+data.faqList[idx].FAQ_NO+'"' +
         									'style="color: #555;">'+data.faqList[idx].FAQ_SUB
         							+'<input type="hidden" id="FAQ_NO" value="'+data.faqList[idx].FAQ_NO+'"/>' 
@@ -61,6 +61,17 @@ function selectFaqType(num){
         							+'</tr>'
         				  )
         				}
+        			} else {
+        				$("#faqList").append(
+      						  '<tr class="table_row">'
+      						    +'<td class="column-1"></td>'
+      							+'<td class="column-2" style="text-align: -webkit-center;">'
+      							+'<a href="javascript:void(0);"' 
+      							+'style="color: #555;">검색 결과가 없습니다'
+      							+'</a></td>'
+      							+'<td class="column-3"></td>'
+      							+'</tr>'
+      							)
         			}
         		},
 
