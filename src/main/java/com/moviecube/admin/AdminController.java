@@ -429,7 +429,7 @@ public class AdminController {
 		return mv;
 	}
 */
-		여기부터하면됨
+	/* 여기부터하면됨 */
 	@RequestMapping(value = "/noticeWriteForm.do")
 	public ModelAndView writeNoticeForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/notice/noticeWrite");
