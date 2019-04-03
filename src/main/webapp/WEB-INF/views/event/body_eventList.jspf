@@ -10,7 +10,7 @@
 		<!-- Tab01 -->
 		<div class="tab01" style="margin-top: 70px">
 			<div class="flex-col-c p-b-10">
-				<h3 class="ltext-105 cl5">EVENT LIST</h3>
+				<h3 class="ltext-105 cl5 p-b-30">EVENT LIST</h3>
 			</div>
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" style="margin-left: 0px">
@@ -30,7 +30,7 @@
 			</ul>
 
 			<!-- Tab panes -->
-			<div class="tab-content p-t-50">
+			<div class="tab-content p-t-20">
 				<!-- 전체 이벤트- -->
 				<div class="tab-pane fade show active" id="all" role="tabpanel">
 					<!-- Slide2 -->
@@ -53,13 +53,13 @@
 
 												</div>
 
-												<div class="block2-txt flex-w flex-t p-t-14">
+												<div class="block2-txt flex-w flex-t p-t-14" style="height: 115px">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+														<a href="javascript:void(0);"
+															class="stext-104 cl33 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
 															style="font-size: 16px"> ${row.EVENT_NAME}</a>
 														<p>
-															<strong class="stext-105 cl3 p-b-5 p-l-20"
+															<strong class="stext-105 cl2 p-b-5 p-l-20"
 																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
 																: </strong>
 														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
@@ -104,13 +104,13 @@
 														상세보기 </a>
 
 												</div>
-												<div class="block2-txt flex-w flex-t p-t-14">
+												<div class="block2-txt flex-w flex-t p-t-14" style="height: 115px">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+														<a href="javascript:void(0);"
+															class="stext-104 cl33 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
 															style="font-size: 16px"> ${row.EVENT_NAME}</a>
-														<p>
-															<strong class="stext-105 cl3 p-b-5 p-l-20"
+														<p style="margin: 0 0 0 0;">
+															<strong class="stext-104 cl2 p-b-5 p-l-20"
 																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
 																: </strong>
 														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
@@ -157,13 +157,13 @@
 
 												</div>
 
-												<div class="block2-txt flex-w flex-t p-t-14">
+												<div class="block2-txt flex-w flex-t p-t-14" style="height: 115px">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+														<a href="javascript:void(0);"
+															class="stext-104 cl33 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
 															style="font-size: 16px"> ${row.EVENT_NAME}</a>
 														<p>
-															<strong class="stext-105 cl3 p-b-5 p-l-20"
+															<strong class="stext-105 cl2 p-b-5 p-l-20"
 																id="MOVIE_GENRE" style="font-size: 12px">이벤트 기간
 																: </strong>
 														<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20"
@@ -205,13 +205,14 @@
 														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 														상세보기 </a>
 												</div>
-																							<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt flex-w flex-t p-t-14" style="height: 115px">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20" style="font-size:16px">
+														<a href="javascript:void(0);"
+															class="stext-104 cl33 hov-cl1 trans-04 js-name-b2 p-b-6 p-l-20"
+															style="font-size: 16px">
 															${row.EVENT_NAME}</a>								
 															<p>
-															<strong class="stext-105 cl3 p-b-5 p-l-20"
+															<strong class="stext-105 cl2 p-b-5 p-l-20"
 															id="MOVIE_GENRE" style="font-size:12px">이벤트 기간 : </strong>
 															<p class="stext-105 cl3 p-t--50 p-6-0 p-b-5 p-l-20" style="font-size:12px">
 															<c:set var="TextValue"  value="${row.EVENT_OPENDATE }"/>
