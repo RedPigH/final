@@ -84,10 +84,10 @@ public class MemberServiceImpl implements MemberService {
 	  
 	  @Override
 		public void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception {
-			MemberDAO.insertMyPage(map);
+			memberDAO.insertMyPage(map);
 			
 			List<Map<String,Object>> fileList = fileUtils.parseInsertFileInfo(map, request);
-				MemberDAO.insertFile(fileList.get(0)); 	
+				memberDAO.insertFile(fileList.get(0)); 	
 //	        for(int i=1, size=fileList.size(); i<size; i++){
 //	      	MovieDAO.insertFile2(fileList.get(i));
 //	          }

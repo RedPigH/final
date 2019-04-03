@@ -23,6 +23,9 @@
 	<div class="logo">
 	<h1><a href="<%=cp %>/admin/faqList.do">MovieCube Administrator - Q&amp;A List</a></h1>
 	</div>
+	<div class="logo" style="float: right;">
+			<a href="<%=cp%>/main.do" class="toMain" style="font-size: 15px;">메인으로</a>
+	</div>
 </div>
 
 <div class="admin_grp">

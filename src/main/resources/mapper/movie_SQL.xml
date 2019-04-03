@@ -32,7 +32,7 @@
 		]]>
 	</select>
 
-	<!-- 인기 영화 리스트(예매율순) -->
+	<!-- 인기 영화 리스트(예매율순) boxoffice -->
 	<select id="HotMovieList" resultType="hashmap"
 		parameterType="hashmap">
 	<![CDATA[

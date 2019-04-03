@@ -914,9 +914,10 @@ public class AdminController {
 	public ModelAndView replyInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/qnaList.do");
 		
-		System.out.println("답변 달기 테스트 2: " + commandMap.getMap());
-		
 		Map<String, Object> map = new HashMap();
+		CommandMap updatemap = new CommandMap();
+		
+		updatemap.put("QNA_NO", commandMap.get("REF"));
 		
 		String content2 = (String)commandMap.get("QNA_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
@@ -926,6 +927,8 @@ public class AdminController {
 		commandMap.put("RE_STEP", 1);
 		commandMap.put("RE_LEVEL", 1);
 		qnaService.replyQna(commandMap.getMap());
+		qnaService.updateQnaStatus(updatemap.getMap());
+		
 		return mv;
 	}
 
