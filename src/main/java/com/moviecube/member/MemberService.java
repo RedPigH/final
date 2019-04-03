@@ -29,4 +29,6 @@ public interface MemberService {
 	 void deleteMember(Map<String, Object> map) throws Exception;
 
 	 void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	 
+	 Map<String,Object> selectMemberFile(Map<String,Object> map) throws Exception;
 }

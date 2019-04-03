@@ -134,37 +134,26 @@ public class MemberController {
 	
 	  //���̵� ��й�ȣ ã��
 	  
-	  @RequestMapping(value="/member/find.do", method = RequestMethod.POST)
-	  @ResponseBody
-	  public String findId(@RequestParam String MEMBER_NAME, @RequestParam String MEMBER_AGE, @RequestParam String MEMBER_PHONE) throws Exception{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("MEMBER_NAME", MEMBER_NAME); 
-		map.put("MEMBER_AGE", MEMBER_AGE); 
-		map.put("MEMBER_PHONE" , MEMBER_PHONE);
-		 
-		  System.out.println(map);
-		  String id = memberService.findId(map);
-		
-		  //map.put("id", id);		  
-		 System.out.println(id);
+	  @RequestMapping(value="/member/find.do")
+	  public ModelAndView findId(CommandMap commandMap) throws Exception{
+		  ModelAndView mv = new ModelAndView();
 		  
-		  return id;
+		  String id = memberService.findId(commandMap.getMap());
+		  mv.addObject("id", id);
+		  
+		  mv.setViewName("/member/findId");
+		  return mv;
 	  }
 	 
 	  @RequestMapping(value="/member/find1.do")
-	  @ResponseBody
-	  public Map<String, Object> findPw(String name,String id, String name1, String phone1) throws Exception{
-		  Map<String, Object> map = new HashMap<String, Object>();
+	  public ModelAndView findPw(CommandMap commandMap) throws Exception{
+		  ModelAndView mv = new ModelAndView();
 		  
-		  map.put("MEMBER_ID", id);
-		  map.put("MEMBER_NAME1", name1); // �����̴� 24���̴�.
-		  map.put("MEMBER_PHONE1" , phone1);
+		  String pw = memberService.findPasswd(commandMap.getMap());
+		  mv.addObject("pw", pw);
 		  
-		  String pw = memberService.findPasswd(map);
-		  
-		  map.put("pw", pw);
-		  
-		  return map;
+		  mv.setViewName("/member/findPw");
+		  return mv;
 	  }
 	  
 	
@@ -219,4 +208,18 @@ public class MemberController {
 		  
 		  return mv;
 	  }
+	  
+	  @RequestMapping(value = "/member/profileEnter.do")
+		public ModelAndView insertMyPage(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/member/updateMemberForm.do");
+			
+			String MEMBER_NO = ((String)commandMap.get("MEMBER_NO"));
+			System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MEMBER_NO"));
+
+			
+			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
+			memberService.insertMyPage(commandMap.getMap(), request);
+
+			return mv;
+		}
 }

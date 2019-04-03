@@ -210,34 +210,9 @@
 						 	$('#phone').focus();
 						 	return false;
 					 }
-				  
-					 /* var name = $('#name').val();
-					 var age = $('#age').val();
-					 var phone = $('#phone').val()e */;
-					/*  var sendData = { "MEMBER_NAME" : $('#name').val() , "MEMBER_AGE" : $('#age').val() , "MEMBER_PHONE" : $('#phone').val() };
-					 alert($('#name').val()); */
-					/*  var data2 = {"MEMBER_NAME":name, "MEMBER_AGE":age, "MEMBER_PHONE":phone};
-					 var data = JSON.stringify(data2); */
-
-					 var sendData = $('#findId').serialize();
-					 alert(sendData);
-					 $.ajax({
-					 	type : "POST",
-					 	data : sendData,
-						url : "/moviecube/member/find.do",
-						dataType : "json",
-						contentType : "application/json:charset=UTF-8",
-						success : function(data){
-							alert("회원님의 아이디는["+id+"]입니다.");
-					 		if(data.id != null){
-					 			modalContents.text("회원님의 아이디는["+id+"]입니다.");
-							 	modal.modal('show');
-						 	}
-						},
-						error : function(error){
-								alert("error : "+error);
-							}
-					 });
+					 
+					 return findId();
+					
 				 });
 				 
 				 
@@ -267,38 +242,21 @@
 						 	return false;
 					 }
 					 
-					 var id = $("#id").val();
-					 var name1 = $("#name1").val();
-					 var phone1 = $("#phone1").val();
-					 
-					 var findpw = new FormData();
-					 
-					 
-					 
-					 findpw.append('id', id);
-					 findpw.append('name1', name1);
-					 findpw.append('phone1', phone1);
-					 
-					 $.ajax({
-							async: false,
-						 	type : "POST",
-						 	data : findpw,
-							url : "/moviecube/member/find1.do",
-							dataType : "json",
-							contentType : false,
-							processData: false,
-							success : function(data){
-						 		if(data.pw != null){
-						 			modalContents.text("회원님의 비밀번호는["+pw+"]입니다.");
-								 	modal.modal('show');
-							 	}
-							},
-							error : function(error){
-									alert("error : "+error);
-							}
-					 });
+					 return findPw();
 				 });
 			});
+			
+			function findId(){
+				var findId = document.getElementById("findId");
+				findId.action="/moviecube/member/find.do";
+				findId.submit();
+			}
+			
+			function findPw(){
+				var findPw = document.getElementById("findPw");
+				findPw.action="/moviecube/member/find1.do";
+				findPw.submit();
+			}
 		</script>
 	</div>
 </div>

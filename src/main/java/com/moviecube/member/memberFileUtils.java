@@ -54,11 +54,48 @@ public class memberFileUtils {
            		// 위에서 만든 정보를 Filelist에 추가한다 
            		fileListMap = new HashMap<String,Object>();
            		fileListMap.put("MEMBER_NO", MEMBER_NO);
-           		fileListMap.put("PROFILE_SAVNAME", originalFileName);
-           		fileListMap.put("PROFILE_ORGNAME", storedFileName);
+           		fileListMap.put("PROFILE_ORGNAME", originalFileName);
+           		fileListMap.put("PROFILE_SAVNAME", storedFileName);
            		fileList.add(fileListMap);
             } 
         }
         return fileList;
     }
+    
+    public List<Map<String, Object>> parseUpdateFileInfo(Map<String, Object> map, HttpServletRequest request) throws Exception{
+	    MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+	    Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	    System.out.println("출력해봐라 : " + iterator.hasNext());
+	     
+	    MultipartFile multipartFile = null;
+	    String originalFileName = null;
+	    String originalFileExtension = null;
+	    String storedFileName = null;
+	     
+	    List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+	    Map<String, Object> listMap = null;
+	     
+	    String MEMBER_NO = (String)map.get("MEMBER_NO");
+	     
+	     
+	    while(iterator.hasNext()){ // 업데이트 할 파일이 들어올 경우. 
+	        multipartFile = multipartHttpServletRequest.getFile(iterator.next()); 
+	        if(multipartFile.isEmpty() == false){
+	            originalFileName = multipartFile.getOriginalFilename();
+	            originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+	            storedFileName = CommonUtils.getRandomString() + originalFileExtension;
+	             
+	            multipartFile.transferTo(new File(filePath + storedFileName));
+	             
+	            listMap = new HashMap<String,Object>();
+	            listMap.put("IS_NEW", "Y");
+	            listMap.put("MEMBER_NO", MEMBER_NO);
+	            listMap.put("PROFILE_ORGNAME", originalFileName);
+	            listMap.put("PROFILE_SAVNAME", storedFileName);
+	            list.add(listMap);
+	        }
+	    }
+	    
+	    return list;
+	}
 }

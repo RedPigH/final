@@ -19,6 +19,9 @@ public class MypageController {
 
 	@Resource(name = "reserveService")
 	private ReserveService reserveService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberService;
 
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -41,6 +44,10 @@ public class MypageController {
 	@RequestMapping(value = "/member/updateMemberForm.do")
 	public ModelAndView updateMemberForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/member/updateMember");
+		
+		Map<String,Object> map = memberService.selectMemberFile(commandMap.getMap());
+		
+		mv.addObject("map", map.get("map"));
 
 		return mv;
 	}

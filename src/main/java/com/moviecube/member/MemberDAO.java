@@ -62,11 +62,12 @@ public class MemberDAO extends AbstractDAO {
 		delete("member.deleteMember", map);
 	}
 	
-	public void insertMyPage(Map<String, Object> map) throws Exception {
-		insert("member.insertMyPage", map);
+	public void insertFile(Map<String, Object> map) throws Exception {
+		insert("member.insertFile", map);
 	}
 	
-	public void insertFile(Map<String, Object> filelist) throws Exception {
-		insert("member.insertFile", filelist);
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.selectP", map);
 	}
 }

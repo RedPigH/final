@@ -168,4 +168,34 @@
 		WHERE MEMBER_NO = #{MEMBER_NO}
 		]]>
 	</delete>
+	
+	<insert id="insertFile" parameterType="hashmap">
+
+		<![CDATA[
+        INSERT INTO MC_MEMBER_FILE
+        (
+            FILE_NO,
+            MEMBER_NO,
+            PROFILE_ORGNAME,
+            PROFILE_SAVNAME
+        )
+        VALUES
+        (
+            MC_MEMBER_FILE_NO_SEQ.NEXTVAL,
+            #{MEMBER_NO},
+            #{PROFILE_ORGNAME},
+            #{PROFILE_SAVNAME}
+        )
+    	]]>
+	</insert>
+	
+	<select id="selectP" resultType="hashmap" parameterType="hashmap">
+		
+		<![CDATA[
+		
+		SELECT m.MEMBER_NO, f.PROFILE_ORGNAME, f.PROFILE_SAVNAME
+			FROM MC_MEMBER m, MC_MEMBER_FILE f
+		WHERE m.MEMBER_NO = f.MEMBER_NO
+		]]>
+	</select>
 </mapper>
