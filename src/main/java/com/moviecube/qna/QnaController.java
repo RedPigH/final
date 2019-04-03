@@ -50,8 +50,7 @@ public class QnaController {
 		pagingHtml = paging.getPagingHtml().toString();
 
 		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
+		
 		if (paging.getEndCount() < totalCount) {
 			lastCount = paging.getEndCount() + 1;
 		}
@@ -156,12 +155,6 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView("redirect:/qnaList.do");
 		
 		qnaService.updateQna(commandMap.getMap(), request);
-		
-		System.out.println("혜쮸꼰듀듀듀듀듀듀듀듀" + commandMap.getMap().size());
-		System.out.println(commandMap.get("QNA_ORGNAME"));
-		System.out.println(commandMap.get("QNA_SUB"));
-		System.out.println(commandMap.get("QNA_NO"));
-		System.out.println(commandMap.get("QNA_FILE_NO"));
 
 		return mv;
 	}
@@ -181,8 +174,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView("qna/qnaReplyForm");
 
 		Map<String, Object> map = new HashMap();
-		System.out.println("혜쮸꼰뜌" + commandMap.get("QNA_NOM"));
-		System.out.println("혜쮸꼰뜌2" + commandMap.get("QNA_SUB"));
+		
 		map.put("QNA_NOM", commandMap.get("QNA_NOM"));
 		map.put("QNA_SUB", commandMap.get("QNA_SUB"));
 		mv.addObject("map", map);
@@ -197,12 +189,10 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView("redirect:/qnaList.do");
 
 		Set keyset = commandMap.keySet();
-		System.out.println("result : " + keyset);
-		System.out.println("ref : " + commandMap.get("REF"));
 		
 		Map<String, Object> map = new HashMap();
 		map.put("REF", commandMap.get("REF"));
-		System.out.println("우앙은개뿔ㅎㅎ" + commandMap.get("REF"));
+		
 		commandMap.put("RE_STEP", 1);
 		commandMap.put("RE_LEVEL", 1);
 		qnaService.replyQna(commandMap.getMap());

@@ -43,7 +43,7 @@ $(document).ready(function() {
 										click : function() { //Click event
 											
 											if($('#counter').html() >= 4 && this.status() != 'selected'){
-												swal("","더 이상 좌석을 추가할 수 없습니다", "error");
+												Swal.fire("","더 이상 좌석을 추가할 수 없습니다", "warning");
 												return 'available';
 											}
 										

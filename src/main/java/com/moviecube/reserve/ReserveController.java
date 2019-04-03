@@ -101,9 +101,7 @@ public class ReserveController {
 		
 		if(request.getParameter("CheckedBoxList") != null) {
 			String[] selectedMovieList = request.getParameter("CheckedBoxList").split(",");
-			for(int i=0; i < selectedMovieList.length; i++) {
-				System.out.println(selectedMovieList[i]);
-			}
+			
 			mv.addObject("selectedMovieList", selectedMovieList);
 		}
 		
@@ -148,10 +146,6 @@ public class ReserveController {
 		
 		CommandMap map = new CommandMap();
 		
-		System.out.println(commandMap.get("TIME_NO"));
-		System.out.println(commandMap.get("SELECT_SEATS"));
-		System.out.println(commandMap.get("TOTAL_PRICE"));
-		
 		map.put("TIME_NO", commandMap.get("TIME_NO"));
 		
 		Map<String,Object> timemap = timeService.timeDetail(map.getMap());
@@ -186,8 +180,6 @@ public class ReserveController {
 		
 		//need reserveMap add "MEMBER_NO" get session value
 		reserveMap.put("MEMBER_NO", user.get("MEMBER_NO"));
-		
-		System.out.println(reserveMap.getMap());
 		
 		reserveService.insertReservation(reserveMap.getMap());
 		

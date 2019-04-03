@@ -8,9 +8,9 @@
 <div class="wrap-header-cart js-panel-cart">
 	<div class="s-full js-hide-cart"></div>
 
-	<div class="header-cart flex-col-l p-l-65 p-r-25">
+	<div class="header-cart flex-col-l p-l-35 p-r-25">
 		<div class="header-cart-title flex-w flex-sb-m p-b-8">
-			<span class="mtext-103 cl2"> 보고싶은 영화목록! </span>
+			<span class="mtext-105 cl2 p-l-20"> 보고싶은 영화목록! </span>
 
 			<div
 				class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="header-cart-content flex-w js-pscroll"
-			style="width: 300px;">
+			style="width: 350px;">
 			<ul class="header-cart-wrapitem w-full" style="margin-left: 0px;"
 				id="myWishList">
 
@@ -33,7 +33,7 @@
 								<div class="wishCheckBox" style="display: none">${row.WISH_NO}</div>
 								<div class="wishMovieNo" style="display: none">${row.MOVIE_NO}</div>
 								<div class="header-cart-item-img">
-									<img src="resources/upload/movie/poster/${row.POSTER_SAVNAME}"
+									<img src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
 										alt="IMG">
 								</div>
 
@@ -42,7 +42,7 @@
 										class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-show-modal1 js-hide-cart"
 										id="toModal${row.MOVIE_NO}" onclick="toModal(${row.MOVIE_NO})">
 										${row.MOVIE_NAME}</a> <span class="header-cart-item-info">
-										${row.MOVIE_GENRE}&nbsp;/&nbsp;감독:${row.MOVIE_DIRECTOR}</span>
+										감독:${row.MOVIE_DIRECTOR}</span>
 								</div></li>
 						</c:forEach>
 					</c:when>
@@ -62,10 +62,10 @@
 
 		</div>
 		<div class="w-full">
-			<div class="header-cart-total w-full p-tb-40" id="WishListLength">총
+			<div class="header-cart-total w-full p-tb-40 p-l-20" id="WishListLength">총
 				: ${fn:length(WishList)}편</div>
 
-			<div class="header-cart-buttons flex-w w-full">
+			<div class="header-cart-buttons flex-w w-full" style="justify-content: space-evenly;">
 				<a href="javascript:void(0);" onclick="deleteWishList2();"
 					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 					삭제 </a> <a href="javascript:void(0);" onclick="selectedReserve();"

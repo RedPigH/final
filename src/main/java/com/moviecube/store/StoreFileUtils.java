@@ -17,7 +17,7 @@ import com.moviecube.common.CommonUtils;
  
 @Component("storeFileUtils") // 이 객체의 관리를 스프링이 담당하도록 함
 public class StoreFileUtils {
-    private static final String filePath = "D:\\MovieCube\\src\\main\\webapp\\resources\\upload\\store\\"; // STORE 이미지 파일의 저장위치
+    private static final String filePath = "C:\\java\\maven\\MovieCube\\src\\main\\webapp\\resources\\upload\\store\\"; // STORE 이미지 파일의 저장위치
    
     
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
