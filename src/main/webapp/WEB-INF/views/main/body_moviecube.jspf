@@ -175,7 +175,7 @@
                            <!-- height 뺐음 -->
 
 
-                           <a href="#" id="gahyun" onclick="toModal(${row.MOVIE_NO });" 
+                           <a href="javascript:void(0);" id="gahyun" onclick="toModal(${row.MOVIE_NO });" 
                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                               상세보기 </a>
 
@@ -184,7 +184,7 @@
                         <div class="block2-txt flex-w flex-t p-t-14">
                            <div class="block2-txt-child1 flex-col-l ">
                               <a href="javascript:void(0);"
-                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6" onclick="toModal(${row.MOVIE_NO });">
+                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" onclick="toModal(${row.MOVIE_NO });">
                                  ${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
                                  id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
                            </div>
