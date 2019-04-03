@@ -26,7 +26,7 @@ public class SeatController {
 	
 	private int currentPage = 1;
 	private int totalCount;
-	private int blockCount = 10;
+	private int blockCount = 5;
 	private int blockpaging = 10;
 	private String pagingHtml;
 	private Paging paging;
@@ -141,7 +141,7 @@ public class SeatController {
 	
 	@RequestMapping(value = "/insertSeat.do")
 	public ModelAndView insertSeat(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/admin/insertSeatForm.do");
+		ModelAndView mv = new ModelAndView("redirect:/admin/seatList.do");
 		
 		commandMap.put("SCREEN_NO", request.getParameter("selectScreen"));
 		

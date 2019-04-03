@@ -24,7 +24,7 @@ public class NoticeController {
 
 	private int currentPage = 1;
 	private int totalCount;
-	private int blockCount = 7;
+	private int blockCount = 5;
 	private int blockpaging = 10;
 	private String pagingHtml;
 	private Paging paging;
