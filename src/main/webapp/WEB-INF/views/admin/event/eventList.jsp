@@ -36,7 +36,7 @@
 	<div class="admin_grp">
 		<div class="admin_list">
 			<ul>
-				<li class="on"><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
+				<li><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
 				<li><a href="<%=cp%>/admin/cinemaList.do">영화관</a></li>
 				<li><a href="<%=cp%>/admin/screenList.do">상영관</a></li>
 				<li><a href="<%=cp%>/admin/insertSeatForm.do">상영관 좌석</a></li>
