@@ -51,7 +51,7 @@ public class Paging {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a class='page prv' href=" + viewName + ".do?currentPage=" + (startPage - 1) + ">");
+			pagingHtml.append("<a class='page prv' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("&lt;");
 			pagingHtml.append("</a>");
 		}
@@ -62,11 +62,11 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<strong>");
+				pagingHtml.append("<strong style='padding: 0 10px;'>");
 				pagingHtml.append(i);
 				pagingHtml.append("</strong>");
 			} else {
-				pagingHtml.append("<a class='page' href=" + viewName + ".do?currentPage=");
+				pagingHtml.append("<a class='page' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
@@ -76,7 +76,7 @@ public class Paging {
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a class='page next' href=" + viewName + ".do?currentPage=" + (endPage + 1) + ">");
+			pagingHtml.append("<a class='page next' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=" + (endPage + 1) + ">");
 			pagingHtml.append("&gt;");
 			pagingHtml.append("</a>");
 		}
@@ -113,9 +113,9 @@ public class Paging {
 		pagingHtml = new StringBuffer();
 		if(currentPage > blockPage){
 			if(isSearch != "")
-				pagingHtml.append("<a class='page prv' href=" + viewName + ".do?currentPage=" + (startPage - 1) + "&searchNum="+searchNum+ "&isSearch="+isSearch+">");
+				pagingHtml.append("<a class='page prv' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=" + (startPage - 1) + "&searchNum="+searchNum+ "&isSearch="+isSearch+">");
 			else                    
-				pagingHtml.append("<a class='page prv' href=" + viewName + ".do?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a class='page prv' style='padding: 0 10px; color: #ff5959'  href=" + viewName + ".do?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("&lt;");
 			pagingHtml.append("</a>");
 			}
@@ -126,12 +126,12 @@ public class Paging {
 				break;
 			}
 			if(i == currentPage){
-				pagingHtml.append("<strong>");
+				pagingHtml.append("<strong style='padding: 0 10px;'>");
 				pagingHtml.append(i);
 				pagingHtml.append("</strong>");
 			}
 			else{
-				pagingHtml.append("<a class='page' href=" + viewName + ".do?currentPage=" + i);
+				pagingHtml.append("<a class='page' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=" + i);
 				if(isSearch != "")
 					pagingHtml.append("&isSearch=" + isSearch+"&searchNum="+searchNum);
 				pagingHtml.append(">");
@@ -141,7 +141,7 @@ public class Paging {
 		}
 		// 다음 block 페이지
 		if(totalPage - startPage >= blockPage){
-			pagingHtml.append("<a class='page next' href=" + viewName + ".do?currentPage=" + (endPage + 1));
+			pagingHtml.append("<a class='page next' style='padding: 0 10px; color: #ff5959' href=" + viewName + ".do?currentPage=" + (endPage + 1));
 			if(isSearch != "")
 				pagingHtml.append("&isSearch=" + isSearch+"&searchNum="+searchNum);
 			pagingHtml.append(">");
