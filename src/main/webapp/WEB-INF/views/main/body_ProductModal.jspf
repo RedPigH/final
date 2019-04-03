@@ -304,11 +304,11 @@ function writeToModal(movie_no) {
 						<p class="stext-118" style="margin-bottom:-10px; display:inline-block;" >예매율   :</p>
 						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
 						<p class="stext-118" style="margin-top:10px; margin-bottom:-5px; display:inline-block;">위</p>
-						<p id="h_modal_movie_type" class="stext-120 cl2" style="margin-top:10px; margin-bottom:5px;"> </p> 
-						<p id="h_modal_movie_opendate" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
-						<p id="h_modal_movie_director" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
-						<p id="h_modal_movie_actor" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
-						<p id="h_modal_movie_genre" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_type" class="stext-105 cl2" style="margin-top:10px; margin-bottom:5px;"> </p> 
+						<p id="h_modal_movie_opendate" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_director" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_actor" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_genre" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
 						<hr>
 						<input type="hidden" id="h_modal_movie_no" value=""/>
 

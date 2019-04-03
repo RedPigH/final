@@ -56,6 +56,30 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="item-slick1"
+						style="background-image: url(resources/images/slide-04.jpg);">
+						<div class="container h-full">
+							<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+								<div class="layer-slick1 animated visible-false"
+									data-appear="fadeInDown" data-delay="0">
+									<span class="ltext-101 cl2 respon2" style="color:#f2f2f2; text-shadow: 2px 2px 2px #474747;"> 나는 스타가 되지 않을 것이다, 전설이 될 것이다 </span>
+								</div>
+
+								<div class="layer-slick1 animated visible-false"
+									data-appear="fadeInUp" data-delay="800">
+									<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:#f2f2f2; text-shadow: 2px 2px 2px #474747;">보헤미안 랩소디(Bohemian Rhapsody)</h2>
+								</div>
+
+								<div class="layer-slick1 animated visible-false"
+									data-appear="zoomIn" data-delay="1600">
+									<a href="javascript:void(0);"
+										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" onclick="selectedReserve2('보헤미안 랩소디')">
+										예매하기 </a>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="item-slick1"
 						style="background-image: url(resources/images/slide-03.jpg);">

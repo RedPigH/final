@@ -33,7 +33,7 @@
 								<div class="wishCheckBox" style="display: none">${row.WISH_NO}</div>
 								<div class="wishMovieNo" style="display: none">${row.MOVIE_NO}</div>
 								<div class="header-cart-item-img">
-									<img src="resources/upload/movie/poster/${row.POSTER_SAVNAME}"
+									<img src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
 										alt="IMG">
 								</div>
 
