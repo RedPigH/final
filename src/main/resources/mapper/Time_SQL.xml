@@ -87,7 +87,7 @@
 			t.SCREEN_NO = s.SCREEN_NO AND 
 			t.MOVIE_NO = m.MOVIE_NO AND
 			t.MOVIE_NO = f.MOVIE_NO AND
-			t.TIME_NO = #{TIME_NO}
+			t.TIME_NO = #{TIME_NO}  AND f.DEL_GB = 'N'
 		]]>
 	</select>
 	
