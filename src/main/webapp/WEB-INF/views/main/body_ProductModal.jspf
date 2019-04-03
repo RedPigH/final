@@ -4,11 +4,7 @@
 <script src="/moviecube/resources/js_test/jquery-1.12.4.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<style>
-.review_delete {
 
-}
-</style>
 <script>
 function get_reviews(currentPage) {
 	var movie_no = $("#h_modal_movie_no").val();
@@ -65,7 +61,7 @@ function get_reviews(currentPage) {
 				"<span class='mtext-107 cl1 p-r-20' style='font-size:20px;'>" + cmt_id + "</span>" + 
 				"<span class='fs-18 cl11'>" + 
 				rating_text +  "</span>" +  "</div>" + 
-				"<textarea class='stext-118 cl10' style='float: left; width:600px; height:83px;'>" + cmt_content + "</textarea>" + delete_button2 + "</div>" +  " </div>" +
+				"<p class='stext-118 cl10' style='float: left; width:600px; height:83px;'>" + cmt_content + "</p>" + delete_button2 + "</div>" +  " </div>" +
 				"<hr>";
 				
 			} // for문 끝
@@ -90,8 +86,8 @@ function writeReview() {
 	if(member_id.length == 0) {
 		Swal.fire("","댓글작성은 로그인 후 이용할 수 있습니다","warning");
 		return;
-	} else if($("#review").val() == 0) {
-		Swal.fire("","내용을 작성해 주세요","info");
+	} else if($("#review").val().trim() == "") {
+		Swal.fire("","내용을 작성해 주세요","warning");
 		return;
 	}
 	
@@ -101,7 +97,7 @@ function writeReview() {
 		return;
 	}
 	
-	var content = $("#review").html();
+	var content = $("#review").val();
 	
 	var data = {
 			"member_id" : member_id,
@@ -422,7 +418,7 @@ function writeToModal(movie_no) {
 														함께 아름다운 댓글 문화를 만들어가요~
 													</label>
 													<textarea
-														class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review">  
+														class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review">
 														</textarea>
 														<input type="hidden" value=""  id="rating_value">
 												</div>
