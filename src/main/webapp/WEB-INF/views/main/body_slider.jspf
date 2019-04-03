@@ -106,6 +106,30 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="item-slick1"
+						style="background-image: url(resources/images/slide-05.jpg);">
+						<div class="container h-full">
+							<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+								<div class="layer-slick1 animated visible-false"
+									data-appear="rollIn" data-delay="0">
+									<span class="ltext-101 cl2 respon2" style="color:#f2f2f2; text-shadow: 2px 2px 2px #474747;"> 취향도, 성격도 완벽히 다른 두 남자의 특별한 우정이 시작된다! </span>
+								</div>
+
+								<div class="layer-slick1 animated visible-false"
+									data-appear="lightSpeedIn" data-delay="800">
+									<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:#f2f2f2; text-shadow: 2px 2px 2px #474747;">그린 북(Green Book)</h2>
+								</div>
+
+								<div class="layer-slick1 animated visible-false"
+									data-appear="slideInUp" data-delay="1600">
+									<a href="javascript:void(0);"
+										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" onclick="selectedReserve2('업(Up)')">
+										예매하기 </a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

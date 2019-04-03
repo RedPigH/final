@@ -430,7 +430,7 @@ function writeToModal(movie_no) {
 			var genre = "장르  :  " + data.map.MOVIE_GENRE;
 			$("#h_modal_movie_genre").text(genre);
 			
-			$("#h_modal_movie_content").html(data.map.MOVIE_CONTENT);	
+			$("#h_modal_movie_content").html(data.map.MOVIE_SUBTITLE+data.map.MOVIE_CONTENT);	
 			
 			$("#h_modal_movie_no").attr("value", movie_no);
 			
