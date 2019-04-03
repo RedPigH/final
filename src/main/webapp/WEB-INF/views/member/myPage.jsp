@@ -113,7 +113,7 @@ function viewReply(qna_no) {
 
 									<ul>
 										<li>
-											<img src="/moviecube/resources/" width="100px" height="100px" />
+											<img src="/moviecube/resources/upload/mypage/${sessionScope.userLoginInfo.MEMBER_SAVNAME}" width="100px" height="100px" />
 										</li>
 										<li><strong>이름</strong> <span>${sessionScope.userLoginInfo.MEMBER_NAME}님</span>
 										</li>
