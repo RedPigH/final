@@ -54,7 +54,7 @@
 							<c:forEach items="${eventList}" var="row">
 
 								<li><a href="#this" name="poster" class="list"> <img
-										src="<%=cp%>/resources/upload/event/${row.EVENT_SAVNAME}" width="350" height="350"
+										src="<%=cp%>/resources/upload/event/${row.EVENT_SAVNAME}" width="200px" height="400px"
 										
 										alt="이벤트" /> <input type="hidden" id="EVENT_NO"
 										value="${row.EVENT_NO}"> <input type="hidden"

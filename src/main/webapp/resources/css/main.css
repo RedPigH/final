@@ -1983,14 +1983,14 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
-/* �뜝�뙥�슱�삕�뜝�떛怨ㅼ삕 �뜝�뙥怨ㅼ삕�뜝�룞�삕 */
+/* 占쎈쐻占쎈솯占쎌뒻占쎌굲占쎈쐻占쎈뼓�ⓦ끉�굲 占쎈쐻占쎈솯�ⓦ끉�굲占쎈쐻占쎈짗占쎌굲 */
 .no-scrolling {
    height:100%;
    overflow:hidden;
 }
 
 .show-modal1 {
-  /* �뜝�뙥�슱�삕�뜝�떛怨ㅼ삕 �뜝�뙥怨ㅼ삕�뜝�룞�삕 */
+  /* 占쎈쐻占쎈솯占쎌뒻占쎌굲占쎈쐻占쎈뼓�ⓦ끉�굲 占쎈쐻占쎈솯�ⓦ끉�굲占쎈쐻占쎈짗占쎌굲 */
   /* overflow: hidden; */
   visibility: visible;
   opacity: 1;
@@ -2027,7 +2027,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
-/* �뜝�뙥�슱�삕�뜝�떛怨ㅼ삕 �뜝�뙥怨ㅼ삕�뜝�룞�삕 */
+/* 占쎈쐻占쎈솯占쎌뒻占쎌굲占쎈쐻占쎈뼓�ⓦ끉�굲 占쎈쐻占쎈솯�ⓦ끉�굲占쎈쐻占쎈짗占쎌굲 */
 .no-scrolling {
    height:100%;
    overflow:hidden;
@@ -2277,8 +2277,7 @@ input.num-product::-webkit-inner-spin-button {
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
 .cl13 {color: #777;}
-
-
+.cl33 {color: #f74877;}
 .cl13{color:#ff5959;}
 
 /*//////////////////////////////////////////////////////////////////
@@ -2502,7 +2501,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
-/* 異붽� �뤌 */
+/* �빊遺쏙옙 占쎈쨲 */
 
 .mtext-114{
 	font-family: NanumGothicBold;
@@ -2871,7 +2870,7 @@ input.num-product::-webkit-inner-spin-button {
   max-width: 286px;
 }
 
-/* 異붽��뤌 */
+/* �빊遺쏙옙占쎈쨲 */
 
 .size-219{
 	width: 750px;
@@ -3426,7 +3425,7 @@ input.num-product::-webkit-inner-spin-button {
   color: #fff;
 }
 
-/* 異붽��뤌 */
+/* �빊遺쏙옙占쎈쨲 */
 
 .hov-btn4:hover {
 	border-color: #333;

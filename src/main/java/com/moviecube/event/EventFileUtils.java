@@ -18,8 +18,8 @@ import com.moviecube.common.CommonUtils;
 
 @Component("eventFileUtils")
 public class EventFileUtils {
-	private static final String filePath = "C:\\moviecubefinal\\moviecubefinal\\src\\main\\webapp\\resources\\upload\\event\\"; // Event �씠誘몄�
-																											// �뙆�씪 ���옣 �쐞移�
+	private static final String filePath = "C:\\princessHyesoo\\src\\main\\webapp\\resources\\upload\\event\\"; // Event 占쎌뵠沃섎챷占�
+																											// 占쎈솁占쎌뵬 占쏙옙占쎌삢 占쎌맄燁삼옙
 
 	public List<Map<String, Object>> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
@@ -31,13 +31,13 @@ public class EventFileUtils {
 		String originalFileExtension = null;
 		String storedFileName = null;
 
-		List<Map<String, Object>> Filelist = new ArrayList<Map<String, Object>>(); // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗
-																					// List (�떎以묓뙆�씪�쟾�넚)
+		List<Map<String, Object>> Filelist = new ArrayList<Map<String, Object>>(); // 占쎄깻占쎌뵬占쎌뵠占쎈섧占쎈뱜占쎈퓠占쎄퐣 占쎌읈占쎈꽊占쎈쭆 占쎈솁占쎌뵬 占쎌젟癰귣�占쏙옙 占쎈뼖占쎈툡占쎄퐣 獄쏆꼹�넎占쎌뱽 占쎈퉸雅뚯눖�뮉
+																					// List (占쎈뼄餓λ쵑�솁占쎌뵬占쎌읈占쎈꽊)
 		Map<String, Object> FilelistMap = null;
 
-		int EVENT_NO = (int) map.get("EVENT_NO"); // EventServiceImpl �쁺�뿭�뿉�꽌 �쟾�떖�빐以� map�뿉�꽌 �떊洹쒓쾶�떆湲��쓽 踰덊샇瑜� 諛쏆븘�삩�떎
+		int EVENT_NO = (int) map.get("EVENT_NO"); // EventServiceImpl 占쎌겫占쎈열占쎈퓠占쎄퐣 占쎌읈占쎈뼎占쎈퉸餓ο옙 map占쎈퓠占쎄퐣 占쎈뻿域뱀뮄苡띰옙�뻻疫뀐옙占쎌벥 甕곕뜇�깈�몴占� 獄쏆룇釉섓옙�궔占쎈뼄
 
-		File file = new File(filePath); // �뙆�씪�쓣 ���옣�븷 寃쎈줈�뿉 �빐�떦�뤃�뜑媛� �뾾�쑝硫� �뤃�뜑瑜� �깮�꽦�븳�떎
+		File file = new File(filePath); 
 		if (file.exists() == false) {
 			file.mkdirs();
 		}
@@ -49,12 +49,12 @@ public class EventFileUtils {
 			if (multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename();
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32�옄由ъ쓽 �옖�뜡�븳 �뙆�씪�씠由� �깮�꽦�븯怨� �썝蹂명뙆�씪�쓽
-																						// �솗�옣�옄瑜� 遺숈뿬以��떎
+				storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32占쎌쁽�뵳�딆벥 占쎌삏占쎈쑁占쎈립 占쎈솁占쎌뵬占쎌뵠�뵳占� 占쎄문占쎄쉐占쎈릭�⑨옙 占쎌뜚癰귣챸�솁占쎌뵬占쎌벥
+																						// 占쎌넇占쎌삢占쎌쁽�몴占� �겫�늿肉т빳占쏙옙�뼄
 
-				file = new File(filePath + storedFileName); // �꽌踰꾩뿉 �떎�젣 �뙆�씪�쓣 ���옣�븯�뒗 遺�遺�
-				multipartFile.transferTo(file); // ���옣�맂 寃쎈줈�뿉 �뙆�씪�쓣 �깮�꽦�븳�떎.
-				// �쐞�뿉�꽌 留뚮뱺 �젙蹂대�� Filelist�뿉 異붽��븳�떎.
+				file = new File(filePath + storedFileName); // 占쎄퐣甕곌쑴肉� 占쎈뼄占쎌젫 占쎈솁占쎌뵬占쎌뱽 占쏙옙占쎌삢占쎈릭占쎈뮉 �겫占썽겫占�
+				multipartFile.transferTo(file); // 占쏙옙占쎌삢占쎈쭆 野껋럥以덌옙肉� 占쎈솁占쎌뵬占쎌뱽 占쎄문占쎄쉐占쎈립占쎈뼄.
+				// 占쎌맄占쎈퓠占쎄퐣 筌띾슢諭� 占쎌젟癰귣�占쏙옙 Filelist占쎈퓠 �빊遺쏙옙占쎈립占쎈뼄.
 
 				FilelistMap = new HashMap<String, Object>();
 				FilelistMap.put("EVENT_NO", EVENT_NO);
