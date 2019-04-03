@@ -337,6 +337,12 @@ function aaaa(){
 		Enter.action="/moviecube/member/profileUpdate.do";
 		Enter.submit();
 	}
+	
+	function profileDel(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileDelete.do";
+		Enter.submit();
+	}
 	</script>
 	</div>
 </div>
