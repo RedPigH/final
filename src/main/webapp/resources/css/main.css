@@ -793,7 +793,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu-m > li > a {
-  font-family: Poppins-Medium;
+  font-family: MaplestoryLight;
   font-size: 14px;
   color: white;
   line-height: 2.8;
@@ -847,22 +847,22 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .sub-menu-m {
-  background-color: #fff;
+  background-color: #ff8080;
   padding: 10px 15px 10px 32px;
   display: none;
 }
 
 .sub-menu-m a {
-  font-family: Poppins-Regular;
+  font-family: MaplestoryLight;
   font-size: 14px;
-  color: #666;
+  color: #ffffff;
   line-height: 2.5;
   padding: 5px 0 5px 0;
 }
 
 .sub-menu-m a:hover {
   text-decoration: none;
-  color: #555555;
+  color: #c0c0c0;
 }
 
 @media (min-width: 992px){
@@ -2941,6 +2941,7 @@ input.num-product::-webkit-inner-spin-button {
 .size-220{
 	width: 150px;
 }
+
 
 /*//////////////////////////////////////////////////////////////////
 [ Height ]*/
