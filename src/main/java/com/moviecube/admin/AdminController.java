@@ -528,11 +528,11 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("redirect:/admin/faqList.do");
 		String faq_type = request.getParameter("FAQ_TYPE");
 		String faq_sub = request.getParameter("FAQ_SUB");
-/*		
+	
 		String content2 = (String)commandMap.get("FAQ_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("FAQ_CONTENT", content);
-*/		
+	
 		commandMap.put("FAQ_TYPE", faq_type);
 		commandMap.put("FAQ_SUB", faq_sub);
 		

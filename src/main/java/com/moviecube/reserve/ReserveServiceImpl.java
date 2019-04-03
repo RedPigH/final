@@ -72,4 +72,10 @@ public class ReserveServiceImpl implements ReserveService {
 	public void deleteReservation(Map<String, Object> map) throws Exception{
 		reserveDAO.deleteReserve(map);
 	}
+
+	@Override
+	public Map<String, Object> ResTime(Map<String, Object> map) throws Exception {
+		
+		return reserveDAO.ResTime(map);
+	}
 }

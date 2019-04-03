@@ -34,12 +34,14 @@ public class MemberDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("member.selectOneMember", map);
 	}
 
-	public String findId(Map<String, Object> map) throws Exception {
-		return (String) selectOne("member.findId", map);
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.findId", map);
 	}
 
-	public String findPasswd(Map<String, Object> map) throws Exception {
-		return (String) selectOne("member.findPasswd", map);
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findPasswd(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.findPasswd", map);
 	}
 
 	public void updateMile(Map<String, Object> map) throws Exception {

@@ -14,9 +14,9 @@ public interface MemberService {
 	 
 	 Map<String, Object> selectOneMember(Map<String, Object> map) throws Exception;
 	 
-	 String findId(Map<String, Object> map) throws Exception;
+	 Map<String, Object> findId(Map<String, Object> map) throws Exception;
 	 
-	 String findPasswd(Map<String, Object> map) throws Exception;
+	 Map<String, Object> findPasswd(Map<String, Object> map) throws Exception;
 	 
 	 void updateMile(Map<String, Object> map) throws Exception;
 	 

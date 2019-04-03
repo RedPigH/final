@@ -106,7 +106,7 @@ function selectFaqType(num){
 			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>
 			        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE1" value="영화예매" onClick="selectFaqType(1)">영화예매</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE2" value="영화관" onClick="selectFaqType(2)">영화관</button>
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="상영관" onClick="selectFaqType(3)">상영관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="멤버쉽" onClick="selectFaqType(3)">멤버쉽</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE4" value="기타" onClick="selectFaqType(4)">기타</button>
 				</div>
 				
@@ -211,7 +211,7 @@ function selectFaqType(num){
          
 	function fn_openBoardDetail(obj){
         var comSubmit = new ComSubmit();
-        comSubmit.setUrl("<c:url value='faqDetail.do'/>");
+        comSubmit.setUrl("<c:url value='faqDetail2.do'/>");
         comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO").val());
         comSubmit.addParam("currentPage", "${currentPage}");
         comSubmit.submit();

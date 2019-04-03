@@ -60,6 +60,13 @@
 			WHERE SCREEN_NO = #{SCREEN_NO} AND SEAT_ROW = #{SEAT_ROW} AND SEAT_COL = #{SEAT_COL}
 		]]>
 	</select>
+	
+	<!-- 예매 좌석 리스트 -->
+	<select id="selectResSeat" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT SEAT_NO FROM RES_SEAT WHERE RES_NO = #{RES_NO}
+		]]>
+	</select>
 
 	<!-- 좌석 입력 -->
 	<insert id="insertSeat" parameterType="hashmap" useGeneratedKeys="true" keyProperty="SEAT_NO">

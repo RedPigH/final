@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -131,20 +132,50 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-	
-	  //���̵� ��й�ȣ ã��
-	  
-
-	 
-	 
-	  @RequestMapping(value="/member/find1.do")
-	  public ModelAndView findPw(CommandMap commandMap) throws Exception{
+	  @RequestMapping(value="/member/find.do")
+	  @ResponseBody
+	  public ModelAndView findId(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  ModelAndView mv = new ModelAndView();
 		  
-		  String pw = memberService.findPasswd(commandMap.getMap());
-		  mv.addObject("pw", pw);
+		  CommandMap map = new CommandMap();
 		  
-		  mv.setViewName("/member/findPw");
+		  map.put("MEMBER_NAME", request.getParameter("MEMBER_NAME"));
+		  map.put("MEMBER_AGE", request.getParameter("MEMBER_AGE"));
+		  map.put("MEMBER_PHONE", request.getParameter("MEMBER_PHONE"));
+		  
+		  System.out.println(map.getMap());
+		  
+		  Map<String, Object> findid = memberService.findId(map.getMap());
+		  
+		  mv.setViewName("jsonView");
+		  mv.addObject("findid", findid);
+		  
+		  return mv;
+	  }
+	 
+	  @RequestMapping(value="/member/find1.do")
+	  @ResponseBody
+	  public ModelAndView findPw(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		  
+		  ModelAndView mv = new ModelAndView();
+		  
+		  CommandMap map = new CommandMap();
+		  
+		  map.put("MEMBER_ID", request.getParameter("MEMBER_ID"));
+		  map.put("MEMBER_NAME", request.getParameter("MEMBER_NAME"));
+		  map.put("MEMBER_PHONE", request.getParameter("MEMBER_PHONE"));
+		  
+		  System.out.println(map.getMap());
+		  
+		  Map<String, Object> findpw = memberService.findPasswd(map.getMap());
+		  
+		  System.out.println(findpw);
+		  
+		  mv.setViewName("jsonView");
+		  mv.addObject("findpw", findpw);
+		  
+		  mv.addObject("findpw2", findpw.get("MEMBER_PASSWD1"));
+		  
 		  return mv;
 	  }
 	  
@@ -200,32 +231,4 @@ public class MemberController {
 		  
 		  return mv;
 	  }
-	  
-	  @RequestMapping(value = "/member/profileEnter.do")
-		public ModelAndView insertMyPage(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("redirect:/member/updateMemberForm.do");
-			
-			String MEMBER_NO = ((String)commandMap.get("MEMBER_NO"));
-			System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MEMBER_NO"));
-
-			
-			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
-			memberService.insertMyPage(commandMap.getMap(), request);
-
-			return mv;
-		}
-	  
-	  @RequestMapping(value = "/member/profileUpdate.do")
-		public ModelAndView modifyInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("redirect:/member/updateMemberForm.do");
-			
-			String MEMBER_NO = ((String)commandMap.get("MEMBER_NO"));
-			System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MEMBER_NO"));
-
-			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
-			
-			memberService.updateProfile(commandMap.getMap(), request);
-
-			return mv;
-		}
 }

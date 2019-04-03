@@ -84,7 +84,7 @@
 	</select>
 	
 	<!-- ID 찾기 -->
-	<select id = "findId" parameterType = "hashmap" resultType = "String">
+	<select id = "findId" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
 			SELECT
 			 MEMBER_ID
@@ -98,7 +98,7 @@
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id = "findPasswd" parameterType = "hashmap" resultType = "String"><!--승표  -->
+	<select id = "findPasswd" parameterType = "hashmap" resultType = "hashmap"><!--승표  -->
 		<![CDATA[
 			SELECT
 			 MEMBER_PASSWD1
@@ -106,8 +106,8 @@
 			 MC_MEMBER
 			WHERE
 			 MEMBER_ID=#{MEMBER_ID}
-			 AND MEMBER_NAME=#{MEMBER_NAME1}
-			 AND MEMBER_PHONE=#{MEMBER_PHONE1}
+			 AND MEMBER_NAME=#{MEMBER_NAME}
+			 AND MEMBER_PHONE=#{MEMBER_PHONE}
 		]]>
 	</select>
 	

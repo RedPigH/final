@@ -121,6 +121,7 @@
 							<th scope="row">관람등급</th>
 							<td>
 								<select name="MOVIE_AGE" class="slct w200">
+									<option value="0">전체</option>
 									<option value="12">12</option>
 									<option value="15">15</option>
 									<option value="19">19</option>
