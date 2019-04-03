@@ -17,9 +17,9 @@ import com.moviecube.common.CommonUtils;
  
 @Component("movieFileUtils") // �씠 媛앹껜�쓽 愿�由щ�� �뒪�봽留곸씠 �떞�떦�븯�룄濡� �븿
 public class MovieFileUtils {
-	private static final String filePath = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath2 = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath3 = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\slider\\"; // SLIDER �뙆�씪�쓽 ���옣�쐞移�
+	private static final String filePath = "C:\\java\\maven\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER �뙆�씪�쓽 ���옣�쐞移�
+    private static final String filePath2 = "C:\\java\\maven\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT �뙆�씪�쓽 ���옣�쐞移�
+    private static final String filePath3 = "C:\\java\\maven\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\movie\\slider\\"; // SLIDER �뙆�씪�쓽 ���옣�쐞移�
     
     
     /*�쁺�솕 �룷�뒪�꽣 �뙆�씪 Insert*/ 
