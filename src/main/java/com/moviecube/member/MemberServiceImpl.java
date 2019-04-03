@@ -48,12 +48,12 @@ public class MemberServiceImpl implements MemberService {
 	  }
 	  
 	  @Override
-	  public String findId(Map<String, Object> map) throws Exception{
+	  public Map<String, Object> findId(Map<String, Object> map) throws Exception{
 		  return memberDAO.findId(map);
 	  }
 	  
 	  @Override
-	  public String findPasswd(Map<String, Object> map) throws Exception{
+	  public Map<String, Object> findPasswd(Map<String, Object> map) throws Exception{
 		  return memberDAO.findPasswd(map);
 	  }
 	  

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -131,36 +132,51 @@ public class MemberController {
 		  return mv;
 	  }
 	  
-	
-	  //���̵� ��й�ȣ ã��
-	  
-	  @RequestMapping(value="/member/find.do", method = RequestMethod.POST)
+	  @RequestMapping(value="/member/find.do")
 	  @ResponseBody
-	  public String findId(@RequestParam String MEMBER_NAME, @RequestParam String MEMBER_AGE, @RequestParam String MEMBER_PHONE) throws Exception{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("MEMBER_NAME", MEMBER_NAME); 
-		map.put("MEMBER_AGE", MEMBER_AGE); 
-		map.put("MEMBER_PHONE" , MEMBER_PHONE);
-		 
-		  String id = memberService.findId(map);
+	  public ModelAndView findId(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		  ModelAndView mv = new ModelAndView();
 		  
-		  return id;
+		  CommandMap map = new CommandMap();
+		  
+		  map.put("MEMBER_NAME", request.getParameter("MEMBER_NAME"));
+		  map.put("MEMBER_AGE", request.getParameter("MEMBER_AGE"));
+		  map.put("MEMBER_PHONE", request.getParameter("MEMBER_PHONE"));
+		  
+		  System.out.println(map.getMap());
+		  
+		  Map<String, Object> findid = memberService.findId(map.getMap());
+		  
+		  mv.setViewName("jsonView");
+		  mv.addObject("findid", findid);
+		  
+		  return mv;
 	  }
 	 
 	  @RequestMapping(value="/member/find1.do")
 	  @ResponseBody
-	  public Map<String, Object> findPw(String name,String id, String name1, String phone1) throws Exception{
-		  Map<String, Object> map = new HashMap<String, Object>();
+	  public ModelAndView findPw(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  
-		  map.put("MEMBER_ID", id);
-		  map.put("MEMBER_NAME1", name1); // �����̴� 24���̴�.
-		  map.put("MEMBER_PHONE1" , phone1);
+		  ModelAndView mv = new ModelAndView();
 		  
-		  String pw = memberService.findPasswd(map);
+		  CommandMap map = new CommandMap();
 		  
-		  map.put("pw", pw);
+		  map.put("MEMBER_ID", request.getParameter("MEMBER_ID"));
+		  map.put("MEMBER_NAME", request.getParameter("MEMBER_NAME"));
+		  map.put("MEMBER_PHONE", request.getParameter("MEMBER_PHONE"));
 		  
-		  return map;
+		  System.out.println(map.getMap());
+		  
+		  Map<String, Object> findpw = memberService.findPasswd(map.getMap());
+		  
+		  System.out.println(findpw);
+		  
+		  mv.setViewName("jsonView");
+		  mv.addObject("findpw", findpw);
+		  
+		  mv.addObject("findpw2", findpw.get("MEMBER_PASSWD1"));
+		  
+		  return mv;
 	  }
 	  
 	
