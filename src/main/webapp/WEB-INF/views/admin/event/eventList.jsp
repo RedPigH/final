@@ -24,8 +24,7 @@
 	<div class="admin">
 		<div class="logo">
 			<h1>
-				<a href="<%=cp%>/eventList.do">MovieCube Administrator -
-					EVENT List</a>
+				<a href="<%=cp%>/admin/eventList.do">MovieCube Administrator - Event List </a>
 			</h1>
 		</div>
 		<div class="logo" style="float: right;">
@@ -36,7 +35,7 @@
 	<div class="admin_grp">
 		<div class="admin_list">
 			<ul>
-				<li class="on"><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
+				<li><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
 				<li><a href="<%=cp%>/admin/cinemaList.do">영화관</a></li>
 				<li><a href="<%=cp%>/admin/screenList.do">상영관</a></li>
 				<li><a href="<%=cp%>/admin/insertSeatForm.do">상영관 좌석</a></li>
@@ -58,7 +57,7 @@
 							<c:forEach items="${eventList}" var="row">
 
 								<li><a href="#this" name="poster" class="list"> <img
-										src="<%=cp%>/resources/upload/event/${row.EVENT_SAVNAME}" width="350" height="350"
+										src="<%=cp%>/resources/upload/event/${row.EVENT_SAVNAME}" width="200px" height="400px"
 										
 										alt="이벤트" /> <input type="hidden" id="EVENT_NO"
 										value="${row.EVENT_NO}"> <input type="hidden"

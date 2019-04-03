@@ -88,9 +88,6 @@ html {
 
 
 /* Text elements */
-p {
-	margin-bottom: 1.5em;
-}
 
 ol {
 	margin: 0 0 1.5em 2em;
@@ -353,7 +350,7 @@ img {
 
 img.modal-poster {
 	width: 400px;
-	height: 620px;
+	height: 560px;
 
 img.event {
 	width: 700px;

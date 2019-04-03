@@ -96,39 +96,6 @@ public class SeatController {
 		return mv;
 	}
 	
-/*		ModelAndView mv = new ModelAndView();
-		
-		List<Map<String, Object>> seatList = seatService.selectSeatList(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty() || request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		}else{
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		totalCount = seatList.size();
-		
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "seatList");
-		pagingHtml = paging.getPagingHtml().toString();
-		
-		int lastCount = totalCount;
-		//System.out.println(paging.getEndCount());
-		//System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		seatList = seatList.subList(paging.getStartCount(), lastCount);
-		
-		mv.addObject("seatList", seatList);
-		mv.addObject("list", seatList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/admin/seat/seatList");
-		return mv;
-	}
-*/	
-	
 	@RequestMapping(value = "/insertSeatForm.do")
 	public ModelAndView insertSeatForm(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/seat/seatWrite");
@@ -148,8 +115,6 @@ public class SeatController {
 		// 행,열 값을 받아옴
 		int row = Integer.parseInt(request.getParameter("row"));
 		int col = Integer.parseInt(request.getParameter("col"));
-		
-		System.out.println("row, col : " + row + " " + col);
 		
 		// 받아온 행열 값을 통하여 좌석 생성 행(A~H) 열(10~15) 정도로 예상중
 		for(int i = 1; i <= row; i++) {

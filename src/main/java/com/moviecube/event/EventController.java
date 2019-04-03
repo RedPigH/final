@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.moviecube.common.CommandMap;
+import com.moviecube.common.Paging;
 
 @Controller
 public class EventController {
@@ -22,6 +23,7 @@ public class EventController {
 	@Resource(name = "eventService")
 	private EventService eventService;
 
+	
 	@RequestMapping(value = "/admin/eventList.do")
 	public ModelAndView eventList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/event/eventList");
@@ -41,15 +43,12 @@ public class EventController {
 
 		List<Map<String, Object>> eventList = eventService.selectEventList(commandMap);
 		mv.addObject("event_no", event_no);
-		
-		
-		mv.addObject("eventList", eventList);
 
-		System.out.println("혜쮸는쨩이얍" + commandMap.get("event_no"));
+		mv.addObject("eventList", eventList);
 
 		List<Map<String, Object>> mceventList = eventService.McEventList(commandMap);// moviecubeeventList
 		List<Map<String, Object>> meventList = eventService.MovieEventList(commandMap);// movieEventList
-		List<Map<String, Object>> alleventList = eventService.AllEventList(commandMap);// alliance(제휴)eventList
+		List<Map<String, Object>> alleventList = eventService.AllEventList(commandMap);// alliance(�젣�쑕)eventList
 
 		mv.addObject("mceventList", mceventList);
 		mv.addObject("meventList", meventList);
@@ -80,7 +79,6 @@ public class EventController {
 		Map<String, Object> map = eventService.selectEventDetail(commandMap.getMap());
 		mv.addObject("map", map.get("map"));
 		mv.addObject("eventDetail", map.get("eventDetail"));
-		System.out.println("�삙怡멸섟�쐧�떂:" + commandMap.get("EVENT_NO"));
 
 		return mv;
 	}
@@ -97,23 +95,22 @@ public class EventController {
 		Map<String, Object> map = eventService.selectEventDetail(commandMap.getMap());
 		List<Map<String, Object>> file_list = (List<Map<String, Object>>) map.get("eventDetail");
 
-		Map<String, Object>map2 = (Map<String, Object>) map.get("map");
-		
+		Map<String, Object> map2 = (Map<String, Object>) map.get("map");
+
 		mv.addObject("map", map.get("map"));
-		
+
 		String open_date = map2.get("EVENT_OPENDATE").toString().substring(0, 10);
 		String end_date = map2.get("EVENT_CLOSEDATE").toString().substring(0, 10);
 		String event_url = "";
-		if(map2.get("EVENT_URL") != null) {
+		if (map2.get("EVENT_URL") != null) {
 			event_url = map2.get("EVENT_URL").toString();
 		}
 		mv.addObject("file_list", file_list);
-		
+
 		mv.addObject("event_url", event_url);
 		mv.addObject("open_date", open_date);
 		mv.addObject("end_date", end_date);
 
-		System.out.println("혜쮸쨩" + event_url);
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -121,7 +118,7 @@ public class EventController {
 	@RequestMapping(value = "/eventModifyForm.do")
 	public ModelAndView movieModifyForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/event/eventModify");
-		System.out.println("�쁺�솕 �닔�젙 �뤌1 媛� �솗�씤 =============: " + commandMap.getMap());
+
 		Map<String, Object> map = eventService.selectEventDetail(commandMap.getMap());
 
 		mv.addObject("map", map.get("map"));
@@ -135,17 +132,8 @@ public class EventController {
 	public ModelAndView modifyEvent(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/eventList.do");
 
-		/*
-		 * String EVENT_NO = (String)commandMap.get("EVENT_NO");
-		 * commandMap.getMap().put("EVENT_NO", EVENT_NO);
-		 */
-		/*
-		 * int EVENT_NO = Integer.parseInt((String)commandMap.get("EVENT_NO"));
-		 * commandMap.getMap().put("EVENT_NO", EVENT_NO);
-		 */
 		eventService.modifyEvent(commandMap.getMap(), request);
-		System.out.println("�삙怡멸섟�쐧�떂�옗:" + commandMap.get("EVENT_NO"));
-		System.out.println("�삙怡몃뒗吏깆씠�빞�뀇:" + commandMap.getMap());
+	
 		mv.addObject("EVENT_NO", commandMap.get("EVENT_NO"));
 
 		return mv;

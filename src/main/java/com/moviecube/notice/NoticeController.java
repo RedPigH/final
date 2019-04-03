@@ -102,8 +102,6 @@ public class NoticeController {
 	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/notice/noticeDetail");
 		
-		System.out.println("공지사항 상세보기 값 확인 ================" + commandMap.getMap());
-		
 		Map<String, Object> map = noticeService.selectBoardDetail(commandMap.getMap());
 		
 		mv.addObject("map", map);

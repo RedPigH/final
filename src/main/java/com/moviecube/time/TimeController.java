@@ -241,8 +241,6 @@ public class TimeController {
 
 		map.put("MOVIE_NO", request.getParameter("MOVIE_NO"));
 		map.put("CINEMA_NO", request.getParameter("CINEMA_NO"));
-		
-		System.out.println("항asdf : " + map.getMap());
 
 		List<Map<String, Object>> screenList = screenService.selectCinemaScreen(map.getMap());
 		
