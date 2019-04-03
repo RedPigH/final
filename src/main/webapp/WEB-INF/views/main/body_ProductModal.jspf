@@ -96,7 +96,7 @@ function writeReview() {
 	}
 	
 	var cmt_like = $("#rating_value").val();
-	var content = $("#review").val();
+	var content = $("#review").html();
 	
 	var data = {
 			"member_id" : member_id,
@@ -236,7 +236,7 @@ function writeToModal(movie_no) {
 			var genre = "장르  :  " + data.map.MOVIE_GENRE;
 			$("#h_modal_movie_genre").text(genre);
 			
-			$("#h_modal_movie_content").text(data.map.MOVIE_CONTENT);	
+			$("#h_modal_movie_content").html(data.map.MOVIE_CONTENT);	
 			
 			$("#h_modal_movie_no").attr("value", movie_no);
 			

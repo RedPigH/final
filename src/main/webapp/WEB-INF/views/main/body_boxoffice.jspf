@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%  pageContext.setAttribute("br", "<br>");
+	pageContext.setAttribute("cn", "\n");
+%>
 
 <!-- BOX OFFICE -->
 <section class="sec-product bg0 p-t-100 p-b-50">
@@ -144,6 +146,7 @@
 																	'${row.MOVIE_DIRECTOR }',
 																	'${row.MOVIE_ACTOR }',
 																	'${row.MOVIE_GENRE }',
+																<%-- 	'${fn:replace(row.MOVIE_CONTENT,br,cn)}' --%>
 																	'${row.MOVIE_CONTENT }',
 																	'${row.MOVIE_AGE }',
 																	'${row.MOVIE_URL }',
@@ -250,7 +253,7 @@
 																	'${row.MOVIE_DIRECTOR }',
 																	'${row.MOVIE_ACTOR }',
 																	'${row.MOVIE_GENRE }',
-																	'${row.MOVIE_CONTENT }',
+																	'${fn:replace(row.MOVIE_CONTENT,br,cn)}',
 																	'${row.MOVIE_AGE }',
 																	'${row.MOVIE_URL }',
 																	'${row.POSTER_SAVNAME }',

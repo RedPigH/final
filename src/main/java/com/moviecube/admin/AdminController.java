@@ -144,15 +144,11 @@ public class AdminController {
 	public ModelAndView movieWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/movieList.do");
 		System.out.println(" 영화 등록 처리 값 체크 ================" + commandMap.getMap());
-		
+	
 		String content2 = (String)commandMap.get("MOVIE_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("MOVIE_CONTENT", content);
-		
-		String subtitle2 = (String)commandMap.get("MOVIE_SUBTITLE");
-		String subtitle = subtitle2.replaceAll("\r\n", "<br>");
-		commandMap.put("MOVIE_SUBTITLE", subtitle);
-		
+	
 		movieService.insertMovie(commandMap.getMap(), request);
 		
 		return mv;
@@ -240,10 +236,6 @@ public class AdminController {
 		String content2 = (String)commandMap.get("MOVIE_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("MOVIE_CONTENT", content);
-		
-		String subtitle2 = (String)commandMap.get("MOVIE_SUBTITLE");
-		String subtitle = subtitle2.replaceAll("\r\n", "<br>");
-		commandMap.put("MOVIE_SUBTITLE", subtitle);
 		
 		System.out.println("영화 수정 처리1 값 확인 =============: " + commandMap.getMap());
 		movieService.modifyMovie(commandMap.getMap(), request);
@@ -615,12 +607,11 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("redirect:/admin/faqList.do");
 		String faq_type = request.getParameter("FAQ_TYPE");
 		String faq_sub = request.getParameter("FAQ_SUB");
-		
+/*		
 		String content2 = (String)commandMap.get("FAQ_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
-		
 		commandMap.put("FAQ_CONTENT", content);
-		
+*/		
 		commandMap.put("FAQ_TYPE", faq_type);
 		commandMap.put("FAQ_SUB", faq_sub);
 		

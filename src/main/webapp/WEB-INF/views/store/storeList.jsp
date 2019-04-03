@@ -21,7 +21,7 @@
 		$("#h_modal_store_price").text(price);
 		
 		var content = "상품 설명 : " + store_content;
-		$("#h_modal_store_content").text(content);
+		$("#h_modal_store_content").html(content);
 		
 		var img_url = "/moviecube/resources/upload/store/"
 			+ img_savname;

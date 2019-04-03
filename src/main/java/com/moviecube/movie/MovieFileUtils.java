@@ -17,9 +17,9 @@ import com.moviecube.common.CommonUtils;
  
 @Component("movieFileUtils") // �씠 媛앹껜�쓽 愿�由щ�� �뒪�봽留곸씠 �떞�떦�븯�룄濡� �븿
 public class MovieFileUtils {
-	private static final String filePath = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath2 = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath3 = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\slider\\"; // SLIDER �뙆�씪�쓽 ���옣�쐞移�
+	private static final String filePath = "D:\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER 파일의 저장위치
+    private static final String filePath2 = "D:\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT 파일의 저장위치
+    private static final String filePath3 = "D:\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\slider\\"; // SLIDER 파일의 저장위치
     
     /*�쁺�솕 �룷�뒪�꽣 �뙆�씪 Insert*/ 
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
