@@ -96,7 +96,7 @@ function writeReview() {
 	}
 	
 	var cmt_like = $("#rating_value").val();
-	var content = $("#review").val();
+	var content = $("#review").html();
 	
 	var data = {
 			"member_id" : member_id,

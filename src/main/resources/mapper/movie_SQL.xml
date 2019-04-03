@@ -498,11 +498,11 @@
 	m.MOVIE_CONTENT,m.MOVIE_GRADE, m.MOVIE_AGE, f.FILE_NO, f.POSTER_ORGNAME, f.POSTER_SAVNAME, f.DEL_GB
 	FROM MC_MOVIE m INNER JOIN MC_MOVIE_FILE f ON m.MOVIE_NO = f.MOVIE_NO
 	WHERE f.DEL_GB = 'N' 
-	AND m.MOVIE_NAME like '%' || #{searchKeyword} || '%'
+	AND (m.MOVIE_NAME like '%' || #{searchKeyword} || '%'
 	OR m.MOVIE_DIRECTOR like '%' || #{searchKeyword} || '%' 
 	OR m.MOVIE_ACTOR like '%' || #{searchKeyword} || '%' 
 	OR m.MOVIE_GENRE like '%' || #{searchKeyword} || '%' 
-	OR m.MOVIE_CONTENT like '%' || #{searchKeyword} || '%'
+	OR m.MOVIE_CONTENT like '%' || #{searchKeyword} || '%')
 	order by m.MOVIE_NO desc 
 	</select>
 </mapper>
