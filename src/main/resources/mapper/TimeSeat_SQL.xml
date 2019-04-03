@@ -34,4 +34,11 @@
 		SET STATUS = 1
 		WHERE SEAT_NO = #{SEAT_NO} AND TIME_NO = #{TIME_NO}
 	</update>
+	
+	<!-- 좌석예매 취소 -->
+	<update id = "ResDeleteStatus" parameterType = "hashmap">
+		UPDATE TIME_SEAT
+		SET STATUS = 0
+		WHERE SEAT_NO = #{SEAT_NO} AND TIME_NO = #{TIME_NO}
+	</update>
 </mapper>

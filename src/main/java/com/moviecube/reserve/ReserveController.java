@@ -233,7 +233,22 @@ public class ReserveController {
 	public ModelAndView deleteReservation(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/member/myPage.do");
 		String res_no = request.getParameter("res_no");
+		
 		commandMap.put("RES_NO", res_no);
+		
+		Map<String, Object> map = reserveService.ResTime(commandMap.getMap());
+		
+		CommandMap Resmap = new CommandMap();
+		
+		Resmap.put("TIME_NO", map.get("TIME_NO"));
+		
+		List<Map<String, Object>> ResSeat = seatService.selectResSeat(commandMap.getMap());
+		
+		for(Map<String, Object> res : ResSeat) {
+			Resmap.put("SEAT_NO", res.get("SEAT_NO"));
+			seatService.ResDeleteStatus(Resmap.getMap());
+			Resmap.remove("SEAT_NO");
+		}
 		
 		reserveService.deleteReservation(commandMap.getMap());
 		

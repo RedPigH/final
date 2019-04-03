@@ -40,6 +40,11 @@ public class SeatServiceImpl implements SeatService {
 	}
 	
 	@Override
+	public List<Map<String, Object>> selectResSeat(Map<String, Object> map) throws Exception{
+		return seatDAO.selectResSeat(map);
+	}
+	
+	@Override
 	public Map<String, Object> selectSeat(Map<String,Object> map) throws Exception{
 		return seatDAO.selectSeat(map);
 	}
@@ -77,5 +82,10 @@ public class SeatServiceImpl implements SeatService {
 	@Override
 	public List<Map<String, Object>> seatSearch0(String map) throws Exception {
 		return seatDAO.seatSearch0(map);
+	}
+
+	@Override
+	public void ResDeleteStatus(Map<String, Object> map) throws Exception {
+		seatDAO.ResDeleteStatus(map);
 	}
 }

@@ -43,6 +43,11 @@ public class SeatDAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectResSeat(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectList("seat.selectResSeat", map);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectSeatNo(Map<String, Object>map) throws Exception{
 		return (Map<String, Object>) selectOne("seat.selectSeatNo", map);
 	}
@@ -61,6 +66,10 @@ public class SeatDAO extends AbstractDAO {
 
 	public void updateSeatStatus(Map<String, Object> map) throws Exception {
 		update("seat.updateSeatStatus", map);
+	}
+	
+	public void ResDeleteStatus(Map<String, Object> map) throws Exception {
+		update("time_seat.ResDeleteStatus", map);
 	}
 
 	public void deleteSeat(Map<String, Object> map) throws Exception {
