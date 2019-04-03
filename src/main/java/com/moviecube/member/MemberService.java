@@ -2,6 +2,8 @@ package com.moviecube.member;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface MemberService {
 	
 	 void insertMember(Map<String, Object> map)throws Exception; 
@@ -19,4 +21,12 @@ public interface MemberService {
 	 void updateMile(Map<String, Object> map) throws Exception;
 	 
 	 void updateRank(Map<String, Object> map) throws Exception;
+	 
+	 void updateMember(Map<String, Object> map) throws Exception;
+	 
+	 void updatePass(Map<String, Object> map) throws Exception;
+	 
+	 void deleteMember(Map<String, Object> map) throws Exception;
+
+	 void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception;
 }

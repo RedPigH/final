@@ -23,7 +23,7 @@
 <section class="bg0 p-t-75 p-b-85" style="margin-top: 60px;">
    <div class="container">
       <div class="flex-col-c p-b-10">
-         <h3 class="ltext-105 cl5">SEARCH LIST</h3>
+         <h3 class="ltext-105 cl5 p-b-52">SEARCH LIST</h3>
       </div>
       <div class="row isotope-grid">
          <!-- 여기부터 하나 시작  -->
@@ -34,7 +34,7 @@
                   <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                      <!-- Block2 -->
                      <div class="block2">
-                        <div class="block2-pic hov-img0" id="forMovieModal">
+                        <div class="block2-pic hov-img0" id="forMovieModal" style="border-radius: 10px">
                            <img
                               src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
                               alt="영화포스터" />

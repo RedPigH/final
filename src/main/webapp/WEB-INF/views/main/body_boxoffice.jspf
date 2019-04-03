@@ -3,9 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%  pageContext.setAttribute("br", "<br>");
-	pageContext.setAttribute("cn", "\n");
-%>
+
 
 <!-- BOX OFFICE -->
 <section class="sec-product bg0 p-t-100 p-b-50">
@@ -42,7 +40,7 @@
 										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 											<!-- Block2 -->
 											<div class="block2">
-												<div class="block2-pic hov-img0">
+												<div class="block2-pic hov-img0"  style="border-radius:10px">
 													<img
 														src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
 														alt="영화포스터" /> <a href="javascript:void(0);" id="gahyun"
@@ -53,8 +51,8 @@
 
 												<div class="block2-txt flex-w flex-t p-t-14">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6">
+														<a href="javascript:void(0);"
+															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6" onclick="toModal(${row.MOVIE_NO });">
 															${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
 															id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
 													</div>
@@ -136,32 +134,19 @@
 										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 											<!-- Block2 -->
 											<div class="block2">
-												<div class="block2-pic hov-img0">
+												<div class="block2-pic hov-img0"  style="border-radius:10px">
 													<img
 														src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
 														alt="영화포스터" /> <a href="javascript:void(0);" id="gahyun"
-														onclick="toModal(
-																	'${row.MOVIE_NAME }',
-																	'${row.MOVIE_TYPE }',
-																	'${row.MOVIE_DIRECTOR }',
-																	'${row.MOVIE_ACTOR }',
-																	'${row.MOVIE_GENRE }',
-																<%-- 	'${fn:replace(row.MOVIE_CONTENT,br,cn)}' --%>
-																	'${row.MOVIE_CONTENT }',
-																	'${row.MOVIE_AGE }',
-																	'${row.MOVIE_URL }',
-																	'${row.POSTER_SAVNAME }',
-																	'${row.MOVIE_GRADE }',
-																	'${row.MOVIE_OPENDATE }',
-																	'${row.MOVIE_NO }');"
+														onclick="toModal(${row.MOVIE_NO });"
 														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 														상세보기 </a>
 												</div>
 
 												<div class="block2-txt flex-w flex-t p-t-14">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6">
+														<a href="javascript:void(0);"
+															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6" onclick="toModal(${row.MOVIE_NO });">
 															${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
 															id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
 													</div>
@@ -243,31 +228,19 @@
 										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 											<!-- Block2 -->
 											<div class="block2">
-												<div class="block2-pic hov-img0">
+												<div class="block2-pic hov-img0" style="border-radius:10px">
 													<img
 														src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
 														alt="영화포스터" /> <a href="javascript:void(0);" id="gahyun"
-														onclick="toModal(
-																	'${row.MOVIE_NAME }',
-																	'${row.MOVIE_TYPE }',
-																	'${row.MOVIE_DIRECTOR }',
-																	'${row.MOVIE_ACTOR }',
-																	'${row.MOVIE_GENRE }',
-																	'${fn:replace(row.MOVIE_CONTENT,br,cn)}',
-																	'${row.MOVIE_AGE }',
-																	'${row.MOVIE_URL }',
-																	'${row.POSTER_SAVNAME }',
-																	'${row.MOVIE_GRADE }',
-																	'${row.MOVIE_OPENDATE }',
-																	'${row.MOVIE_NO }');"
+														onclick="toModal(${row.MOVIE_NO });"
 														class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 														상세보기 </a>
 												</div>
 
 												<div class="block2-txt flex-w flex-t p-t-14">
 													<div class="block2-txt-child1 flex-col-l ">
-														<a href="resources/product-detail.html"
-															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6">
+														<a href="javascript:void(0);"
+															class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6" onclick="toModal(${row.MOVIE_NO });">
 															${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
 															id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
 													</div>

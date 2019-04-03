@@ -84,8 +84,8 @@ function selectFaqType(num){
 	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-t-50">
-			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm">
-					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px">자주 묻는 질문들
+			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm" style="justify-content: center;">
+					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px;;">자주 묻는 질문들
 					</h4>
 				</div>
 				</div>
@@ -129,8 +129,7 @@ function selectFaqType(num){
 								<c:otherwise>
 									<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 									<td class="column-1"></td>
-									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">등록된 게시물이 없습니다.
-									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
+									<td class="column-2">등록된 게시물이 없습니다.</td>
 									<td class="column-3"></td>		
 								</tr>
 								</c:otherwise>

@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="head.jspf" %>
-<%@ include file="body_moviecube.jspf" %>
 <%
 	String cp = request.getContextPath();
 %>
@@ -30,17 +28,21 @@
 					EVENT List</a>
 			</h1>
 		</div>
+		<div class="logo" style="float: right;">
+			<a href="<%=cp%>/main.do" class="toMain" style="font-size: 15px;">메인으로</a>
+		</div>
 	</div>
 
 	<div class="admin_grp">
 		<div class="admin_list">
 			<ul>
-				<li class="on"><a href="<%=cp%>/eventList.do">이벤트 정보</a></li>
-				<li><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
+				<li class="on"><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
 				<li><a href="<%=cp%>/admin/cinemaList.do">영화관</a></li>
 				<li><a href="<%=cp%>/admin/screenList.do">상영관</a></li>
 				<li><a href="<%=cp%>/admin/insertSeatForm.do">상영관 좌석</a></li>
 				<li><a href="<%=cp%>/admin/timeList.do">영화시간표</a></li>
+				<li><a href="<%=cp%>/admin/storeList.do">STORE</a>
+				<li class="on"><a href="<%=cp%>/admin/eventList.do">EVENT</a>
 				<li><a href="<%=cp%>/admin/noticeList.do">공지사항</a></li>
 				<li><a href="<%=cp%>/admin/faqList.do">FAQ</a></li>
 				<li><a href="<%=cp%>/admin/qnaList.do">Q&amp;A</a></li>
