@@ -45,8 +45,6 @@ public class EventController {
 		
 		mv.addObject("eventList", eventList);
 
-		System.out.println("혜쮸는쨩이얍" + commandMap.get("event_no"));
-
 		List<Map<String, Object>> mceventList = eventService.McEventList(commandMap);// moviecubeeventList
 		List<Map<String, Object>> meventList = eventService.MovieEventList(commandMap);// movieEventList
 		List<Map<String, Object>> alleventList = eventService.AllEventList(commandMap);// alliance(제휴)eventList
@@ -80,7 +78,6 @@ public class EventController {
 		Map<String, Object> map = eventService.selectEventDetail(commandMap.getMap());
 		mv.addObject("map", map.get("map"));
 		mv.addObject("eventDetail", map.get("eventDetail"));
-		System.out.println("�삙怡멸섟�쐧�떂:" + commandMap.get("EVENT_NO"));
 
 		return mv;
 	}
@@ -113,7 +110,6 @@ public class EventController {
 		mv.addObject("open_date", open_date);
 		mv.addObject("end_date", end_date);
 
-		System.out.println("혜쮸쨩" + event_url);
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -121,7 +117,7 @@ public class EventController {
 	@RequestMapping(value = "/eventModifyForm.do")
 	public ModelAndView movieModifyForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/event/eventModify");
-		System.out.println("�쁺�솕 �닔�젙 �뤌1 媛� �솗�씤 =============: " + commandMap.getMap());
+
 		Map<String, Object> map = eventService.selectEventDetail(commandMap.getMap());
 
 		mv.addObject("map", map.get("map"));
@@ -144,8 +140,7 @@ public class EventController {
 		 * commandMap.getMap().put("EVENT_NO", EVENT_NO);
 		 */
 		eventService.modifyEvent(commandMap.getMap(), request);
-		System.out.println("�삙怡멸섟�쐧�떂�옗:" + commandMap.get("EVENT_NO"));
-		System.out.println("�삙怡몃뒗吏깆씠�빞�뀇:" + commandMap.getMap());
+		
 		mv.addObject("EVENT_NO", commandMap.get("EVENT_NO"));
 
 		return mv;
