@@ -40,7 +40,10 @@ public class MypageController {
 		/* 멤버의 문의내역 */
 		commandMap.put("QNA_ID", user.get("MEMBER_NAME"));
 		List<Map<String, Object>> qnaList = qnaService.selectQnaListByMember(commandMap.getMap());
-	
+		
+		List<Map<String, Object>> allResList = reserveService.MyReservation(commandMap.getMap());
+		
+		mv.addObject("res_count", allResList.size());
 		mv.addObject("qnaList", qnaList);
 		mv.addObject("resList", resList);
 
