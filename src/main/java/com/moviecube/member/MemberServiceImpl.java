@@ -117,4 +117,11 @@ public class MemberServiceImpl implements MemberService {
 						}
 				}
 	  }
+	  
+	  @Override
+		public void deleteProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+			
+			List<Map<String,Object>> fileList = fileUtils.parseInsertFileInfo(map, request);
+				memberDAO.deleteFile(fileList.get(0)); 	
+	  }
 }
