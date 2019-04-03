@@ -43,7 +43,7 @@
 
 												<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 													<td class="column-1">${row.NOTICE_NO}</td>
-													<td class="column-2"><a href="javascript:void(0);" name="NOTICE_SUB"
+													<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;"><a href="javascript:void(0);" name="NOTICE_SUB"
 														style="color: #555;">${row.NOTICE_SUB} <input
 															type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO}" /></a></td>
 													<td class="column-3"><c:set var="TextValue"

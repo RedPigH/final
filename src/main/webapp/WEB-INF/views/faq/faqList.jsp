@@ -119,7 +119,7 @@ function selectFaqType(num){
 			
 								<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 									<td class="column-1">${row.FAQ_NO}</td>
-									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">${row.FAQ_SUB}
+									<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">${row.FAQ_SUB}
 									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
 									<td class="column-3">${row.FAQ_TYPE}</td>		
 								</tr>
