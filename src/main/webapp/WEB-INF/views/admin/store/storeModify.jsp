@@ -20,7 +20,7 @@
 
 <div class="admin">
 	<div class="logo">
-	<h1><a href="<%=cp %>/admin/movieList.do">MovieCube Administrator - Store Register</a></h1>
+	<h1><a href="<%=cp %>/admin/storeList.do">MovieCube Administrator - Store Register</a></h1>
 	</div>
 	<div class="logo" style="float: right;">
 			<a href="<%=cp%>/main.do" class="toMain" style="font-size: 15px;">메인으로</a>

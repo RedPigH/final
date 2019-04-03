@@ -12,19 +12,26 @@
 						<h4 class="stext-301 cl0 p-b-30">Categories</h4>
 
 						<ul>
-							<li class="p-b-10"><a href="javascript:void(0);"
+							<li class="p-b-10"><a href="userEventList.do"
 								class="stext-107 cl7 hov-cl1 trans-04"> 이벤트 </a></li>
 
 							<li class="p-b-10"><a href="storeList.do"
 								class="stext-107 cl7 hov-cl1 trans-04"> 스토어 </a></li>
 							
-							<c:if test="${empty sessionScope.userLoginInfo }">
+							<%-- <c:if test="${empty sessionScope.userLoginInfo }">
 							<li class="p-b-10"><a href="javascript:void(0);"
 								class="stext-107 cl7 hov-cl1 trans-04 js-show-modal2"> 빠른 예매 </a></li>
 							</c:if>
 							<c:if test="${not empty sessionScope.userLoginInfo }">
 							<li class="p-b-10"><a href="reserve.do"
 								class="stext-107 cl7 hov-cl1 trans-04 js-show-modal2">빠른예매</a></li>
+							</c:if> --%>
+							
+							<c:if test="${empty sessionScope.userLoginInfo }">
+								<li class="p-b-10"><a href="javascript:void(0);" class="stext-107 cl7 hov-cl1 trans-04 js-show-modal2">빠른 예매</a></li>
+							</c:if>
+							<c:if test="${not empty sessionScope.userLoginInfo }">
+								<li class="p-b-10"><a href="<%=cp%>/reserve.do" class="stext-107 cl7 hov-cl1 trans-04">빠른예매</a></li>
 							</c:if>
 							
 							<c:if test="${empty sessionScope.userLoginInfo }">
@@ -38,13 +45,13 @@
 						<h4 class="stext-301 cl0 p-b-30">Help</h4>
 
 						<ul>
-							<li class="p-b-10"><a href="notice/adminNoticeList.do"
+							<li class="p-b-10"><a href="noticeList.do"
 								class="stext-107 cl7 hov-cl1 trans-04"> 공지사항 </a></li>
 
-							<li class="p-b-10"><a href="faq/adminFaqList.do"
+							<li class="p-b-10"><a href="faqList.do"
 								class="stext-107 cl7 hov-cl1 trans-04"> FAQs </a></li>
 
-							<li class="p-b-10"><a href="qna/adminInquiryWriteForm.do"
+							<li class="p-b-10"><a href="qnaWriteForm.do"
 								class="stext-107 cl7 hov-cl1 trans-04"> 1:1문의 </a></li>
 
 						</ul>
@@ -53,9 +60,9 @@
 					<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30">GET IN TOUCH</h4>
 
-						<p class="stext-107 cl7 size-201">Any questions? Let us know
-							in office at 3rd floor, 14 Teheran-ro St, Seoul or call
-							us on (+82)1544 9970</p>
+						<p class="stext-107 cl7 size-201">
+						우리에게 질문이 있습니까? 우리는 3층에 존재한다. 강남, KH빌딩, ICLASS 또는
+						전화해라 우리에게  (+82)010-9446-7026</p>
 
 						<div class="p-t-27">
 							<a href="javascript:void(0);" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">

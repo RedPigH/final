@@ -41,13 +41,13 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-217 bor7 p-tb-10 w-full-md">
-				<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm">
+				<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm" style="justify-content: center;">
 					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px">좌석
 						선택</h4>
 				</div>
 					<div class="row">
-						<div class="col-md-6 col-lg-7 p-tb-15">
-							<div class="p-l-25 p-lr-0-lg" style="text-align: center;">
+						<div class="col-md-6 col-lg-7 p-b-15">
+							<div class="p-lr-0-lg" style="text-align: center;">
 								<div id="seat-map">
 									<div class="front">
 										SCREEN

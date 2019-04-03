@@ -44,7 +44,7 @@ function get_reviews(currentPage) {
 				cmt_id = data.comment_paging_list[i].CMT_ID;
 				
 				if(member_id == cmt_id) { // 로그인한 아이디와 댓글 아이디가 같으면 삭제버튼을 추가해줌.
-					var delete_button2 = "<a href='javascript:deleteReview(" + cmt_no + ")' style='float: right;'>" + "<p><font size='2'>삭제</font></p></a>";
+					var delete_button2 = "<a href='javascript:deleteReview(" + cmt_no + ")' style='float: right;'>" + "<p><font size='2' class='cl6'>삭제</font></p></a>";
 				} else {
 					var delete_button2 = "<div></div>";
 				}
@@ -58,14 +58,14 @@ function get_reviews(currentPage) {
 				}
 				text_comment = text_comment + "<div class='flex-w flex-t' id='comment_start'>" +
 				"<div class='wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6'>" + 
-				"<img src='images/avatar-01.jpg' alt='AVATAR'>" + 
+				"<img src='/moviecube/resources/images/icons/default_profile.png' alt='AVATAR'>" + 
 				"</div>" + 
 				"<div class='size-207'>" + 
 				"<div class='flex-w flex-sb-m p-b-17'>" + 
-				"<span class='mtext-107 cl1 p-r-20' style='font-size:20px;'>" + cmt_id + "</span>" + 
+				"<span class='mtext-107 cl10 p-r-20' style='font-size:20px;'>" + cmt_id + "</span>" + 
 				"<span class='fs-18 cl11'>" + 
 				rating_text +  "</span>" +  "</div>" + 
-				"<textarea class='stext-118 cl10' style='float: left; width:600px; height:83px;'>" + cmt_content + "</textarea>" + delete_button2 + "</div>" +  " </div>" +
+				"<p class='stext-118 cl10' style='float: left; width:600px; height:83px;'>" + cmt_content + "</p>" + delete_button2 + "</div>" +  " </div>" +
 				"<hr>";
 				
 			} // for문 끝
@@ -297,7 +297,7 @@ function writeToModal(movie_no) {
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-50 p-lr-0-lg">
 						<div style="float:left; marging-bottom:0px;">
-								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.PNG" style="margin-top:11px; margin-right:8px;">
+								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.png" style="margin-top:11px; margin-right:8px;">
 						</div>
 						<h4 id="h_modal_movie_name" class="stext-119 cl2" style="margin-bottom:-10px;">
 							<!-- Jquery로 값 자동으로들어감 -->

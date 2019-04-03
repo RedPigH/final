@@ -36,7 +36,7 @@
 	<div class="admin">
 		<div class="logo">
 			<h1>
-				<a href="<%=cp%>/eventList.do">MovieCube Administrator - Event
+				<a href="<%=cp%>/admin/eventList.do">MovieCube Administrator - Event
 					Detail </a>
 			</h1>
 		</div>
@@ -45,12 +45,13 @@
 	<div class="admin_grp">
 		<div class="admin_list">
 			<ul>
-				<li class="on"><a href="<%=cp%>eventList.do">영화 정보</a></li>
 				<li><a href="<%=cp%>/admin/movieList.do">영화 정보</a></li>
 				<li><a href="<%=cp%>/admin/cinemaList.do">영화관</a></li>
 				<li><a href="<%=cp%>/admin/screenList.do">상영관</a></li>
 				<li><a href="<%=cp%>/admin/insertSeatForm.do">상영관 좌석</a></li>
 				<li><a href="<%=cp%>/admin/timeList.do">영화시간표</a></li>
+				<li><a href="<%=cp%>/admin/storeList.do">STORE</a>
+				<li class="on"><a href="<%=cp%>/admin/eventList.do">EVENT</a>
 				<li><a href="<%=cp%>/admin/noticeList.do">공지사항</a></li>
 				<li><a href="<%=cp%>/admin/faqList.do">FAQ</a></li>
 				<li><a href="<%=cp%>/admin/qnaList.do">Q&amp;A</a></li>
@@ -58,15 +59,6 @@
 			</ul>
 		</div>
 
-<%-- 		<div class="admin_ct">
-			<div class="movie_grp">
-				<div class="movie_pic">
-					<a href="#this" name="poster"> <span class="detail">크게보기</span>
-						<img src="<%=cp%>/resources/upload/event/${map.EVENT_SAVNAME_0}"
-						title="클릭하시면 원본크기로 보실 수 있습니다." style="cursor: pointer;"
-						onclick="doImgPop('<%=cp%>/resources/upload/event/${map.EVENT_SAVNAME_0}')" />
-					</a>
-				</div> --%>
 				<div class="movie_txt">
 					<p class="tit">${map.EVENT_NAME}</p>
 					<dl>
