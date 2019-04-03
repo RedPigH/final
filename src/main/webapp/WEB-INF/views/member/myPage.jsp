@@ -177,7 +177,7 @@ function viewReply(qna_no) {
 											data-notify="0" title="보고싶어 보기"> <span><img
 													src="http://image2.megabox.co.kr/mop/home/mypage/main_icon1.png"
 													alt=""></span> <strong class="ml10">보고싶어</strong> <strong
-												class="c_red pull-right">0</strong>
+												class="c_red pull-right">${fn:length(sessionScope.WishList)}</strong>
 										</a></li>
 										<li><a href="javascript:void(0)"
 											onclick="showMenu('mypage-moviestory', 'seen')"
@@ -210,7 +210,7 @@ function viewReply(qna_no) {
                									<ul class="type2">
                										<li id="res_moviename" class="no_data text-left pa20">영화제목 :  ${row.MOVIE_NAME } </li>
                											<a href="javascript:deleteRes(${row.RES_NO })" class="flex-c-m stext-101 cl0 size-reserve-button bg10 bor23 hov-btn2 p-lr-5 trans-04 m-b-2"
-               											onclick="deleteRes(${row.RES_NO})" style="float:right;">예매취소</a>
+               											onclick="deleteRes(${row.RES_NO})" style="float:right; border-radius:5px">예매취소</a>
                										<li class="no_data text-left pa20"> (${row.RES_DATE })</li>
                										<hr style="margin-bottom:8px; margin-top:8px;">
                									</ul>

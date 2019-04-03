@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-
 <!-- Modal1 -->
 <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 	<div class="overlay-modal1 js-hide-modal1"></div>
@@ -58,7 +56,7 @@
 						<span id="people_cnt" style="margin-top:-10px;"></span>
 						<p style="margin-bottom:-7px;"></p>
 						<p class="stext-118" style="margin-bottom:-10px; display:inline-block;" >예매율   :</p>
-						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
+						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;"> </p>&nbsp;
 						<p class="stext-118" style="margin-top:10px; margin-bottom:-5px; display:inline-block;">위</p>
 						<p id="h_modal_movie_type" class="stext-105 cl2" style="margin-top:10px; margin-bottom:5px;"> </p> 
 						<p id="h_modal_movie_opendate" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
@@ -194,7 +192,6 @@
 	</div>
 </div>
 
-
 <script>
 function get_reviews(currentPage) {
 	var movie_no = $("#h_modal_movie_no").val();
@@ -282,6 +279,12 @@ function writeReview() {
 	}
 	
 	var cmt_like = $("#rating_value").val();
+
+	if(cmt_like == 0) {
+		alert("별점을 입력하세요");
+		return;
+	}
+	
 	var content = $("#review").val();
 	
 	var data = {
@@ -379,7 +382,12 @@ function writeToModal(movie_no) {
 			
 			$("#people_cnt").text(data.comment_count + "명  참여");
 			
-			// $("#h_modal_movie_ranking").text(data.RANKING); // 예매율 순위 띄워주는 부분
+			var movie_ranking = data.ranking;
+			if(movie_ranking == 0) {
+				movie_ranking = "<span style='font-family:NanumGothic; font-size:20px; padding-left:10px;'>-</span>"
+			}
+			
+			$("#h_modal_movie_ranking").html(movie_ranking); // 예매율 순위 띄워주는 부분
 
 			var movie_grade = data.map.MOVIE_GRADE
 			if(movie_grade == null) {
@@ -435,3 +443,6 @@ function writeToModal(movie_no) {
 		}); // ajax 끝
 }
 </script>
+
+
+

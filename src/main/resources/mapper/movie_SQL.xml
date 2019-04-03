@@ -57,7 +57,7 @@
 	      inner join mc_movie m on h.movie_no = m.movie_no
 	      inner join mc_movie_file f on h.movie_no = f.movie_no
 	      where f.del_gb = 'N'
-	      order by rev_cnt desc, m.movie_name asc) where movie_no = {#movie_no}
+	      order by rev_cnt desc, m.movie_name asc) where movie_no = #{MOVIE_NO}
 	]]>
 	</select>
 	
