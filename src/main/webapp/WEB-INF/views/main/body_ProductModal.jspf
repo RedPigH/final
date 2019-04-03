@@ -56,7 +56,7 @@
 						<span id="people_cnt" style="margin-top:-10px;"></span>
 						<p style="margin-bottom:-7px;"></p>
 						<p class="stext-118" style="margin-bottom:-10px; display:inline-block;" >예매율   :</p>
-						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
+						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;"> </p>&nbsp;
 						<p class="stext-118" style="margin-top:10px; margin-bottom:-5px; display:inline-block;">위</p>
 						<p id="h_modal_movie_type" class="stext-105 cl2" style="margin-top:10px; margin-bottom:5px;"> </p> 
 						<p id="h_modal_movie_opendate" class="stext-105 cl2" style="margin-bottom:5px;"> </p>
@@ -382,7 +382,12 @@ function writeToModal(movie_no) {
 			
 			$("#people_cnt").text(data.comment_count + "명  참여");
 			
-			// $("#h_modal_movie_ranking").text(data.RANKING); // 예매율 순위 띄워주는 부분
+			var movie_ranking = data.ranking;
+			if(movie_ranking == 0) {
+				movie_ranking = "<span style='font-family:NanumGothic; font-size:20px; padding-left:10px;'>-</span>"
+			}
+			
+			$("#h_modal_movie_ranking").html(movie_ranking); // 예매율 순위 띄워주는 부분
 
 			var movie_grade = data.map.MOVIE_GRADE
 			if(movie_grade == null) {
