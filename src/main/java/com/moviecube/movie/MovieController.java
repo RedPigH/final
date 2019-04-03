@@ -74,18 +74,9 @@ public class MovieController {
 
 		String openDate = map2.get("MOVIE_OPENDATE").toString();
 		openDate = openDate.substring(0, 10);
-/*		
-		String content2 = (String)map2.get("MOVIE_CONTENT");
-		String content = content2.replaceAll("\r\n", "<br>");
-		commandMap.put("MOVIE_CONTENT", content);
-*/		
+	
 		Map<String, Object> map3 = movieService.selectCommentCount(commandMap.getMap()); // 코멘트 카운트 가져올려고
 		mv.addObject("comment_count", map3.get("COMMENT_CNT"));
-		/*
-		map3.clear();
-		map3 = movieService.selectHotMovie(commandMap.getMap());
-		map.put("RANKING", map3.get("RNUM"));
-		*/
 
 		mv.addObject("map", map.get("map"));
 

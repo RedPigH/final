@@ -18,6 +18,11 @@ public class QnaDAO extends AbstractDAO {
       // TODO Auto-generated method stub
       return (List<Map<String, Object>>) selectList("qna.selectQnaList", map);
    };
+   
+   @SuppressWarnings("unchecked")
+   public List<Map<String, Object>> selectQnaListByMember(Map<String, Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("qna.selectQnaListByMember", map);
+   };
 
    @SuppressWarnings("unchecked")
    public List<Map<String, Object>> selectQnaFileList(Map<String, Object> map) throws Exception {
@@ -29,6 +34,11 @@ public class QnaDAO extends AbstractDAO {
       insert("qna.insertQna", map);
    }
 
+   @SuppressWarnings("unchecked")
+   public Map<String, Object> selectQnaAdminDetail(Map<String, Object> map) throws Exception {
+      return (Map<String, Object>) selectOne("qna.selectQnaAdminDetail", map);
+   }
+   
    @SuppressWarnings("unchecked")
    public Map<String, Object> selectQnaDetail1(Map<String, Object> map) throws Exception {
       return (Map<String, Object>) selectOne("qna.selectQnaDetail1", map);

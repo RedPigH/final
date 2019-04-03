@@ -245,6 +245,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
+/*//////////////////////////////////////////////////////////////////
+[ Header ]*/
+
+
 .container-menu-desktop {
   height: auto;
   width: 100%;
@@ -687,11 +691,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 110px;
 }
 
+/*---------------------------------------------*/
 .main-menu > li.active-menu > a {
   color: #ff5959;
 }
-
-
 
 .wrap-header-mobile {
   display: -webkit-box;
@@ -712,6 +715,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   -ms-box-shadow: 0 0px 3px 0px rgba(0,0,0,0.2);
 }
 
+/*------------------------------------------------------------------
+[ Logo mobile ]*/
 .logo-mobile {
   display: block;
   position: relative;
@@ -733,6 +738,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
+
+/*------------------------------------------------------------------
+[ btn show menu ]*/
 .hamburger {
   display: -webkit-box;
   display: -webkit-flex;
@@ -752,7 +760,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
-
+/*---------------------------------------------*/
 @media (max-width: 991px){
   .wrap-header-mobile {
     display: -webkit-box;
@@ -764,6 +772,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .container-menu-desktop {display: none;}
 }
 
+/*==================================================================
+[ Menu mobile ]*/
 .menu-mobile {
   width: 100%;
   background-color: white;
@@ -777,7 +787,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu-m > li > a {
-  font-family: MaplestoryLight;
+  font-family: Poppins-Medium;
   font-size: 14px;
   color: white;
   line-height: 2.8;
@@ -829,23 +839,24 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   transform: rotate(90deg);
 }
 
+/*---------------------------------------------*/
 .sub-menu-m {
-  background-color: #ff8080;
+  background-color: #fff;
   padding: 10px 15px 10px 32px;
   display: none;
 }
 
 .sub-menu-m a {
-  font-family: MaplestoryLight;
+  font-family: Poppins-Regular;
   font-size: 14px;
-  color: #ffffff;
+  color: #666;
   line-height: 2.5;
   padding: 5px 0 5px 0;
 }
 
 .sub-menu-m a:hover {
   text-decoration: none;
-  color: #c0c0c0;
+  color: #555555;
 }
 
 @media (min-width: 992px){
@@ -910,12 +921,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   }
 }
 
+/*---------------------------------------------*/
 .sidebar-content {
   flex-grow: 1;
   overflow: auto;
   align-content: space-between;
 }
 
+/*---------------------------------------------*/
 .wrap-item-gallery {
   width: calc((100% - 20px) / 3);
 }
@@ -1006,8 +1019,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   right: 0;
 }
 
+/*---------------------------------------------*/
 .header-cart-title {
-  width: 350px;
+  width: 260px;
   max-width: 100%;
   height: 16.5%;
   min-height: 85px;
@@ -1023,6 +1037,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   flex-grow: 1;
 }
 
+/*---------------------------------------------*/
 .header-cart-item-img {
   width: 60px;
   position: relative;
@@ -1063,6 +1078,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
+/*---------------------------------------------*/
 .header-cart-item-txt {
   width: calc(100% - 80px);
 }
@@ -1090,7 +1106,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   line-height: 1.3;
 }
 
-
+/*---------------------------------------------*/
 @media (max-width: 575px) {
   .header-cart {
     padding: 30px;
@@ -2039,6 +2055,52 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+/* 紐낆씠 異붽��븿 */
+
+/* [ Modal3 ] */
+.wrap-modal3 {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+  overflow: auto;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay-modal3 {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.8;
+}
+
+.show-modal3 {
+  /* overflow: hidden; */
+  visibility: visible;
+  opacity: 1;
+}
+
+/* [Modal4] */
+
+.show-modal4 {
+  /* overflow: hidden; */
+  visibility: visible;
+  opacity: 1;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ Table Shopping Cart ]*/
 
@@ -2277,7 +2339,9 @@ input.num-product::-webkit-inner-spin-button {
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
 .cl13 {color: #777;}
-.cl33 {color: #f74877;}
+
+/* �빊遺쏙옙 占쎈쨲 */
+
 .cl13{color:#ff5959;}
 
 /*//////////////////////////////////////////////////////////////////
@@ -2327,7 +2391,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-108 {
-  font-family: Poppins-Light;
+  font-family: MaplestoryLight;
   font-size: 14px;
   line-height: 1.7143;
 }
@@ -2345,7 +2409,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-111 {
-  font-family: MaplestoryLight;
+  font-family: Poppins-Regular;
   font-size: 13px;
   line-height: 1.6923;
 }
@@ -2400,12 +2464,10 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-120 {
-	font-family: MaplestoryBold;
-    font-size: 30px;
+	font-family: MaplestoryLight;
+    font-size: 18px;
     line-height: 1.7;
-    color:#333;
 }
-
 
 /*---------------------------------------------*/
 .stext-301 {
@@ -2751,12 +2813,7 @@ input.num-product::-webkit-inner-spin-button {
   height: 40px;
 }
 
-.size-129 {
-	min-width: 60px;
-    height: 43px;
-    max-width: 100px;
-}
-
+/* �빊遺쏙옙 占쎈쨲 */
 
 .size-129{
   min-width: 100%;
@@ -2769,10 +2826,14 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .size-131{
-	min-width: 40px;
-	height: 25px;
+  min-width: 270px;
+  height: 35px;
 }
 
+.size-reserve-button {
+  min-width: 40px;
+  height: 23px;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -2880,7 +2941,6 @@ input.num-product::-webkit-inner-spin-button {
 	width: 150px;
 }
 
-
 /*//////////////////////////////////////////////////////////////////
 [ Height ]*/
 .size-301 {
@@ -2910,6 +2970,7 @@ input.num-product::-webkit-inner-spin-button {
 .bg8 {background-color: #fff;}
 .bg9 {background-color: rgba(255,255,255,0.9);}
 .bg10 {background-color: #ff5959;}
+.bg11 {background-color:  #808080;}
 
 /*---------------------------------------------*/
 .bg-overlay1::before {
@@ -3040,12 +3101,10 @@ input.num-product::-webkit-inner-spin-button {
   border-radius: 15px;
 }
 
+/* �빊遺쏙옙 占쎈쨲 */
+
 .bor22{
 	border-bottom: 2px solid #e1e1e1;
-}
-
-.bor23{
-	border-radius:8px;
 }
 
 /*==================================================================

@@ -96,6 +96,11 @@ function writeReview() {
 	}
 	
 	var cmt_like = $("#rating_value").val();
+	if(cmt_like == 0) {
+		alert("별점을 입력하세요");
+		return;
+	}
+	
 	var content = $("#review").html();
 	
 	var data = {
