@@ -2397,7 +2397,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-108 {
-  font-family: Poppins-Light;
+  font-family: MaplestoryLight;
   font-size: 14px;
   line-height: 1.7143;
 }
@@ -2469,6 +2469,11 @@ input.num-product::-webkit-inner-spin-button {
     line-height: 1.7;
 }
 
+.stext-120 {
+	font-family: MaplestoryLight;
+    font-size: 18px;
+    line-height: 1.7;
+}
 
 /*---------------------------------------------*/
 .stext-301 {
