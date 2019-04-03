@@ -19,7 +19,7 @@
       <div class="flex-w flex-sb-m p-b-30">
          <div class="flex-w flex-l-m filter-tope-group m-tb-10">
             <button
-               class="stext-105 cl5 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
+               class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
                id = "allmovie"
                data-filter=".all">전체 영화</button>
 
@@ -30,7 +30,7 @@
                data-filter=".grade">평점순</button>
 
             <button class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-               data-filter=".comment">리뷰개수순</button>
+               data-filter=".comment">리뷰수순</button>
 
          </div>
 
