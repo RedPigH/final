@@ -188,6 +188,10 @@ public class ScreenController {
 	@RequestMapping(value = "/screenWriteForm.do")
 	public ModelAndView screenWriteForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/screen/screenWrite");
+		
+		List<Map<String, Object>> cinemalist = cinemaService.selectCinemaList(commandMap.getMap());
+		
+		mv.addObject("cinemalist", cinemalist);
 
 		return mv;
 	}
@@ -195,6 +199,8 @@ public class ScreenController {
 	@RequestMapping(value = "/screenWrite.do")
 	public ModelAndView screenWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/screenList.do");
+		
+		System.out.println("항ㄴㅇㄹ : " + commandMap.getMap());
 
 		screenService.insertScreen(commandMap.getMap());
 

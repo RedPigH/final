@@ -66,7 +66,7 @@
 						<tr>
 							<th scope="row">상영관 타입</th>
 							<td>
-								<select name="MOVIE_TYPE" class="slct w200">
+								<select name="SCREEN_TYPE" class="slct w200">
 									<option value="일반">일반</option>
 									<option value="3D">3D</option>
 									<option value="4D">4D</option>
@@ -79,9 +79,16 @@
 							<th scope="row">영화관</th>
 							<td>
 								<select name="CINEMA_NO" class="slct w200" >
-									<option value="1">강남 무비큐브</option>
-									<option value="2">교대 무비큐브</option>
-									<option value="3">사당 무비큐브</option>
+										<c:choose>
+											<c:when test="${fn:length(cinemalist) > 0}">
+						            			<c:forEach items="${cinemalist}" var="row">
+													<option value = "${row.CINEMA_NO }">${row.CINEMA_NAME }</option>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+											등록된 영화관이 없습니다
+											</c:otherwise>
+										</c:choose>
 								</select>
 								
 								<font color="red"></font>
@@ -128,7 +135,7 @@
          
         function fn_insertBoard(){
             var comSubmit = new ComSubmit("frm");
-            comSubmit.setUrl("<c:url value='screenDetail.do?' />");
+            comSubmit.setUrl("<c:url value='screenWrite.do?' />");
             comSubmit.submit();
         }
     </script>
