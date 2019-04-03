@@ -96,7 +96,25 @@ public class MemberServiceImpl implements MemberService {
 			Map<String, Object> tempMap = memberDAO.selectMemberFile(map);	
 			resultMap.put("map", tempMap);
 			
-
 			return resultMap;
 		}
+	  
+	  @Override
+		public void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		  
+				memberDAO.deleteFile(map);// qna_file_no가 null이라는건 수정하면서 파일삭제를 눌렀다는 것을 의미함.
+
+				List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+
+				if (list.size() > 0) {
+					Map<String, Object> tempMap = null;
+					tempMap = list.get(0);
+					
+						if (tempMap.get("IS_NEW").equals("Y")) {
+							memberDAO.insertFile(tempMap);
+						} else {
+							memberDAO.updateProfile(tempMap);
+						}
+				}
+	  }
 }

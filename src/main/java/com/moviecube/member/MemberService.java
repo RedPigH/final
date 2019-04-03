@@ -31,4 +31,6 @@ public interface MemberService {
 	 void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	 
 	 Map<String,Object> selectMemberFile(Map<String,Object> map) throws Exception;
+	 
+	 void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception;
 }

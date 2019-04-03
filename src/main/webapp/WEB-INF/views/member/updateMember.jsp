@@ -119,7 +119,14 @@ function aaaa(){
 				
 				<!-- 프로필과 아이디 -->
 				<div class="clearfix myInfoArea1">
-					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left" data-original="" data-image="">
+					<c:choose>
+					<c:when test="${map.PROFILE_SAVNAME} == null}">
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left">
+					</c:when>
+					<c:otherwise>
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/${map.PROFILE_SAVNAME}" alt="프로필" class="img-circle pull-left">
+					</c:otherwise>
+					</c:choose>
 					<div class="pull-left textArea">
 					<form id="enter" name="enter" enctype="multipart/form-data" method="post">
 						<span class="profile_btn_wrap">
@@ -132,7 +139,7 @@ function aaaa(){
 							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileEnter()">입력</button>
 							</c:when>
 							<c:otherwise>
-							<button id="imgUpdateBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="">수정</button>
+							<button id="imgUpdateBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileUpdate()">수정</button>
 							</c:otherwise>
 							</c:choose>
 							<button id="imgDeleteBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileDel()">삭제</button>
@@ -322,6 +329,12 @@ function aaaa(){
 	function profileEnter(){
 		var Enter = document.getElementById("enter");
 		Enter.action="/moviecube/member/profileEnter.do";
+		Enter.submit();
+	}
+	
+	function profileUpdate(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileUpdate.do";
 		Enter.submit();
 	}
 	</script>

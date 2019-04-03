@@ -70,4 +70,12 @@ public class MemberDAO extends AbstractDAO {
 	public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("member.selectP", map);
 	}
+	
+	public void deleteFile(Map<String, Object> map) throws Exception{
+		  delete("member.deleteFile", map);
+	}
+	
+	public void updateProfile(Map<String, Object> map) throws Exception { // 여기서 파일삭제까지 같이 할 예정
+	      update("member.updateProfile", map);
+	   }
 }
