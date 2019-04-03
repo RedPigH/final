@@ -136,23 +136,18 @@ public class AdminController {
 	@RequestMapping(value="/movieWriteForm.do")
 	public ModelAndView movieWriteForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieWrite");
-		System.out.println(" 영화 등록 폼 값 체크 ================" + commandMap.getMap());
+		
 		return mv;
 	}
 	
 	@RequestMapping(value="/movieWrite.do")
 	public ModelAndView movieWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/movieList.do");
-		System.out.println(" 영화 등록 처리 값 체크 ================" + commandMap.getMap());
 		
 		String content2 = (String)commandMap.get("MOVIE_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("MOVIE_CONTENT", content);
-		
-		String subtitle2 = (String)commandMap.get("MOVIE_SUBTITLE");
-		String subtitle = subtitle2.replaceAll("\r\n", "<br>");
-		commandMap.put("MOVIE_SUBTITLE", subtitle);
-		
+	
 		movieService.insertMovie(commandMap.getMap(), request);
 		
 		return mv;
@@ -162,7 +157,6 @@ public class AdminController {
 	public ModelAndView movieWriteForm2(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieWrite2");
 		
-		System.out.println(" 스틸컷 추가 폼 체크 ================" + commandMap.getMap());
 		return mv;
 	}
 	
@@ -170,7 +164,6 @@ public class AdminController {
 	public ModelAndView movieWrtie2(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/movieDetail.do");
 		
-		System.out.println(" 스틸컷 추가 값 체크 ================" + commandMap.get("MOVIE_NO"));
 		int MOVIE_NO = Integer.parseInt((String)commandMap.get("MOVIE_NO"));
 		commandMap.getMap().put("MOVIE_NO", MOVIE_NO);
 		movieService.insertMovie2(commandMap.getMap(), request);
@@ -184,7 +177,6 @@ public class AdminController {
 	public ModelAndView movieWriteForm3(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieWrite3");
 		
-		System.out.println(" 슬라이드 추가 폼 체크 ================" + commandMap.getMap());
 		return mv;
 	}
 	
@@ -192,7 +184,6 @@ public class AdminController {
 	public ModelAndView movieWrtie3(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/movieDetail.do");
 		
-		System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MOVIE_NO"));
 		String MOVIE_NO = ((String)commandMap.get("MOVIE_NO"));
 		
 		commandMap.getMap().put("MOVIE_NO", MOVIE_NO);
@@ -215,7 +206,6 @@ public class AdminController {
 		mv.addObject("movieDetail", map.get("movieDetail"));
 	
 		mv.addObject("MOVIE_NO", commandMap.get("MOVIE_NO"));
-		System.out.println(" 상세보기 값 체크 ================" + commandMap.getMap());
 		
 		return mv;
 	}
@@ -223,7 +213,7 @@ public class AdminController {
 	@RequestMapping(value="/movieModifyForm.do")
 	public ModelAndView movieModifyForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieModify");
-		System.out.println("영화 수정 폼1 값 확인 =============: " + commandMap.getMap());
+
 		Map<String, Object> map = movieService.selectMovieDetail(commandMap.getMap());
 
 		mv.addObject("map", map.get("map"));
@@ -241,11 +231,6 @@ public class AdminController {
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("MOVIE_CONTENT", content);
 		
-		String subtitle2 = (String)commandMap.get("MOVIE_SUBTITLE");
-		String subtitle = subtitle2.replaceAll("\r\n", "<br>");
-		commandMap.put("MOVIE_SUBTITLE", subtitle);
-		
-		System.out.println("영화 수정 처리1 값 확인 =============: " + commandMap.getMap());
 		movieService.modifyMovie(commandMap.getMap(), request);
 
 		mv.addObject("MOVIE_NO", commandMap.get("MOVIE_NO"));
@@ -258,7 +243,6 @@ public class AdminController {
 	public ModelAndView movieModifyForm2(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieModify2");
 		
-		System.out.println("스틸컷 수정 폼 값 확인 =============: " + commandMap.getMap());
 		Map<String, Object> map = movieService.selectMovieDetail(commandMap.getMap());
 
 		mv.addObject("map", map.get("map"));
@@ -274,7 +258,7 @@ public class AdminController {
 		
 		int MOVIE_NO = Integer.parseInt((String)commandMap.get("MOVIE_NO"));
 		commandMap.getMap().put("MOVIE_NO", MOVIE_NO);
-		System.out.println("스틸컷 수정 처리 값 확인 =============: " + commandMap.getMap());
+		
 		movieService.modifyMovie2(commandMap.getMap(), request);
 		
 		mv.addObject("MOVIE_NO", commandMap.get("MOVIE_NO"));
@@ -287,7 +271,6 @@ public class AdminController {
 	public ModelAndView movieModifyForm3(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/movie/movieModify3");
 		
-		System.out.println("스틸컷 수정 폼 값 확인 =============: " + commandMap.getMap());
 		Map<String, Object> map = movieService.selectMovieDetail(commandMap.getMap());
 	
 		mv.addObject("map", map.get("map"));
@@ -319,7 +302,6 @@ public class AdminController {
 		
 		ModelAndView mv = new ModelAndView("redirect:/admin/movieList.do");
 		
-		System.out.println("삭제 확인 테스트 2: " + commandMap.getMap());
 		movieService.deleteMovie(commandMap.getMap(), request);
 		
 		mv.addObject("MOVIE_NO", commandMap.get("MOVIE_NO"));
@@ -411,7 +393,7 @@ public class AdminController {
 		String content2 = (String)commandMap.get("NOTICE_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
 		commandMap.put("NOTICE_CONTENT", content);
-		System.out.println(" 글쓰기 페이지 넘기는값 확인 : =============== " + commandMap.getMap());
+		
 		noticeService.insertBoard(commandMap.getMap());
 
 		return mv;
@@ -422,7 +404,6 @@ public class AdminController {
 	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/notice/noticeDetail");
 		
-		System.out.println("상세보기 페이지 넘기는값 확인 : " + commandMap.getMap());
 		Map<String, Object> map = noticeService.selectBoardDetail(commandMap.getMap());
 		
 		
@@ -547,12 +528,11 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("redirect:/admin/faqList.do");
 		String faq_type = request.getParameter("FAQ_TYPE");
 		String faq_sub = request.getParameter("FAQ_SUB");
-		
+/*		
 		String content2 = (String)commandMap.get("FAQ_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
-		
 		commandMap.put("FAQ_CONTENT", content);
-		
+*/		
 		commandMap.put("FAQ_TYPE", faq_type);
 		commandMap.put("FAQ_SUB", faq_sub);
 		
@@ -693,7 +673,7 @@ public class AdminController {
 	@RequestMapping(value = "/memberDelete.do")
 	public ModelAndView memberDelete(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/memberList.do");
-		System.out.println("회원정보 삭제 값 확인 ===================: " + commandMap.getMap());
+		
 		CommandMap map = new CommandMap();
 		
 		map.put("MEMBER_NO", commandMap.get("MEMBER_NO"));
@@ -809,11 +789,6 @@ public class AdminController {
 		commandMap.put("QNA_CONTENT", content);
 		
 		qnaService.updateQna(commandMap.getMap(), request);
-	
-		System.out.println(commandMap.get("QNA_ORGNAME"));
-		System.out.println(commandMap.get("QNA_SUB"));
-		System.out.println(commandMap.get("QNA_NO"));
-		System.out.println(commandMap.get("QNA_FILE_NO"));
 
 		return mv;
 	}
@@ -829,7 +804,6 @@ public class AdminController {
 
 	@RequestMapping(value = "/qnaReplyForm.do")
 	public ModelAndView qnaReplyForm(CommandMap commandMap) throws Exception {
-//		Map<String, Object> map1 = qnaService.selectQnaDetail1(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("/admin/qna/qnaReply");
 
 		Map<String, Object> map = new HashMap();
@@ -930,14 +904,13 @@ public class AdminController {
 	@RequestMapping(value="/storeWriteForm.do")
 	public ModelAndView storeWriteForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/store/storeWrite");
-		System.out.println(" 스토어 등록 폼 값 체크 ================" + commandMap.getMap());
+		
 		return mv;
 	}
 	
 	@RequestMapping(value="/storeWrite.do")
 	public ModelAndView storeWrtie(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/storeList.do");
-		System.out.println(" 스토어 등록 처리 값 체크 ================" + commandMap.getMap());
 		
 		String content2 = (String)commandMap.get("STORE_CONTENT");
 		String content = content2.replaceAll("\r\n", "<br>");
@@ -954,7 +927,7 @@ public class AdminController {
 	@RequestMapping(value="/storeDetail.do")
 	public ModelAndView storeDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/store/storeDetail");
-		System.out.println(" 스토어 디테일 페이지 값 체크 ================" + commandMap.getMap());
+		
 		Map<String,Object> map = storeService.selectStoreDetail(commandMap.getMap());
 		
 		mv.addObject("map", map.get("map"));
@@ -987,7 +960,7 @@ public class AdminController {
 		commandMap.put("STORE_CONTENT", content);
 		
 		storeService.modifyStore(commandMap.getMap(), request);
-		System.out.println(" 스토어 수정 값 체크 ================" + commandMap.getMap());
+		
 		mv.addObject("STORE_NO", commandMap.get("STORE_NO"));
 
 		return mv;

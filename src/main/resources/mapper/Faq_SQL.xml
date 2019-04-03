@@ -9,52 +9,7 @@
 			FROM MC_FAQ
 				ORDER BY FAQ_NO DESC
 		]]>
-	</select>
-	
-	<select id="selectFaqList1" parameterType="hashmap"	resultType="hashmap">
-		<![CDATA[
-		SELECT	FAQ_NO, FAQ_TYPE, FAQ_SUB
-			FROM MC_FAQ 
-				WHERE FAQ_TYPE='영화예매'
-				ORDER BY FAQ_NO DESC
-		]]>
-	</select>
-	
-	<select id="selectFaqList2" parameterType="hashmap"	resultType="hashmap">
-		<![CDATA[
-		SELECT	FAQ_NO, FAQ_TYPE, FAQ_SUB
-			FROM MC_FAQ 
-				WHERE FAQ_TYPE='영화관'
-				ORDER BY FAQ_NO DESC
-		]]>
-	</select>
-	
-	<select id="selectFaqList3" parameterType="hashmap"	resultType="hashmap">
-		<![CDATA[
-		SELECT	FAQ_NO, FAQ_TYPE, FAQ_SUB
-			FROM MC_FAQ 
-				WHERE FAQ_TYPE='상영관'
-				ORDER BY FAQ_NO DESC
-		]]>
-	</select>
-	
-	<select id="selectFaqList4" parameterType="hashmap"	resultType="hashmap">
-		<![CDATA[
-		SELECT	FAQ_NO, FAQ_TYPE, FAQ_SUB
-			FROM MC_FAQ 
-				WHERE FAQ_TYPE='멤버쉽'
-				ORDER BY FAQ_NO DESC
-		]]>
-	</select>
-
-	<select id="selectFaqList5" parameterType="hashmap"	resultType="hashmap">
-		<![CDATA[
-		SELECT	FAQ_NO, FAQ_TYPE, FAQ_SUB
-			FROM MC_FAQ 
-				WHERE FAQ_TYPE='기타'
-				ORDER BY FAQ_NO DESC
-		]]>
-	</select>
+	</select>	
 	
 	<!-- 타입별 FAQ 리스트 -->
 	<select id = "selectFaqType" parameterType = "hashmap" resultType = "hashmap">

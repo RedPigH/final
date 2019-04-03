@@ -142,11 +142,7 @@ public class MemberController {
 		map.put("MEMBER_AGE", MEMBER_AGE); 
 		map.put("MEMBER_PHONE" , MEMBER_PHONE);
 		 
-		  System.out.println(map);
 		  String id = memberService.findId(map);
-		
-		  //map.put("id", id);		  
-		 System.out.println(id);
 		  
 		  return id;
 	  }

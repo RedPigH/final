@@ -52,8 +52,11 @@ function selectFaqType(num){
         				  $("#faqList").append(
         						  '<tr class="table_row">'
         							+'<td class="column-1">'+data.faqList[idx].FAQ_NO+'</td>'
-        							+'<td class="column-2"><a href="/faqDetail.do?faq_no="' + data.faqList[idx].FAQ_NO + '>' + data.faqList[idx].FAQ_SUB
-        							+'<input type="hidden" id="FAQ_NO" value="'+data.faqList[idx].FAQ_NO+'"/></a></td>'
+        							+'<td class="column-2">'
+        							+'<a href="/moviecube/faqDetail.do?faq_no='+data.faqList[idx].FAQ_NO+'"' +
+        									'style="color: #555;">'+data.faqList[idx].FAQ_SUB
+        							+'<input type="hidden" id="FAQ_NO" value="'+data.faqList[idx].FAQ_NO+'"/>' 
+        							+'</a></td>'
         							+'<td class="column-3">'+data.faqList[idx].FAQ_TYPE+'</td>'
         							+'</tr>'
         				  )
@@ -78,7 +81,7 @@ function selectFaqType(num){
 			
 			
 			
-	<form class="bg0 p-t-75 p-b-85">
+	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-t-50">
 			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm" style="justify-content: center;">
@@ -102,7 +105,7 @@ function selectFaqType(num){
 					<div class="m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart" style="margin: 0 0 0 0;">
-								<tbody>
+								<tbody id="faqList">
 									<tr class="table_head">
 										<th class="column-1">글번호</th>
 										<th class="column-2">제목</th>
@@ -135,9 +138,9 @@ function selectFaqType(num){
 								</tbody>
 							</table>
 						</div>
-
-						<div
-							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-l-40 p-lr-15-sm">
+						
+						<form>
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-l-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<div class="paging">${pagingHtml}</div>
 							</div>
@@ -158,11 +161,12 @@ function selectFaqType(num){
 									
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 
 			
 			

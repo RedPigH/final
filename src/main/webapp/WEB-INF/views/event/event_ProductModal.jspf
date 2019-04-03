@@ -34,7 +34,7 @@
 
 						for (var i = 0; i < event_file_length; i++) {
 							img_src = img_src
-									+ "<img class='event' src='/moviecube/resources/upload/event/" + data.file_list[i].EVENT_SAVNAME + "'width='700px;' height='500px;'>";
+									+ "<img class='event' src='/moviecube/resources/upload/event/" + data.file_list[i].EVENT_SAVNAME + "'width='100%' height='100%'>";
 						}
 						$("#h_modal_img").html(img_src);
 

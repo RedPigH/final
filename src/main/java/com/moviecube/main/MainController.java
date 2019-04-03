@@ -78,8 +78,6 @@ public class MainController {
 		
 		CommandMap searchKeyword = new CommandMap();
 		searchKeyword.put("searchKeyword", commandMap.get("searchKeyword"));
-		
-		System.out.println(searchKeyword.getMap());
 
 		List<Map<String, Object>> movieList = movieService.MainMovieSearch(searchKeyword.getMap());
 		mv.addObject("movieList", movieList);
