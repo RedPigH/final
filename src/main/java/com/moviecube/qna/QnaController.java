@@ -82,11 +82,11 @@ public class QnaController {
 		return mv;
 
 	}
-
+	
 	@RequestMapping(value = "/qnaDetail.do")
 	public ModelAndView inquiryDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/qna/qnaDetail");
-
+		
 		Map<String, Object> cmap = qnaService.checkQnaFile(commandMap.getMap());
 
 		String temp = String.valueOf(cmap.get("CNT"));
@@ -100,6 +100,33 @@ public class QnaController {
 			mv.addObject("map", map);
 		}
 
+		return mv;
+	}
+	
+	@RequestMapping(value = "/qnaAdminDetail.do")
+	public ModelAndView inquiryAdminDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/qna/qnaDetail");
+		
+		String qna_no = request.getParameter("qna_no");
+		commandMap.put("QNA_NO", qna_no);
+		Map<String, Object> cmap = qnaService.checkQnaFile(commandMap.getMap());
+		
+		String temp = String.valueOf(cmap.get("CNT"));
+		int count = Integer.parseInt(temp);
+		
+		if (count == 0) {
+			mv.addObject("qna_savname", null);
+		} else {
+			Map<String, Object> map = qnaService.selectQnaDetail2(commandMap.getMap());
+			mv.addObject("qna_savname", map.get("QNA_SAVNAME"));
+		}
+		
+		Map<String, Object> adminMap = qnaService.selectQnaAdminDetail(commandMap.getMap());
+		
+		
+		mv.addObject("adminMap", adminMap);
+		mv.setViewName("jsonView");
+		
 		return mv;
 	}
 

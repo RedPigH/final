@@ -18,6 +18,12 @@ public class QnaServiceImpl implements QnaService {
 	private QnaDAO qnaDAO;
 
 	@Override
+	public Map<String, Object> selectQnaAdminDetail(Map<String, Object> map) throws Exception {
+		return qnaDAO.selectQnaAdminDetail(map); 
+
+	}
+	
+	@Override
 	public Map<String, Object> selectQnaDetail1(Map<String, Object> map) throws Exception {
 		return qnaDAO.selectQnaDetail1(map); 
 

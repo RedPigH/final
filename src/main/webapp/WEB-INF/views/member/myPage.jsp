@@ -23,26 +23,46 @@ function deleteRes(res_no) {
 function viewReply(qna_no) {
 	/* 선택된 좌석 정보 */
 	
+	var data = {
+		"qna_no" : qna_no
+	};
 	
-	
-	Swal.fire({
-				    		  imageUrl: '/moviecube/resources/upload/qna/',
-				    		  imageHeight: 250,
-				    		  title: "sdf",
-				    		  html:
-				    			  '<div class="p-b-15">영화관:</div>'
-							    	 +'<div class="p-b-15">상영관: </div>'
-							    	 +'<div class="p-b-15">상영 날짜:  / </div>'
-							    	 +'<div class="p-b-15">선택 좌석: </div>'
-							    	 +'<div class="p-b-15">총 가격:원</div>',
+	$.ajax({
+				type : "POST",
+				url : "<c:url value='/qnaAdminDetail.do'/>",
+				dataType : "json",
+				data : data,
+				
+				success : function(data) {
+					var img_url = "";
+					var qna_sub = "제목  <br/>" + data.adminMap.QNA_SUB;
+					var qna_content = '<br/><br/> <div class="p-b-15">' + data.adminMap.QNA_CONTENT + '</div>';
+					
+					if(data.qna_savname != null) {
+						img_url = data.qna_savname;
+						Swal.fire({
+				    		  title: qna_sub,
+				    		  html: qna_content,
 				    		  showCloseButton: true,
-				    		  showCancelButton: true,
 				    		  focusConfirm: false,
-				    		  confirmButtonText:
-				    		    '<a style="all: unset;" href="reserve_complete.do?TIME_NO=">확인</div>',
-				    		  cancelButtonText:
-				    		    '취소',
+				    		  imageUrl: '/moviecube/resources/upload/qna/' + img_url,
+					    	  imageHeight: 250,
 				    		})
+					} else {
+						Swal.fire({
+							  title: qna_sub,
+				    		  html: qna_content,
+				    		  showCloseButton: true,
+				    		  focusConfirm: false,
+				    		})
+					}
+					
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("오류가 발생하였습니다.");
+				}
+			}); 
+	
 }
 </script>
 
@@ -189,7 +209,7 @@ function viewReply(qna_no) {
                								<c:forEach items="${resList}" var="row">
                									<ul class="type2">
                										<li id="res_moviename" class="no_data text-left pa20">영화제목 :  ${row.MOVIE_NAME } </li>
-               											<a href="javascript:deleteRes(${row.RES_NO })" class="flex-c-m stext-101 cl0 size-131 bg10 bor23 hov-btn2 p-lr-5 trans-04 m-b-2"
+               											<a href="javascript:deleteRes(${row.RES_NO })" class="flex-c-m stext-101 cl0 size-reserve-button bg10 bor23 hov-btn2 p-lr-5 trans-04 m-b-2"
                											onclick="deleteRes(${row.RES_NO})" style="float:right;">예매취소</a>
                										<li class="no_data text-left pa20"> (${row.RES_DATE })</li>
                										<hr style="margin-bottom:8px; margin-top:8px;">
@@ -231,11 +251,11 @@ function viewReply(qna_no) {
                										</c:if>
                										
                										<c:if test="${row.QNA_STATUS == 0 }">
-               											<p class="flex-c-m stext-101 cl0 size-131 bg11 bor23 p-lr-5 trans-04 m-b-2"
+               											<p class="flex-c-m stext-101 cl0 size-reserve-button bg11 bor23 p-lr-5 trans-04 m-b-2"
                											style="float:right;">대기중</p>
                										</c:if>
                										<c:if test="${row.QNA_STATUS == 1 }">
-               											<button onclick="viewReply(${row.QNA_NO})" class="flex-c-m stext-101 cl0 size-131 bg10 bor23 p-lr-5 trans-04 m-b-2"
+               											<button onclick="viewReply(${row.QNA_NO})" class="flex-c-m stext-101 cl0 size-reserve-button bg10 bor23 p-lr-5 trans-04 m-b-2"
                											style="float:right;">답변완료</button>
                										</c:if>
                										<li class="no_data text-left pa20"> ${fn:substring(regdate,0,19)}</li>

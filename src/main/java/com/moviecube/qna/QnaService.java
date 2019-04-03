@@ -15,6 +15,8 @@ public interface QnaService {
 
 	void insertQna(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
+	Map<String, Object> selectQnaAdminDetail(Map<String, Object> map) throws Exception;
+	
 	Map<String, Object> selectQnaDetail1(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> selectQnaDetail2(Map<String, Object> map) throws Exception;

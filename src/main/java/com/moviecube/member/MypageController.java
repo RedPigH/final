@@ -1,4 +1,4 @@
-package com.moviecube.mypage;
+package com.moviecube.member;
 
 import java.util.List;
 import java.util.Map;

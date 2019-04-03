@@ -122,6 +122,12 @@ REF DESC, RE_LEVEL ASC
 			WHERE q.QNA_NO = #{QNA_NO} AND f.DEL_GB='N'
 		]]>
 	</select>
+	
+	<select id="selectQnaAdminDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[ 
+			SELECT * FROM MC_QNA WHERE REF = #{QNA_NO} AND QNA_NO != #{QNA_NO}
+		]]>
+	</select>
 
 
 

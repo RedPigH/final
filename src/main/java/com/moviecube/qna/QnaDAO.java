@@ -35,6 +35,11 @@ public class QnaDAO extends AbstractDAO {
    }
 
    @SuppressWarnings("unchecked")
+   public Map<String, Object> selectQnaAdminDetail(Map<String, Object> map) throws Exception {
+      return (Map<String, Object>) selectOne("qna.selectQnaAdminDetail", map);
+   }
+   
+   @SuppressWarnings("unchecked")
    public Map<String, Object> selectQnaDetail1(Map<String, Object> map) throws Exception {
       return (Map<String, Object>) selectOne("qna.selectQnaDetail1", map);
    }
