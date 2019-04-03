@@ -132,6 +132,7 @@ public class MemberController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  @RequestMapping(value="/member/find.do")
 	  @ResponseBody
 	  public ModelAndView findId(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -150,10 +151,24 @@ public class MemberController {
 		  mv.setViewName("jsonView");
 		  mv.addObject("findid", findid);
 		  
+=======
+	
+	  //���̵� ��й�ȣ ã��
+	  
+	  @RequestMapping(value="/member/find.do")
+	  public ModelAndView findId(CommandMap commandMap) throws Exception{
+		  ModelAndView mv = new ModelAndView();
+		  
+		  String id = memberService.findId(commandMap.getMap());
+		  mv.addObject("id", id);
+		  
+		  mv.setViewName("/member/findId");
+>>>>>>> 2f24f14e2eb38df9eac54d8e4cdb671a356b4268
 		  return mv;
 	  }
 	 
 	  @RequestMapping(value="/member/find1.do")
+<<<<<<< HEAD
 	  @ResponseBody
 	  public ModelAndView findPw(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  
@@ -176,6 +191,15 @@ public class MemberController {
 		  
 		  mv.addObject("findpw2", findpw.get("MEMBER_PASSWD1"));
 		  
+=======
+	  public ModelAndView findPw(CommandMap commandMap) throws Exception{
+		  ModelAndView mv = new ModelAndView();
+		  
+		  String pw = memberService.findPasswd(commandMap.getMap());
+		  mv.addObject("pw", pw);
+		  
+		  mv.setViewName("/member/findPw");
+>>>>>>> 2f24f14e2eb38df9eac54d8e4cdb671a356b4268
 		  return mv;
 	  }
 	  
@@ -231,4 +255,32 @@ public class MemberController {
 		  
 		  return mv;
 	  }
+	  
+	  @RequestMapping(value = "/member/profileEnter.do")
+		public ModelAndView insertMyPage(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/member/updateMemberForm.do");
+			
+			String MEMBER_NO = ((String)commandMap.get("MEMBER_NO"));
+			System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MEMBER_NO"));
+
+			
+			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
+			memberService.insertMyPage(commandMap.getMap(), request);
+
+			return mv;
+		}
+	  
+	  @RequestMapping(value = "/member/profileUpdate.do")
+		public ModelAndView modifyInquiry(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/member/updateMemberForm.do");
+			
+			String MEMBER_NO = ((String)commandMap.get("MEMBER_NO"));
+			System.out.println(" 슬라이더 추가 값 체크 ================" + commandMap.get("MEMBER_NO"));
+
+			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
+			
+			memberService.updateProfile(commandMap.getMap(), request);
+
+			return mv;
+		}
 }

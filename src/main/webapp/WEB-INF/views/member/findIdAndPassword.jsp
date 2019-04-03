@@ -211,6 +211,7 @@
 						 	return false;
 					 }
 					 
+<<<<<<< HEAD
 					 var name = $("#name").val();
 					 var age = $("#age").val();
 					 var phone = $("#phone").val();
@@ -237,6 +238,10 @@
 								alert("error : "+error);
 							}
 					 });
+=======
+					 return findId();
+					
+>>>>>>> 2f24f14e2eb38df9eac54d8e4cdb671a356b4268
 				 });
 				 
 				 
@@ -266,6 +271,7 @@
 						 	return false;
 					 }
 					 
+<<<<<<< HEAD
 					 var id = $("#id").val();
 					 var name1 = $("#name1").val();
 					 var phone1 = $("#phone1").val();
@@ -292,8 +298,23 @@
 									alert("error : "+error);
 							}
 					 });
+=======
+					 return findPw();
+>>>>>>> 2f24f14e2eb38df9eac54d8e4cdb671a356b4268
 				 });
 			});
+			
+			function findId(){
+				var findId = document.getElementById("findId");
+				findId.action="/moviecube/member/find.do";
+				findId.submit();
+			}
+			
+			function findPw(){
+				var findPw = document.getElementById("findPw");
+				findPw.action="/moviecube/member/find1.do";
+				findPw.submit();
+			}
 		</script>
 	</div>
 </div>

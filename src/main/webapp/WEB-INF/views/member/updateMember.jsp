@@ -112,27 +112,45 @@ function aaaa(){
 		</div>
 
 		<div class="user_wrap">
-		<form id="update" name="update" enctype="multipart/form-data" method="post">
 			<div id="userJoinContainer" class="form-style">
 				<div class="clearfix">
 					<span class="text-sub mb10">*표시 항목은 필수입력 항목입니다.</span>
 				</div>
-
+				
 				<!-- 프로필과 아이디 -->
 				<div class="clearfix myInfoArea1">
-					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left" data-original="" data-image="">
+					<c:choose>
+					<c:when test="${map.PROFILE_SAVNAME} == null}">
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left">
+					</c:when>
+					<c:otherwise>
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/${map.PROFILE_SAVNAME}" alt="프로필" class="img-circle pull-left">
+					</c:otherwise>
+					</c:choose>
 					<div class="pull-left textArea">
+					<form id="enter" name="enter" enctype="multipart/form-data" method="post">
 						<span class="profile_btn_wrap">
 							<strong>${sessionScope.userLoginInfo.MEMBER_ID}</strong>
-							<input type="hidden" name="MEMBER_ID" value="${sessionScope.userLoginInfo.MEMBER_ID}">
+							<input type="hidden" name="MEMBER_NO" value="${sessionScope.userLoginInfo.MEMBER_NO}">
 							<div>
-							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04">찾아보기</button>
+							<input type="file" name="PROFILE_ORGNAME" style="text-indent: 0px; border: 0px;">
+							<c:choose>
+							<c:when test="${map.PROFILE_SAVNAME} == null}">
+							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileEnter()">입력</button>
+							</c:when>
+							<c:otherwise>
+							<button id="imgUpdateBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileUpdate()">수정</button>
+							</c:otherwise>
+							</c:choose>
 							<button id="imgDeleteBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileDel()">삭제</button>
 							</div>
 						</span>
+					</form>
 					</div>
 				</div>
 
+				<form id="update" name="update" method="post">
+				<input type="hidden" name="MEMBER_ID" value="${sessionScope.userLoginInfo.MEMBER_ID}">
 				<h4>기본정보 (필수입력)</h4>
 				<table class="form-table">
 					<caption class="blind2">개인정보(필수입력)수정:비밀번호 입력,이름,생년월일,휴대폰,이메일 수정</caption>
@@ -253,8 +271,9 @@ function aaaa(){
 				<button type="button" class="img_btn user cancel mr7 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" onclick="history.back()">취소</button>
 				<button type="button" class="img_btn user modify ml7 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" id="up">수정</button>
 			</div>
+		</form>
 		</div>
-	</form>
+
 	
 	<script>
 	$(function(){
@@ -305,6 +324,18 @@ function aaaa(){
     	var update = document.getElementById("update");
 		update.action="/moviecube/member/updateMember.do";
 		update.submit();
+	}
+	
+	function profileEnter(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileEnter.do";
+		Enter.submit();
+	}
+	
+	function profileUpdate(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileUpdate.do";
+		Enter.submit();
 	}
 	</script>
 	</div>
