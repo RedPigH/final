@@ -829,7 +829,6 @@ public class AdminController {
 
 	@RequestMapping(value = "/qnaReplyForm.do")
 	public ModelAndView qnaReplyForm(CommandMap commandMap) throws Exception {
-//		Map<String, Object> map1 = qnaService.selectQnaDetail1(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("/admin/qna/qnaReply");
 
 		Map<String, Object> map = new HashMap();
