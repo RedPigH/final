@@ -131,7 +131,7 @@
          
         function fn_openBoardDetail(obj){
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='faqDetail2.do' />");
+            comSubmit.setUrl("<c:url value='faqDetail.do' />");
             comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO").val());
             comSubmit.addParam("currentPage", "${currentPage}");
             comSubmit.submit();
