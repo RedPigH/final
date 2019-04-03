@@ -24,8 +24,7 @@
 	<div class="admin">
 		<div class="logo">
 			<h1>
-				<a href="<%=cp%>/eventList.do">MovieCube Administrator -
-					EVENT List</a>
+				<a href="<%=cp%>/admin/eventList.do">MovieCube Administrator - Event List </a>
 			</h1>
 		</div>
 		<div class="logo" style="float: right;">
