@@ -4,7 +4,7 @@
 
 <mapper namespace="qna">
 
-	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
+<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 SELECT
 QNA_NO,
@@ -17,6 +17,13 @@ MC_QNA
 ORDER BY 
 REF DESC, RE_LEVEL ASC
 ]]>
+</select>
+
+	<!-- 멤버 한명의 QnA 리스트 불러오기 -->
+	<select id="selectQnaListByMember" resultType="hashmap" parameterType="hashmap">
+		<![CDATA[
+		SELECT * FROM MC_QNA WHERE QNA_ID = #{QNA_ID} AND ROWNUM BETWEEN 1 AND 5 ORDER BY QNA_NO DESC
+		]]>
 	</select>
 
 	<insert id="insertQna" parameterType="hashmap"

@@ -50,6 +50,7 @@ function get_reviews(currentPage) {
 				}
 				
 				cmt_content = data.comment_paging_list[i].CMT_CONTENT;
+				
 				cmt_like = Number(data.comment_paging_list[i].CMT_LIKE);
 				var rating_text = "";
 				
@@ -236,7 +237,9 @@ function writeToModal(movie_no) {
 			var genre = "장르  :  " + data.map.MOVIE_GENRE;
 			$("#h_modal_movie_genre").text(genre);
 			
-			$("#h_modal_movie_content").text(data.map.MOVIE_CONTENT);	
+			var movie_content = data.map.MOVIE_CONTENT;
+			
+			$("#h_modal_movie_content").html(movie_content);	
 			
 			$("#h_modal_movie_no").attr("value", movie_no);
 			
@@ -288,14 +291,13 @@ function writeToModal(movie_no) {
 					</div>
 				</div>
 
-
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<div style="float:left; marging-bottom:0px;">
 								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.PNG" style="margin-top:11px; margin-right:8px;">
 						</div>
 						<h4 id="h_modal_movie_name" class="stext-119 cl2" style="margin-bottom:-10px;">
-							<!-- Jquery로 값 자동으로들어감 -->
+						<!-- Jquery로 값 자동으로들어감 -->
 						</h4>
 						<hr>
 						<p id="h_modal_movie_grade" class="stext-118" style="margin-bottom:-10px;"> <!-- Jquery로 값 자동으로들어감 --> </p>
@@ -304,11 +306,11 @@ function writeToModal(movie_no) {
 						<p class="stext-118" style="margin-bottom:-10px; display:inline-block;" >예매율   :</p>
 						<p id="h_modal_movie_ranking" class="stext-119" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
 						<p class="stext-118" style="margin-top:10px; margin-bottom:-5px; display:inline-block;">위</p>
-						<p id="h_modal_movie_type" class="stext-118" style="margin-top:10px; margin-bottom:-5px;"> </p> 
-						<p id="h_modal_movie_opendate" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_director" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_actor" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_genre" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
+						<p id="h_modal_movie_type" class="stext-118" style="margin-top:10px; margin-bottom:-2px;"> </p> 
+						<p id="h_modal_movie_opendate" class="stext-118 cl3" style="margin-bottom:-2px;"> </p>
+						<p id="h_modal_movie_director" class="stext-118 cl3" style="margin-bottom:-2px;"> </p>
+						<p id="h_modal_movie_actor" class="stext-118 cl3" style="margin-bottom:-2px;"> </p>
+						<p id="h_modal_movie_genre" class="stext-118 cl3" style="margin-bottom:-2px;"> </p>
 						<input type="hidden" id="h_modal_movie_no" value=""/>
 
 						<div class="p-t-33">

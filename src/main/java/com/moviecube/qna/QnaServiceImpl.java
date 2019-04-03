@@ -35,6 +35,11 @@ public class QnaServiceImpl implements QnaService {
 	public List<Map<String, Object>> selectQnaList(Map<String, Object> map) throws Exception {
 		return qnaDAO.selectQnaList(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectQnaListByMember(Map<String, Object> map) throws Exception {
+		return qnaDAO.selectQnaListByMember(map);
+	}
 
 	@Override
 	public void insertQna(Map<String, Object> map, HttpServletRequest request) throws Exception {

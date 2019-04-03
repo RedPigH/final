@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -65,13 +66,13 @@ public class QnaController {
 		mv.setViewName("/qna/qnaList");
 		return mv;
 	}
+	
 
 	@RequestMapping(value = "/qnaWriteForm.do")
 	public ModelAndView writeInquiryForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qna/qnaWrite");
 
 		return mv;
-
 	}
 
 	@RequestMapping(value = "/qnaWrite.do")

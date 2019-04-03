@@ -84,6 +84,9 @@ public class MovieController {
 		*/
 
 		mv.addObject("map", map.get("map"));
+		
+		//String content = (String)map2.get("MOVIE_CONTENT");
+		//content.replaceAll("<\n\r>", "")
 
 		mv.addObject("openDate", openDate);
 		mv.setViewName("jsonView");

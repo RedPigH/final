@@ -9,6 +9,8 @@ public interface QnaService {
 
 	List<Map<String, Object>> selectQnaList(Map<String, Object> map) throws Exception;
 	
+	List<Map<String, Object>> selectQnaListByMember(Map<String, Object> map) throws Exception;
+	
 	List<Map<String, Object>> selectQnaFileList(Map<String, Object> map) throws Exception;
 
 	void insertQna(Map<String, Object> map, HttpServletRequest request) throws Exception;

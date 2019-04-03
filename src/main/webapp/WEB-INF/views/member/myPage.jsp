@@ -5,6 +5,7 @@
 <html lang="ko">
 
 <head>
+<script src="/moviecube/resources/js_test/jquery-1.12.4.min.js"></script>
 <%@ include file="/WEB-INF/views/main/head.jspf"%>
 <link rel="stylesheet" type="text/css"
 	href="/moviecube/resources/css/member.css" />
@@ -14,6 +15,34 @@
 function deleteRes(res_no) {
 	location.href="/moviecube/reserve_delete.do?res_no=" + res_no;
 	alert("예매가 취소되었습니다.");
+}
+</script>
+
+
+<script type="text/javascript">
+function viewReply(qna_no) {
+	/* 선택된 좌석 정보 */
+	
+	
+	
+	Swal.fire({
+				    		  imageUrl: '/moviecube/resources/upload/qna/',
+				    		  imageHeight: 250,
+				    		  title: "sdf",
+				    		  html:
+				    			  '<div class="p-b-15">영화관:</div>'
+							    	 +'<div class="p-b-15">상영관: </div>'
+							    	 +'<div class="p-b-15">상영 날짜:  / </div>'
+							    	 +'<div class="p-b-15">선택 좌석: </div>'
+							    	 +'<div class="p-b-15">총 가격:원</div>',
+				    		  showCloseButton: true,
+				    		  showCancelButton: true,
+				    		  focusConfirm: false,
+				    		  confirmButtonText:
+				    		    '<a style="all: unset;" href="reserve_complete.do?TIME_NO=">확인</div>',
+				    		  cancelButtonText:
+				    		    '취소',
+				    		})
 }
 </script>
 
@@ -60,17 +89,7 @@ function deleteRes(res_no) {
 										<li><strong>휴대폰</strong> <span>${sessionScope.userLoginInfo.MEMBER_PHONE}</span>
 										</li>
 										<li><strong>선호 영화관</strong> <span></span></li>
-										<!-- 			 2014.09.19  페이스북 가입 및 연동 걷어내기 -->
-										<!-- 	<li> -->
-										<!-- 		<strong>페이스북 상태</strong> -->
-										<!-- 		<span> -->
-										<!-- 			<strong class="c_purple mr10">연동중</strong> -->
-										<!-- 			<button onclick="MyPageMain.disconnectFacebook()"></button> -->
-
-										<!-- 			 2014.09.19  페이스북 가입 및 연동 걷어내기 -->
-										<!-- 			<button onclick="MyPageMain.connectFacebook()"></button> -->
-										<!-- 		</span> -->
-										<!-- 	</li> -->
+										
 										<li><strong>SMS수신여부</strong> <span class="btn_sms">
 												<button class="no active" title="거부 선택됨"
 													onclick="MyPageMain.setSmsReceiveYn('N')" value="거부">거부</button>
@@ -154,8 +173,6 @@ function deleteRes(res_no) {
 								</div>
 							</div>
 
-
-
 							<div id="myPageMyBooking" class="cols col2">
 								<!-- 나의 예매내역 -->
 								<div class="mypage_main_box" style="height: 505px;">
@@ -188,31 +205,54 @@ function deleteRes(res_no) {
 								</div>
 							</div>
 
-
-
 							<div class="cols col3">
 								<div id="myPageMyQuestion" class="mypage_main_box"
 									style="height: 505px;">
 									<div class="positionR">
 										<div class="h3_wrap pb38 bor22">
 											<h3>
-												<img
-													src="http://image2.megabox.co.kr/mop/home/mypage/main_title8.png"
-													alt="나의문의내역">
+												<img src="http://image2.megabox.co.kr/mop/home/mypage/main_title8.png" alt="나의문의내역">
 											</h3>
 										</div>
+										<ul class="type1"></ul>
 
-										<ul class="type1">
-											<li class="no_data text-center pa30">조회된 내역이 없습니다</li>
-										</ul>
+									<c:choose>
+            							<c:when test="${fn:length(qnaList) > 0 }">
+               								<c:forEach items="${qnaList}" var="row">
+               									<c:set var="regdate" value="${row.QNA_REGDATE }"/>
+               									<c:set var="qnasub" value="${row.QNA_SUB }"/>
+               								
+               									<ul class="type2">
+               										<c:if test="${fn:length(qnasub) < 10 }">
+               											<li id="res_moviename" class="no_data text-left pa20">제목 :  ${row.QNA_SUB } </li>
+               										</c:if>
+               										<c:if test="${fn:length(qnasub) > 10 }">
+               											<li id="res_moviename" class="no_data text-left pa20">제목 :  ${fn:substring(qnasub,0,10)}... </li>
+               										</c:if>
+               										
+               										<c:if test="${row.QNA_STATUS == 0 }">
+               											<p class="flex-c-m stext-101 cl0 size-131 bg11 bor23 p-lr-5 trans-04 m-b-2"
+               											style="float:right;">대기중</p>
+               										</c:if>
+               										<c:if test="${row.QNA_STATUS == 1 }">
+               											<button onclick="viewReply(${row.QNA_NO})" class="flex-c-m stext-101 cl0 size-131 bg10 bor23 p-lr-5 trans-04 m-b-2"
+               											style="float:right;">답변완료</button>
+               										</c:if>
+               										<li class="no_data text-left pa20"> ${fn:substring(regdate,0,19)}</li>
+               										<hr style="margin-bottom:8px; margin-top:8px;">
+               									</ul>
+               								</c:forEach>
+               							</c:when>
+               							<c:otherwise>
+               								<ul class="type2">
+												<li class="no_data text-center pa30">조회된 내역이 없습니다</li>
+											</ul>
+               							</c:otherwise>
+               						</c:choose>
 
-										<div class="m-t-205"></div>
+
 
 									</div>
-
-									<script>
-										
-									</script>
 								</div>
 							</div>
 
