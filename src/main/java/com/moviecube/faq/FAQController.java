@@ -125,10 +125,25 @@ public class FAQController {
 	@RequestMapping(value = "/faqDetail.do")
 	public ModelAndView faqDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/faq/faqDetail");
-		
+	
 		String faq_no = request.getParameter("faq_no");
 		commandMap.put("FAQ_NO", faq_no);
-		
+
+		System.out.println(" 디테일 페이지 값 확인  +++++++++ FAQ_NO : " + commandMap.get("FAQ_NO"));
+		Map<String, Object> map = faqService.selectFaqDetail(commandMap.getMap());
+		mv.addObject("map", map);
+
+		return mv;
+	}
+	
+	@RequestMapping(value = "/faqDetail2.do")
+	public ModelAndView faqDetail2(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/faq/faqDetail");
+/*	
+		String faq_no = request.getParameter("faq_no");
+		commandMap.put("FAQ_NO", faq_no);
+*/
+		System.out.println(" 디테일 페이지 값 확인  +++++++++ FAQ_NO : " + commandMap.get("FAQ_NO"));
 		Map<String, Object> map = faqService.selectFaqDetail(commandMap.getMap());
 		mv.addObject("map", map);
 
@@ -170,8 +185,11 @@ public class FAQController {
 		
 		
 		String FAQ_TYPE = request.getParameter("FAQ_TYPE");
+		System.out.println(" 값 확인0 +++++++++++" + request.getParameter("FAQ_TYPE"));
 
 		commandMap.put("FAQ_TYPE", FAQ_TYPE);
+
+		System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("FAQ_TYPE"));
 		
 		List<Map<String, Object>> faqList = faqService.selectFaqType(commandMap.getMap());
 		

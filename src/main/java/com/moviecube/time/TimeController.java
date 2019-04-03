@@ -48,7 +48,7 @@ public class TimeController {
 
 	private int currentPage = 1;
 	private int totalCount;
-	private int blockCount = 5;
+	private int blockCount = 10;
 	private int blockpaging = 5;
 	private String pagingHtml;
 	private Paging paging;
