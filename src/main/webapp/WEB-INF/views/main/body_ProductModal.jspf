@@ -88,10 +88,10 @@ function writeReview() {
 	
 	/* 여기부터 validation 처리부분 */
 	if(member_id.length == 0) {
-		alert("5252 댓글작성은 로그인 후 이용할 수 있습니다.");
+		Swal.fire("","댓글작성은 로그인 후 이용할 수 있습니다","warning");
 		return;
 	} else if($("#review").val() == 0) {
-		alert("내용을 입력하세요");
+		Swal.fire("","내용을 작성해 주세요","info");
 		return;
 	}
 	
@@ -115,7 +115,7 @@ function writeReview() {
 			var id_check = data.id_check;
 			
 			if(!data.id_check) {
-				alert("이미 리뷰를 등록하셨습니다.");
+				Swal.fire("","이미 리뷰를 등록하셨습니다.","info");
 				return;
 			}
 			else if(data.id_check) {
@@ -236,7 +236,7 @@ function writeToModal(movie_no) {
 			var genre = "장르  :  " + data.map.MOVIE_GENRE;
 			$("#h_modal_movie_genre").text(genre);
 			
-			$("#h_modal_movie_content").text(data.map.MOVIE_CONTENT);	
+			$("#h_modal_movie_content").html(data.map.MOVIE_CONTENT);	
 			
 			$("#h_modal_movie_no").attr("value", movie_no);
 			
@@ -277,7 +277,7 @@ function writeToModal(movie_no) {
 											style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
 											<div class="wrap-pic-w pos-relative">
 											
-												<img class="modal-poster" id="h_modal_poster_savname" src="">
+												<img class="modal-poster" id="h_modal_poster_savname" src="" style="border-radius: 5px;">
 											</div>
 										</div>
 										
@@ -290,7 +290,7 @@ function writeToModal(movie_no) {
 
 
 				<div class="col-md-6 col-lg-5 p-b-30">
-					<div class="p-r-50 p-t-5 p-lr-0-lg">
+					<div class="p-r-50 p-t-50 p-lr-0-lg">
 						<div style="float:left; marging-bottom:0px;">
 								<img id="h_modal_movie_age" width="30" height="32" src="/moviecube/resources/images/15_age.PNG" style="margin-top:11px; margin-right:8px;">
 						</div>
@@ -302,18 +302,19 @@ function writeToModal(movie_no) {
 						<span id="people_cnt" style="margin-top:-10px;"></span>
 						<p style="margin-bottom:-7px;"></p>
 						<p class="stext-118" style="margin-bottom:-10px; display:inline-block;" >예매율   :</p>
-						<p id="h_modal_movie_ranking" class="stext-119" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
+						<p id="h_modal_movie_ranking" class="stext-119 cl2" style="margin-bottom:-5px; display:inline-block;">1</p>&nbsp;
 						<p class="stext-118" style="margin-top:10px; margin-bottom:-5px; display:inline-block;">위</p>
-						<p id="h_modal_movie_type" class="stext-118" style="margin-top:10px; margin-bottom:-5px;"> </p> 
-						<p id="h_modal_movie_opendate" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_director" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_actor" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
-						<p id="h_modal_movie_genre" class="stext-118 cl3" style="margin-bottom:-5px;"> </p>
+						<p id="h_modal_movie_type" class="stext-120 cl2" style="margin-top:10px; margin-bottom:5px;"> </p> 
+						<p id="h_modal_movie_opendate" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_director" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_actor" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
+						<p id="h_modal_movie_genre" class="stext-120 cl2" style="margin-bottom:5px;"> </p>
+						<hr>
 						<input type="hidden" id="h_modal_movie_no" value=""/>
 
 						<div class="p-t-33">
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
+							<div class="flex-w flex-r-m p-b-10" style="justify-content: center;">
+								<div class="size-204 flex-w flex-m respon6-next" style="justify-content: center; padding-right: 50px;">
 									<button
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" id="selectedReserve2">
 										예매하기
@@ -324,21 +325,14 @@ function writeToModal(movie_no) {
 
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-							<div class="flex-m bor9 p-r-10 m-r-11">
-								<a href="resources/#"
-									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-									data-tooltip="Add to Wishlist"> <i
-									class="zmdi zmdi-favorite"></i>
-								</a>
-							</div>
 
-							<a href="resources/#"
+							<a href="javascript:void(0);"
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 								data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
-							</a> <a href="resources/#"
+							</a> <a href="javascript:void(0);"
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 								data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
-							</a> <a href="resources/#"
+							</a> <a href="javascript:void(0);"
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 								data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 							</a>
@@ -347,7 +341,7 @@ function writeToModal(movie_no) {
 				</div>
 			</div>
 			<!-- 여기 -->
-			<div class="bor10 m-t-50 p-t-43 p-b-40">
+			<div class="bor10 m-t-30 p-t-30 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
 					<!-- Nav tabs -->
@@ -370,7 +364,7 @@ function writeToModal(movie_no) {
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<p id="h_modal_movie_content" class="stext-118 cl6">앙</p>
+								<p id="h_modal_movie_content" class="stext-118 cl3">앙</p>
 							</div>
 						</div>
 
@@ -401,10 +395,6 @@ function writeToModal(movie_no) {
 										
 										<!-- 	Add review -->
 										<form class="w-full">
-											<h5 class="stext-118 cl2 p-b-7">리뷰작성</h5>
-
-											<p class="stext-102 cl6" style="font-size:20px;">함께 아름다운 댓글 문화를 만들어가요~</p>
-
 											<div class="flex-w flex-m p-t-50 p-b-23">
 												<span class="stext-102 cl3 m-r-16" style="font-size:18px;"> 별 점 </span>
 												<span class="wrap-rating fs-18 cl11 pointer" id="rating_init">
@@ -422,7 +412,10 @@ function writeToModal(movie_no) {
 
 											<div class="row p-b-25">
 												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" style="font-size:18px;" for="review">리뷰</label>
+													<label class="stext-102 cl3" style="font-size:18px; display: inline-block" for="review">리뷰작성</label>
+													<label class="stext-108 cl6" style="display: inline-block; float: right">
+														함께 아름다운 댓글 문화를 만들어가요~
+													</label>
 													<textarea
 														class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review">  
 														</textarea>

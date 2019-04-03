@@ -8,15 +8,15 @@
 
 		//아이디에서 입력 필수 조건문
 		if (form.MEMBER_ID.value == "") {
-			alert("아이디를 입력해야 합니다!");
+			Swal.fire("","아이디를 입력해야 합니다!","warning");
 			form.MEMBER_ID.focus();//포커스를 id박스로 이동.
-			return;
+			return false;
 		}
 
 		if (form.MEMBER_PASSWD1.value == "") {
-			alert("패스워드를 입력 해야 합니다!");
+			Swal.fire("","패스워드를 입력해야 합니다!","warning");
 			form.MEMBER_PASSWD1.focus();//포커스를 Password박스로 이동.
-			return;
+			return false;
 		}
 		
 		form.action="/moviecube/member/login.do"
