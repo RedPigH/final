@@ -199,14 +199,19 @@ REF DESC, RE_LEVEL ASC
 	<![CDATA[
 	UPDATE MC_QNA_FILE
 	SET
-	(
 	DEL_GB = 'N' 
 	WHERE
 	QNA_FILE_NO = #{QNA_FILE_NO}
 	]]>
 	</update>
 
-
+	<update id="updateQnaStatus" parameterType = "hashmap">
+		<![CDATA[
+			UPDATE MC_QNA 
+			SET QNA_STATUS = 1
+			WHERE QNA_NO = #{QNA_NO}
+		]]>
+	</update>
 
 	<select id="selectQnaFileList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[

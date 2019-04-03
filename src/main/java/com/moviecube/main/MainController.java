@@ -32,6 +32,7 @@ public class MainController {
 
 		if(session.getAttribute("userLoginInfo") != null){
 				
+			@SuppressWarnings("unchecked")
 			Map<String, Object> user = (Map<String, Object>) session.getAttribute("userLoginInfo");
 			
 			CommandMap map = new CommandMap();

@@ -112,6 +112,11 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void updateQnaStatus(Map<String, Object> map) throws Exception{
+		qnaDAO.updateQnaStatus(map);
+	}
 
 	@Override
 	public List<Map<String, Object>> selectQnaFileList(Map<String, Object> map) throws Exception {

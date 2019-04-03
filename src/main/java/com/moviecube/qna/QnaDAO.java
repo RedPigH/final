@@ -75,6 +75,10 @@ public class QnaDAO extends AbstractDAO {
    public void updateQnaFile(Map<String, Object> map) {
       update("qna.updateQnaFile", map);
    }
+   
+   public void updateQnaStatus(Map<String, Object> map) {
+	   update("qna.updateQnaStatus", map);
+   }
 
    @SuppressWarnings("unchecked")
    public Map<String, Object> checkQnaFile(Map<String, Object> map) throws Exception {

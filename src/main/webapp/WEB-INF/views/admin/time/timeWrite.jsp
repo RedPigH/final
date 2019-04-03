@@ -16,24 +16,32 @@
 <script src="<%= cp %>/resources/js/admin_common.js"></script>
 <script type="text/javascript">
 //AJAX select box
-function screenSelect(CINEMA_NO){
-$.ajax({
- type: "POST",
- url: "<c:url value='/admin/ScreenSelect.do'/>",
- dataType:"json",
- data: {param:CINEMA_NO},
- 
- success: function(data){           
-  $("#selectScreen").find("option").remove().end().append("<option value=''>전체</option>");
-  
-  for(var idx = 0; idx < data.result.length; idx++){
-	  $("#selectScreen").append("<option value='"+data.result[idx].SCREEN_NO+"'>"+data.result[idx].SCREEN_NAME+"</option>")
-  }
- },
-   error: function (jqXHR, textStatus, errorThrown) {
-   alert("오류가 발생하였습니다.");
-  }                     
- });
+function screenSelect(cinema_no){
+
+	var movie_no = $("#selectMovie").val();
+	
+	var data = {
+			"MOVIE_NO" : movie_no,
+			"CINEMA_NO" : cinema_no,
+	}
+	
+	$.ajax({
+	 type: "POST",
+	 url: "<c:url value='/admin/ScreenSelect.do'/>",
+	 dataType:"json",
+	 data: data,
+	 
+	 success: function(data){           
+	  $("#selectScreen").find("option").remove().end().append("<option value=''>전체</option>");
+	  
+	  for(var idx = 0; idx < data.result.length; idx++){
+		  $("#selectScreen").append("<option value='"+data.result[idx].SCREEN_NO+"'>"+data.result[idx].SCREEN_NAME+"</option>")
+	  }
+	 },
+	   error: function (jqXHR, textStatus, errorThrown) {
+	   alert("오류가 발생하였습니다.");
+	  }                     
+	 });
 }
 </script>
 </head>
@@ -79,7 +87,7 @@ $.ajax({
 						<tr>
 							<th scope="row">영화제목</th>
 							<td>
-								<select class="slct w300" name="selectMovie">
+								<select class="slct w300" name="selectMovie" id = "selectMovie">
 									<c:forEach var="movie" items="${movieList}">
 									<option value="${movie.MOVIE_NO}">${movie.MOVIE_NAME} / ${movie.MOVIE_TYPE}</option>
 									</c:forEach>
@@ -105,11 +113,6 @@ $.ajax({
 								<select class="slct w300" name="selectScreen" id = "selectScreen">
 									<option value = "">선 택</option>
 								</select>
-								<%-- <select class="slct w300" name="selectScreen">
-									<c:forEach var="screen" items="${screenList}">
-									<option value="${screen.SCREEN_NO}">${screen.SCREEN_NAME}</option>
-									</c:forEach>
-								</select> --%>
 							</td>
 						</tr>
 						

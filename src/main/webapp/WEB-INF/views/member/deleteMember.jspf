@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<script type="text/javascript">
+	function deleteMember(){
+		var form = document.dl;
+		form.action="/moviecube/member/deleteMember.do"
+		form.submit();
+	}
+</script>
+
+<div class="wrap-modal2 js-modal4 p-t-60 p-b-20">
+	<div class="overlay-modal2 js-hide-modal4"></div>
+
+	<div class="container" style="max-width: 500px; margin-top: 150px">
+		<div class="bg0 p-lr-15-lg how-pos3-parent" style="border-radius: 20px">
+			<button class="how-pos3 hov3 trans-04 js-hide-modal4">
+				<img src="/moviecube/resources/images/icons/icon-close.png" alt="CLOSE">
+			</button>
+
+			<div class="row" style = "margin: 0 0;">
+				<div class="flex-w flex-sb-m p-t-40 p-l-125 p-lr-15-sm">
+					<b>정말로 회원탈퇴 하시겠습니까?</b>
+				</div>
+			</div>
+			
+			<div class="row" style = "margin: 0 0;">
+				<div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto">
+					<div class="p-tb-30 p-l-30 m-lr-15-sm">
+						<form id="dl" name="dl" method="post">
+						<input type="hidden" name="MEMBER_NO" value="${sessionScope.userLoginInfo.MEMBER_NO}">
+						<button id="ok" class="stext-111 size-214 cl0 bg1 bor2 hov-btn4 trans-04" onclick="deleteMember()">네</button>
+						<button type="button" class="stext-111 size-214 m-l-35 cl0 bg1 bor2 hov-btn4 trans-04 cancelbtn js-hide-modal4">아니요</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -16,10 +16,11 @@
 	<!-- 영화관 별 상영관 리스트 -->
 	<select id = "selectCinemaScreen" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
-			SELECT s.SCREEN_NO, s.SCREEN_NAME  
+			SELECT s.SCREEN_NO, s.SCREEN_NAME
 			FROM SCREEN s 
 			INNER JOIN CINEMA c ON s.CINEMA_NO = c.CINEMA_NO 
-			WHERE s.CINEMA_NO = #{CINEMA_NO}
+			INNER JOIN MC_MOVIE m ON m.MOVIE_TYPE = s.SCREEN_TYPE
+			WHERE s.CINEMA_NO = #{CINEMA_NO} AND m.MOVIE_NO = #{MOVIE_NO}
 			ORDER BY SCREEN_NO ASC
 		]]>
 	</select>

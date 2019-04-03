@@ -23,7 +23,7 @@
 			
 			<div class="col-sm-10 col-lg-7 col-xl-7 m-lr-auto m-b-50">
 <!-- 			<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"> -->
-				<h4 class="mtext-109 cl2 p-b-30"> FAQ 상세보기 </h4>
+				<h4 class="mtext-109 cl2 p-b-30" style="text-align: -webkit-center;"> FAQ 상세보기 </h4>
 				
 				<div class="filter-tope-group m-tb-10 m-lr-auto">
 			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>

@@ -17,9 +17,10 @@ import com.moviecube.common.CommonUtils;
  
 @Component("movieFileUtils") // �씠 媛앹껜�쓽 愿�由щ�� �뒪�봽留곸씠 �떞�떦�븯�룄濡� �븿
 public class MovieFileUtils {
-	private static final String filePath = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath2 = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT �뙆�씪�쓽 ���옣�쐞移�
-    private static final String filePath3 = "C:\\Users\\user1\\Documents\\MovieCube\\src\\main\\webapp\\resources\\upload\\movie\\slider\\"; // SLIDER �뙆�씪�쓽 ���옣�쐞移�
+	private static final String filePath = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\poster\\"; // POSTER �뙆�씪�쓽 ���옣�쐞移�
+    private static final String filePath2 = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\stillcut\\"; // STILLCUT �뙆�씪�쓽 ���옣�쐞移�
+    private static final String filePath3 = "C:\\Users\\user1\\Documents\\final\\src\\main\\webapp\\resources\\upload\\movie\\slider\\"; // SLIDER �뙆�씪�쓽 ���옣�쐞移�
+    
     
     /*�쁺�솕 �룷�뒪�꽣 �뙆�씪 Insert*/ 
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
@@ -31,12 +32,12 @@ public class MovieFileUtils {
         String originalFileExtension = null;
         String storedFileName = null;
          
-        List<Map<String,Object>> fileList = new ArrayList<Map<String,Object>>(); // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗 List (�떎以묓뙆�씪�쟾�넚)
+        List<Map<String,Object>> fileList = new ArrayList<Map<String,Object>>(); 
         Map<String, Object> fileListMap = null;
                
-        String MOVIE_NO = map.get("MOVIE_NO").toString();  // MovieServiceImpl �쁺�뿭�뿉�꽌 �쟾�떖�빐以� map�뿉�꽌 �떊洹쒓쾶�떆湲��쓽 踰덊샇瑜� 諛쏆븘�삩�떎
+        String MOVIE_NO = map.get("MOVIE_NO").toString();  
          
-        File file = new File(filePath); // �뙆�씪�쓣 ���옣�븷 寃쎈줈�뿉 �빐�떦�뤃�뜑媛� �뾾�쑝硫� �뤃�뜑瑜� �깮�꽦�븳�떎
+        File file = new File(filePath); 
         if(file.exists() == false){
             file.mkdirs();
         }
@@ -45,15 +46,15 @@ public class MovieFileUtils {
             multipartFile = multipartHttpServletRequest.getFile(iterator.next());
             System.out.println("test ============================== " + multipartFile.getName());
 
-         	if(multipartFile.isEmpty() == false) {  // �뙆�씪�쓽 �젙蹂대�� 諛쏆븘�꽌 �깉濡쒖슦�� �씠由꾩쑝濡� 蹂�寃쏀븯�뒗 濡쒖쭅
+         	if(multipartFile.isEmpty() == false) {  
 
             	originalFileName = multipartFile.getOriginalFilename();
             	originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32�옄由ъ쓽 �옖�뜡�븳 �뙆�씪�씠由� �깮�꽦�븯怨� �썝蹂명뙆�씪�쓽 �솗�옣�옄瑜� 遺숈뿬以��떎
+           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; 
                 
-           		file = new File(filePath + storedFileName); // �꽌踰꾩뿉 �떎�젣 �뙆�씪�쓣 ���옣�븯�뒗 遺�遺�
-           		multipartFile.transferTo(file); // 吏��젙�맂 寃쎈줈�뿉 �뙆�씪�쓣 �깮�꽦�븳�떎
-           		// �쐞�뿉�꽌 留뚮뱺 �젙蹂대�� Filelist�뿉 異붽��븳�떎 
+           		file = new File(filePath + storedFileName); 
+           		multipartFile.transferTo(file); 
+           		
            		fileListMap = new HashMap<String,Object>();
            		fileListMap.put("MOVIE_NO", MOVIE_NO);
            		fileListMap.put("POSTER_ORGNAME", originalFileName);
@@ -74,12 +75,12 @@ public class MovieFileUtils {
         String originalFileExtension = null;
         String storedFileName = null;
          
-        List<Map<String,Object>> fileList2 = new ArrayList<Map<String,Object>>(); // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗 List (�떎以묓뙆�씪�쟾�넚)
+        List<Map<String,Object>> fileList2 = new ArrayList<Map<String,Object>>(); 
         Map<String, Object> fileListMap2 = null;
                
-        int MOVIE_NO = (Integer)map.get("MOVIE_NO");  // MovieServiceImpl �쁺�뿭�뿉�꽌 �쟾�떖�빐以� map�뿉�꽌 �떊洹쒓쾶�떆湲��쓽 踰덊샇瑜� 諛쏆븘�삩�떎
+        int MOVIE_NO = (Integer)map.get("MOVIE_NO");  
          
-        File file = new File(filePath); // �뙆�씪�쓣 ���옣�븷 寃쎈줈�뿉 �빐�떦�뤃�뜑媛� �뾾�쑝硫� �뤃�뜑瑜� �깮�꽦�븳�떎
+        File file = new File(filePath); 
         if(file.exists() == false){
             file.mkdirs();
         }
@@ -88,15 +89,15 @@ public class MovieFileUtils {
             multipartFile = multipartHttpServletRequest.getFile(iterator.next());
             System.out.println("test ============================== " + multipartFile.getName());
             
-           	if(multipartFile.isEmpty() == false) { // �뙆�씪�쓽 �젙蹂대�� 諛쏆븘�꽌 �깉濡쒖슦�� �씠由꾩쑝濡� 蹂�寃쏀븯�뒗 濡쒖쭅
+           	if(multipartFile.isEmpty() == false) { 
          
            		originalFileName = multipartFile.getOriginalFilename();
            		originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-            	storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32�옄由ъ쓽 �옖�뜡�븳 �뙆�씪�씠由� �깮�꽦�븯怨� �썝蹂명뙆�씪�쓽 �솗�옣�옄瑜� 遺숈뿬以��떎
+            	storedFileName = CommonUtils.getRandomString() + originalFileExtension; 
                 
-           		file = new File(filePath2 + storedFileName); // �꽌踰꾩뿉 �떎�젣 �뙆�씪�쓣 ���옣�븯�뒗 遺�遺�
-           		multipartFile.transferTo(file); // 吏��젙�맂 寃쎈줈�뿉 �뙆�씪�쓣 �깮�꽦�븳�떎
-           		// �쐞�뿉�꽌 留뚮뱺 �젙蹂대�� Filelist�뿉 異붽��븳�떎 
+           		file = new File(filePath2 + storedFileName); 
+           		multipartFile.transferTo(file);
+           		
            		fileListMap2 = new HashMap<String,Object>();
            		fileListMap2.put("MOVIE_NO", MOVIE_NO);
            		fileListMap2.put("STILLCUT_ORGNAME", originalFileName);
@@ -169,7 +170,7 @@ public class MovieFileUtils {
         String originalFileName = null;
         String originalFileExtension = null;
         String storedFileName = null;
-        // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗 List (�떎以묓뙆�씪�쟾�넚)
+       
         List<Map<String,Object>> fileList2 = new ArrayList<Map<String,Object>>(); 
         Map<String, Object> fileListMap2 = null;
          
@@ -185,7 +186,7 @@ public class MovieFileUtils {
 
          		originalFileName = multipartFile.getOriginalFilename();
            		originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32�옄由ъ쓽 �옖�뜡�븳 �뙆�씪�씠由� �깮�꽦�븯怨� �썝蹂명뙆�씪�쓽 �솗�옣�옄瑜� 遺숈뿬以��떎
+           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; 
                 
            		multipartFile.transferTo(new File(filePath2 + storedFileName));
            		
@@ -232,12 +233,12 @@ public class MovieFileUtils {
         String originalFileExtension = null;
         String storedFileName = null;
          
-        List<Map<String,Object>> fileList3 = new ArrayList<Map<String,Object>>(); // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗 List (�떎以묓뙆�씪�쟾�넚)
+        List<Map<String,Object>> fileList3 = new ArrayList<Map<String,Object>>(); 
         Map<String, Object> fileListMap3 = null;
                
         String MOVIE_NO = (String)map.get("MOVIE_NO");
          
-        File file = new File(filePath); // �뙆�씪�쓣 ���옣�븷 寃쎈줈�뿉 �빐�떦�뤃�뜑媛� �뾾�쑝硫� �뤃�뜑瑜� �깮�꽦�븳�떎
+        File file = new File(filePath); 
         if(file.exists() == false){
             file.mkdirs();
         }
@@ -246,15 +247,15 @@ public class MovieFileUtils {
             multipartFile = multipartHttpServletRequest.getFile(iterator.next());
             System.out.println("test ============================== " + multipartFile.getName());
 
-         	if(multipartFile.isEmpty() == false) {  // �뙆�씪�쓽 �젙蹂대�� 諛쏆븘�꽌 �깉濡쒖슦�� �씠由꾩쑝濡� 蹂�寃쏀븯�뒗 濡쒖쭅
+         	if(multipartFile.isEmpty() == false) {  
 
             	originalFileName = multipartFile.getOriginalFilename();
             	originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; // 32�옄由ъ쓽 �옖�뜡�븳 �뙆�씪�씠由� �깮�꽦�븯怨� �썝蹂명뙆�씪�쓽 �솗�옣�옄瑜� 遺숈뿬以��떎
+           		storedFileName = CommonUtils.getRandomString() + originalFileExtension; 
                 
-           		file = new File(filePath3 + storedFileName); // �꽌踰꾩뿉 �떎�젣 �뙆�씪�쓣 ���옣�븯�뒗 遺�遺�
-           		multipartFile.transferTo(file); // 吏��젙�맂 寃쎈줈�뿉 �뙆�씪�쓣 �깮�꽦�븳�떎
-           		// �쐞�뿉�꽌 留뚮뱺 �젙蹂대�� Filelist�뿉 異붽��븳�떎 
+           		file = new File(filePath3 + storedFileName); 
+           		multipartFile.transferTo(file); 
+           	
            		fileListMap3 = new HashMap<String,Object>();
            		fileListMap3.put("MOVIE_NO", MOVIE_NO);
            		fileListMap3.put("SLIDER_ORGNAME", originalFileName);
@@ -265,7 +266,7 @@ public class MovieFileUtils {
         return fileList3;
     }
     
-    /*�쁺�솕 �뒳�씪�씠�뱶 �뙆�씪 �닔�젙*/ 
+    
     public List<Map<String, Object>> parseUpdateFileInfo3(Map<String, Object> map, HttpServletRequest request) throws Exception{
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
@@ -274,7 +275,7 @@ public class MovieFileUtils {
         String originalFileName = null;
         String originalFileExtension = null;
         String storedFileName = null;
-        // �겢�씪�씠�뼵�듃�뿉�꽌 �쟾�넚�맂 �뙆�씪 �젙蹂대�� �떞�븘�꽌 諛섑솚�쓣 �빐二쇰뒗 List (�떎以묓뙆�씪�쟾�넚)
+       
         List<Map<String,Object>> fileList3 = new ArrayList<Map<String,Object>>(); 
         Map<String, Object> fileListMap3 = null;
          
