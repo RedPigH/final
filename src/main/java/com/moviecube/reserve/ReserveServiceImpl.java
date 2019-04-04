@@ -50,12 +50,6 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		return reserveDAO.MyReservation(map);
 	}
-	
-	@Override
-	public List<Map<String, Object>> MyAllReservation(Map<String, Object> map) throws Exception {
-		
-		return reserveDAO.MyReservation(map);
-	}
 
 	@Override
 	public Map<String, Object> selectOneMovie(Map<String, Object> map) throws Exception {

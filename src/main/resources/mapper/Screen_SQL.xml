@@ -6,9 +6,9 @@
 	<!-- 상영관 리스트 -->
 	<select id="selectScreenList" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
-			SELECT s.SCREEN_NO, s.SCREEN_NAME, s.SCREEN_TYPE, c.CINEMA_NAME  
-			FROM SCREEN s 
-			INNER JOIN CINEMA c ON s.CINEMA_NO = c.CINEMA_NO 
+			SELECT S.SCREEN_NO, S.SCREEN_NAME, S.SCREEN_TYPE, C.CINEMA_NAME  
+			FROM SCREEN S 
+			INNER JOIN CINEMA C ON S.CINEMA_NO = C.CINEMA_NO 
 			ORDER BY SCREEN_NO ASC
 		]]>
 	</select>
@@ -16,11 +16,11 @@
 	<!-- 영화관 별 상영관 리스트 -->
 	<select id = "selectCinemaScreen" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
-			SELECT s.SCREEN_NO, s.SCREEN_NAME
-			FROM SCREEN s 
-			INNER JOIN CINEMA c ON s.CINEMA_NO = c.CINEMA_NO 
-			INNER JOIN MC_MOVIE m ON m.MOVIE_TYPE = s.SCREEN_TYPE
-			WHERE s.CINEMA_NO = #{CINEMA_NO} AND m.MOVIE_NO = #{MOVIE_NO}
+			SELECT S.SCREEN_NO, S.SCREEN_NAME
+			FROM SCREEN S 
+			INNER JOIN CINEMA C ON S.CINEMA_NO = C.CINEMA_NO 
+			INNER JOIN MC_MOVIE M ON M.MOVIE_TYPE = S.SCREEN_TYPE
+			WHERE S.CINEMA_NO = #{CINEMA_NO} AND M.MOVIE_NO = #{MOVIE_NO}
 			ORDER BY SCREEN_NO ASC
 		]]>
 	</select>
@@ -28,9 +28,9 @@
 	<!-- 상영관 선택 -->
 	<select id = "selectOneScreen" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
-			SELECT s.SCREEN_NO, s.SCREEN_NAME, s.SCREEN_TYPE, c.CINEMA_NAME  
-			FROM SCREEN s 
-			INNER JOIN CINEMA c ON s.CINEMA_NO = c.CINEMA_NO 
+			SELECT S.SCREEN_NO, S.SCREEN_NAME, S.SCREEN_TYPE, C.CINEMA_NAME  
+			FROM SCREEN S 
+			INNER JOIN CINEMA C ON S.CINEMA_NO = C.CINEMA_NO 
 			WHERE SCREEN_NO = #{SCREEN_NO}
 			ORDER BY SCREEN_NO ASC
 		]]>
@@ -79,18 +79,18 @@
 	
 	<!-- 회원 검색 -->
 	<select id="screenSearch" resultType="hashmap" parameterType="hashmap">
-		SELECT s.SCREEN_NO, s.SCREEN_NAME, s.SCREEN_TYPE, c.CINEMA_NAME  
-			FROM SCREEN s, CINEMA c
-			WHERE s.CINEMA_NO = c.CINEMA_NO 
+		SELECT S.SCREEN_NO, S.SCREEN_NAME, S.SCREEN_TYPE, C.CINEMA_NAME  
+			FROM SCREEN S, CINEMA C
+			WHERE S.CINEMA_NO = C.CINEMA_NO 
 			<choose>
 				<when test = "CINEMA_NAME != NULL">
-					AND c.CINEMA_NAME like '%'||#{CINEMA_NAME}||'%'
+					AND C.CINEMA_NAME LIKE '%'||#{CINEMA_NAME}||'%'
 				</when>
 				<when test = "SCREEN_TYPE != NULL">
-					AND s.SCREEN_TYPE like '%'||#{SCREEN_TYPE}||'%'
+					AND S.SCREEN_TYPE LIKE '%'||#{SCREEN_TYPE}||'%'
 				</when>
 				<when test = "SCREEN_NAME != NULL">
-					AND s.SCREEN_NAME like '%'||#{SCREEN_NAME}||'%'
+					AND S.SCREEN_NAME LIKE '%'||#{SCREEN_NAME}||'%'
 				</when>
 			</choose>
 				ORDER BY SCREEN_NO ASC

@@ -17,7 +17,7 @@ import com.moviecube.common.CommonUtils;
  
 @Component("memberFileUtils") // 이 객체의 관리를 스프링이 담당하도록 함
 public class memberFileUtils {
-	private static final String filePath = "C:/maven/moviecube/src/main/webapp/resources/upload/mypage//"; // POSTER 파일의 저장위치
+	private static final String filePath = "C:\\java\\maven\\MovieCube\\src\\main\\webapp\\resources\\upload\\mypage\\"; // POSTER 파일의 저장위치
     
     /*영화 포스터 파일 Insert*/ 
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
