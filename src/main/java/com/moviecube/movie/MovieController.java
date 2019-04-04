@@ -108,8 +108,6 @@ public class MovieController {
 			mv.addObject("ranking", map3.get("RNUM"));
 		}
 
-		System.out.println("헐 제발" + map3.get("RNUM"));
-
 		mv.addObject("map", map.get("map"));
 
 		mv.addObject("openDate", openDate);

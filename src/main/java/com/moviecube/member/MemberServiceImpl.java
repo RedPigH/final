@@ -22,8 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
 
-	@Resource(name = "memberFileUtils") // @Conponent �뼱�끂�뀒�씠�뀡�쓣 �씠�슜�븯�뿬 �벑濡앺븳 媛앹껜瑜� @Resource �뼱�끂�뀒�씠�뀡�쓣 �씠�슜�븯�뿬
-										// 媛앹껜瑜� �꽑�뼵 �븳�떎
+	@Resource(name = "memberFileUtils") 								
 	private memberFileUtils fileUtils;
 
 	@Override
@@ -123,9 +122,8 @@ public class MemberServiceImpl implements MemberService {
             }
      }
 
-	@Override
-	public void deleteProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+     @Override
+		public void deleteFile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+				memberDAO.deleteFile(map); 	
+	  }
 }
