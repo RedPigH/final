@@ -6,59 +6,58 @@
 	<!-- 영화 리스트 -->
 	<select id="selectMovieList" resultType="hashmap"
 		parameterType="hashmap">
-
 		<![CDATA[
-		select 
-			m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.FILE_NO, f.POSTER_ORGNAME, f.POSTER_SAVNAME, f.DEL_GB
-				FROM MC_MOVIE m INNER JOIN MC_MOVIE_FILE f 
-					ON m.MOVIE_NO = f.MOVIE_NO 
-						WHERE f.DEL_GB = 'N'
-							order by m.MOVIE_NAME asc
+			SELECT 
+			M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+			M.MOVIE_GRADE, M.MOVIE_AGE, F.FILE_NO, F.POSTER_ORGNAME, F.POSTER_SAVNAME, F.DEL_GB
+			FROM MC_MOVIE M INNER JOIN MC_MOVIE_FILE F 
+			ON M.MOVIE_NO = F.MOVIE_NO 
+			WHERE F.DEL_GB = 'N'
+			ORDER BY M.MOVIE_NAME ASC
 		]]>
 	</select>
 
 	<!-- 영화 중복제거 리스트 -->
 	<select id="DupMovieList" resultType="hashmap"
 		parameterType="hashmap">
-		<![CDATA[
-		select m.movie_name, m.movie_type, m.movie_age, f.poster_savname
-		from (select * from mc_movie
-		where rowid in(select max(rowid) from mc_movie group by movie_name)) m
-		inner join mc_movie_file f
-		on m.movie_no = f.movie_no
-		where f.del_gb = 'N'
-		order by m.movie_name asc
-		]]>
+			<![CDATA[
+				SELECT M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_AGE, F.POSTER_SAVNAME
+				FROM (SELECT * FROM MC_MOVIE
+				WHERE ROWID IN(SELECT MAX(ROWID) FROM MC_MOVIE GROUP BY MOVIE_NAME)) M
+				INNER JOIN MC_MOVIE_FILE F
+				ON M.MOVIE_NO = F.MOVIE_NO
+				WHERE F.DEL_GB = 'N'
+				ORDER BY M.MOVIE_NAME ASC
+			]]>
 	</select>
 
-	<!-- 인기 영화 리스트(예매율순) -->
+	<!-- 인기 영화 리스트(예매율순) boxoffice -->
 	<select id="HotMovieList" resultType="hashmap"
 		parameterType="hashmap">
-	<![CDATA[
-			select h.movie_no, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-	         m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname, (select count(*) from reservation where movie_no = h.movie_no) as rev_cnt
-	      from (select * from (select * from reservation r inner join time t on r.time_no = t.time_no)
-	      where rowid in(select max(rowid) from (select * from reservation r inner join time t on r.time_no = t.time_no) group by movie_no)) h
-	      inner join mc_movie m on h.movie_no = m.movie_no
-	      inner join mc_movie_file f on h.movie_no = f.movie_no
-	      where f.del_gb = 'N'
-	      order by rev_cnt desc, m.movie_name asc
-	]]>
+			<![CDATA[
+				SELECT H.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+			    M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME, (SELECT COUNT(*) FROM RESERVATION WHERE MOVIE_NO = H.MOVIE_NO) AS REV_CNT
+			    FROM (SELECT * FROM (SELECT * FROM RESERVATION R INNER JOIN TIME T ON R.TIME_NO = T.TIME_NO)
+			    WHERE ROWID IN(SELECT MAX(ROWID) FROM (SELECT * FROM RESERVATION R INNER JOIN TIME T ON R.TIME_NO = T.TIME_NO) GROUP BY MOVIE_NO)) H
+			    INNER JOIN MC_MOVIE M ON H.MOVIE_NO = M.MOVIE_NO
+			    INNER JOIN MC_MOVIE_FILE F ON H.MOVIE_NO = F.MOVIE_NO
+			    WHERE F.DEL_GB = 'N'
+			    ORDER BY REV_CNT DESC, M.MOVIE_NAME ASC
+			]]>
 	</select>
 	
 	<!-- 인기 영화 리스트(예매율순) -->
 	<select id="selectHotMovie" resultType="hashmap" parameterType="hashmap">
-	<![CDATA[
-			select rownum rnum from (select h.movie_no, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-	         m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname, (select count(*) from reservation where movie_no = h.movie_no) as rev_cnt
-	      from (select * from (select * from reservation r inner join time t on r.time_no = t.time_no)
-	      where rowid in(select max(rowid) from (select * from reservation r inner join time t on r.time_no = t.time_no) group by movie_no)) h
-	      inner join mc_movie m on h.movie_no = m.movie_no
-	      inner join mc_movie_file f on h.movie_no = f.movie_no
-	      where f.del_gb = 'N'
-	      order by rev_cnt desc, m.movie_name asc) where movie_no = {#movie_no}
-	]]>
+			<![CDATA[
+				SELECT ROWNUM RNUM FROM (SELECT H.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+			    M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME, (SELECT COUNT(*) FROM RESERVATION WHERE MOVIE_NO = H.MOVIE_NO) AS REV_CNT
+			    FROM (SELECT * FROM (SELECT * FROM RESERVATION R INNER JOIN TIME T ON R.TIME_NO = T.TIME_NO)
+			    WHERE ROWID IN(SELECT MAX(ROWID) FROM (SELECT * FROM RESERVATION R INNER JOIN TIME T ON R.TIME_NO = T.TIME_NO) GROUP BY MOVIE_NO)) H
+			    INNER JOIN MC_MOVIE M ON H.MOVIE_NO = M.MOVIE_NO
+			    INNER JOIN MC_MOVIE_FILE F ON H.MOVIE_NO = F.MOVIE_NO
+			    WHERE F.DEL_GB = 'N'
+			    ORDER BY REV_CNT DESC, M.MOVIE_NAME ASC) WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</select>
 	
 	
@@ -66,443 +65,431 @@
 	<!-- 최근 개봉 영화 리스트 -->
 	<select id="LatelyMovieList" resultType="hashmap"
 		parameterType="hashmap">
-	<![CDATA[
-		select m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname
-		from (select * from mc_movie
-		where rowid in(select max(rowid) from mc_movie group by movie_name)) m
-		inner join mc_movie_file f
-		on m.movie_no = f.movie_no
-		where f.del_gb = 'N'
-		order by m.movie_opendate desc, m.movie_name asc
-	]]>
+			<![CDATA[
+				SELECT M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+				M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME
+				FROM (SELECT * FROM MC_MOVIE
+				WHERE ROWID IN(SELECT MAX(ROWID) FROM MC_MOVIE GROUP BY MOVIE_NAME)) M
+				INNER JOIN MC_MOVIE_FILE F
+				ON M.MOVIE_NO = F.MOVIE_NO
+				WHERE F.DEL_GB = 'N'
+				ORDER BY M.MOVIE_OPENDATE DESC, M.MOVIE_NAME ASC
+			]]>
 	</select>
 
 	<!-- 개봉 예정 영화 리스트 -->
 	<select id="ExpectedMovieList" resultType="hashmap"
 		parameterType="hashmap">
-	<![CDATA[
-		select m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname
-		from (select * from mc_movie
-		where rowid in(select max(rowid) from mc_movie group by movie_name)) m
-		inner join mc_movie_file f
-		on m.movie_no = f.movie_no
-		where f.del_gb = 'N' and m.movie_opendate >= sysdate
-		order by m.movie_opendate asc, m.movie_name asc
-	]]>
+			<![CDATA[
+				SELECT M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+				M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME
+				FROM (SELECT * FROM MC_MOVIE
+				WHERE ROWID IN(SELECT MAX(ROWID) FROM MC_MOVIE GROUP BY MOVIE_NAME)) M
+				INNER JOIN MC_MOVIE_FILE F
+				ON M.MOVIE_NO = F.MOVIE_NO
+				WHERE F.DEL_GB = 'N' AND M.MOVIE_OPENDATE >= SYSDATE
+				ORDER BY M.MOVIE_OPENDATE ASC, M.MOVIE_NAME ASC
+			]]>
 	</select>
 	
 	<!-- 평점 순 영화 리스트 -->
 	<select id="GradeMovieList" resultType = "hashmap" parameterType = "hashmap">
-	<![CDATA[
-		select m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname
-		from (select * from mc_movie
-		where rowid in(select max(rowid) from mc_movie group by movie_name)) m
-		inner join mc_movie_file f
-		on m.movie_no = f.movie_no
-		where f.del_gb = 'N'
-		order by m.movie_grade desc, m.movie_name asc
-	]]>
+			<![CDATA[
+				SELECT M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+				M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME
+				FROM (SELECT * FROM MC_MOVIE
+				WHERE ROWID IN(SELECT MAX(ROWID) FROM MC_MOVIE GROUP BY MOVIE_NAME)) M
+				INNER JOIN MC_MOVIE_FILE F
+				ON M.MOVIE_NO = F.MOVIE_NO
+				WHERE F.DEL_GB = 'N'
+				ORDER BY M.MOVIE_GRADE DESC, M.MOVIE_NAME ASC
+			]]>
 	</select>
 	
 	<!-- 리뷰 개수 순 영화 리스트 -->
 	<select id="CommentMovieList" resultType = "hashmap" parameterType = "hashmap">
-	<![CDATA[
-		select m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.poster_savname, (select count(*) from mc_comment where movie_no = m.movie_no) as total_cmt
-		from (select * from mc_movie
-		where rowid in(select max(rowid) from mc_movie group by movie_name)) m
-		inner join mc_movie_file f on m.movie_no = f.movie_no
-		where f.del_gb = 'N'
-		order by total_cmt desc, m.movie_name asc
-	]]>
+			<![CDATA[
+				SELECT M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+				M.MOVIE_GRADE, M.MOVIE_AGE, F.POSTER_SAVNAME, (SELECT COUNT(*) FROM MC_COMMENT WHERE MOVIE_NO = M.MOVIE_NO) AS TOTAL_CMT
+				FROM (SELECT * FROM MC_MOVIE
+				WHERE ROWID IN(SELECT MAX(ROWID) FROM MC_MOVIE GROUP BY MOVIE_NAME)) M
+				INNER JOIN MC_MOVIE_FILE F ON M.MOVIE_NO = F.MOVIE_NO
+				WHERE F.DEL_GB = 'N'
+				ORDER BY TOTAL_CMT DESC, M.MOVIE_NAME ASC
+			]]>
 	</select>
 	
 	<!-- 영화 상세 정보 + 포스터 파일 상세 정보 -->
 	<select id="selectMovieDetail" resultType="hashmap"
 		parameterType="hashmap">
-
-		<![CDATA[
-		select 
-			m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, m.MOVIE_RUNTIME, m.MOVIE_SUBTITLE, f.FILE_NO, f.POSTER_ORGNAME, f.POSTER_SAVNAME, f.DEL_GB 
-				FROM MC_MOVIE m, MC_MOVIE_FILE f
-					WHERE m.MOVIE_NO = f.MOVIE_NO
-					AND m.MOVIE_NO = #{MOVIE_NO} 
-					AND f.DEL_GB = 'N'
-								
-		]]>
+			<![CDATA[
+				SELECT 
+				M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+				M.MOVIE_GRADE, M.MOVIE_AGE, M.MOVIE_RUNTIME, M.MOVIE_SUBTITLE, F.FILE_NO, F.POSTER_ORGNAME, F.POSTER_SAVNAME, F.DEL_GB 
+				FROM MC_MOVIE M, MC_MOVIE_FILE F
+				WHERE M.MOVIE_NO = F.MOVIE_NO
+				AND M.MOVIE_NO = #{MOVIE_NO} 
+				AND F.DEL_GB = 'N'				
+			]]>
 	</select>
 
 	<!-- 영화 스틸컷 파일 상세 정보 -->
  	<select id="selectMovieFileDetail" resultType="hashmap" parameterType="hashmap">
-
-		<![CDATA[
-		select 
-			m.MOVIE_NO, s.STILLCUT_NO, s.STILLCUT_ORGNAME, s.STILLCUT_SAVNAME, s.DEL_GB
-				FROM MC_MOVIE m INNER JOIN STILLCUT s
-					ON m.MOVIE_NO = s.MOVIE_NO 
-						WHERE m.MOVIE_NO = #{MOVIE_NO} and s.DEL_GB = 'N'
-		]]>
+			<![CDATA[
+				SELECT 
+				M.MOVIE_NO, S.STILLCUT_NO, S.STILLCUT_ORGNAME, S.STILLCUT_SAVNAME, S.DEL_GB
+				FROM MC_MOVIE M INNER JOIN STILLCUT S
+				ON M.MOVIE_NO = S.MOVIE_NO 
+				WHERE M.MOVIE_NO = #{MOVIE_NO} AND S.DEL_GB = 'N'
+			]]>
 	</select>
 	
 	<!-- 영화 슬라이더 이미지 파일 상세 정보 -->
  	<select id="selectSliderFileDetail" resultType="hashmap" parameterType="hashmap">
-
-		<![CDATA[
-		select 
-			m.MOVIE_NO, r.SLIDER_NO, r.SLIDER_ORGNAME, r.SLIDER_SAVNAME, r.DEL_GB
-				FROM MC_MOVIE m INNER JOIN MC_SLIDER r
-					ON m.MOVIE_NO = r.MOVIE_NO 
-						WHERE m.MOVIE_NO = #{MOVIE_NO} and r.DEL_GB = 'N'
-		]]>
+			<![CDATA[
+				SELECT 
+				M.MOVIE_NO, R.SLIDER_NO, R.SLIDER_ORGNAME, R.SLIDER_SAVNAME, R.DEL_GB
+				FROM MC_MOVIE M INNER JOIN MC_SLIDER R
+				ON M.MOVIE_NO = R.MOVIE_NO 
+				WHERE M.MOVIE_NO = #{MOVIE_NO} AND R.DEL_GB = 'N'
+			]]>
 	</select>
 	
 	<!-- 영화 파일 리스트 -->
 	<select id="selectFileList" resultType="hashmap"
 		parameterType="hashmap">
-
-		<![CDATA[
-        SELECT
-            FILE_NO,
-            POSTER_ORGNAME,
-        FROM
-            MC_MOVIE_FILE
-        WHERE
-            MOVIE_NO = #{MOVIE_NO}
-            AND DEL_GB = 'N'
-   		 ]]>
+			<![CDATA[
+		        SELECT
+		            FILE_NO,
+		            POSTER_ORGNAME,
+		        FROM
+		            MC_MOVIE_FILE
+		        WHERE
+		            MOVIE_NO = #{MOVIE_NO}
+		            AND DEL_GB = 'N'
+	   		 ]]>
 	</select>
 
 
 	<!-- 영화 스틸컷 리스트 -->
 	<select parameterType="hashmap" resultType="hashmap"
 		id="selectStillCutList">
-		<![CDATA[
-        SELECT * FROM STILLCUT WHERE MOVIE_NO = #{MOVIE_NO} AND DEL_GB = 'N' ORDER BY STILLCUT_NO DESC
-   		 ]]>
+			<![CDATA[
+	        	SELECT * FROM STILLCUT WHERE MOVIE_NO = #{MOVIE_NO} AND DEL_GB = 'N' ORDER BY STILLCUT_NO DESC
+	   		 ]]>
 	</select>
 	
 	<!-- 영화 리뷰 코멘트 리스트 -->
 
 	<select id="selectCommentList" resultType="hashmap"
 		parameterType="hashmap">
-		<![CDATA[
-        SELECT * FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO} AND CMT_DEL = 'N' ORDER BY CMT_REGDATE, CMT_NO
-   		 ]]>
+			<![CDATA[
+	        	SELECT * FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO} AND CMT_DEL = 'N' ORDER BY CMT_REGDATE, CMT_NO
+	   		 ]]>
 	</select>
 	
 	<!-- 코멘트 페이징 -->
 	<select id="selectCommentPagingList" resultType="hashmap" parameterType="hashmap">
-		<![CDATA[
-		SELECT t.* FROM 
-		( SELECT ROWNUM RNUM, c.* FROM MC_COMMENT c WHERE MOVIE_NO = #{MOVIE_NO} ORDER BY CMT_NO DESC) t WHERE RNUM BETWEEN #{START_COUNT} AND #{END_COUNT}
-   		 ]]>
+			<![CDATA[
+			SELECT T.* FROM 
+			( SELECT ROWNUM RNUM, C.* FROM MC_COMMENT C WHERE MOVIE_NO = #{MOVIE_NO} ORDER BY CMT_NO DESC) T WHERE RNUM BETWEEN #{START_COUNT} AND #{END_COUNT}
+	   		 ]]>
 	</select>
 	
 
 	<select id="selectCommentCount" resultType="hashmap" parameterType="hashmap">
-		<![CDATA[
-        	SELECT COUNT(*) AS COMMENT_CNT FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO}
-   		 ]]>
+			<![CDATA[
+	        	SELECT COUNT(*) AS COMMENT_CNT FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO}
+	   		 ]]>
 	</select>
 
 
 
 	<!-- 영화 리뷰 점수 총 합,개수 -->
 	<select id = "CommentLikeInfo" parameterType = "hashmap" resultType = "hashmap">
-		<![CDATA[
-			SELECT SUM(CMT_LIKE) AS ALL_LIKE, COUNT(*) AS CNT FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				SELECT SUM(CMT_LIKE) AS ALL_LIKE, COUNT(*) AS CNT FROM MC_COMMENT WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</select>
 
 	<!-- 영화 정보 입력 -->
 	<insert id="insertMovie" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MOVIE_NO">
 		<selectKey keyProperty="MOVIE_NO" resultType="int"
 			order="BEFORE">
-			select MC_MOVIE_NO_SEQ.NEXTVAL from DUAL
+			SELECT MC_MOVIE_NO_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		<![CDATA[
-		insert into MC_MOVIE 
-		( 
-			MOVIE_NO, 
-			MOVIE_NAME, 
-			MOVIE_TYPE, 
-		    MOVIE_OPENDATE, 
-		    MOVIE_DIRECTOR, 
-	        MOVIE_ACTOR, 
-	        MOVIE_GENRE, 
-	        MOVIE_CONTENT, 
-	        MOVIE_GRADE,
-		    MOVIE_AGE, 
-		    MOVIE_RUNTIME,
-		    MOVIE_SUBTITLE
-			)
-		values 
-		(
-			#{MOVIE_NO},
-			#{MOVIE_NAME},
-			#{MOVIE_TYPE},
-			#{MOVIE_OPENDATE},
-			#{MOVIE_DIRECTOR}, 
-			#{MOVIE_ACTOR},
-			#{MOVIE_GENRE},
-			#{MOVIE_CONTENT},
-			'0',
-			#{MOVIE_AGE},
-			#{MOVIE_RUNTIME},
-			#{MOVIE_SUBTITLE}
-			)		 		  
-		]]>
+			<![CDATA[
+				INSERT INTO MC_MOVIE 
+				( 
+					MOVIE_NO, 
+					MOVIE_NAME, 
+					MOVIE_TYPE, 
+				    MOVIE_OPENDATE, 
+				    MOVIE_DIRECTOR, 
+			        MOVIE_ACTOR, 
+			        MOVIE_GENRE, 
+			        MOVIE_CONTENT, 
+			        MOVIE_GRADE,
+				    MOVIE_AGE, 
+				    MOVIE_RUNTIME,
+				    MOVIE_SUBTITLE
+					)
+				VALUES 
+				(
+					#{MOVIE_NO},
+					#{MOVIE_NAME},
+					#{MOVIE_TYPE},
+					#{MOVIE_OPENDATE},
+					#{MOVIE_DIRECTOR}, 
+					#{MOVIE_ACTOR},
+					#{MOVIE_GENRE},
+					#{MOVIE_CONTENT},
+					'0',
+					#{MOVIE_AGE},
+					#{MOVIE_RUNTIME},
+					#{MOVIE_SUBTITLE}
+					)		 		  
+			]]>
 	</insert>
 
 
 	<!-- 영화 포스터 업로드 -->
 	<insert id="insertFile" parameterType="hashmap">
-
-		<![CDATA[
-        INSERT INTO MC_MOVIE_FILE
-        (
-            FILE_NO,
-            MOVIE_NO,
-            POSTER_ORGNAME,
-            POSTER_SAVNAME
-        )
-        VALUES
-        (
-            MC_MOVIE_FILE_NO_SEQ.NEXTVAL,
-            #{MOVIE_NO},
-            #{POSTER_ORGNAME},
-            #{POSTER_SAVNAME}
-        )
-    	]]>
+			<![CDATA[
+		        INSERT INTO MC_MOVIE_FILE
+		        (
+		            FILE_NO,
+		            MOVIE_NO,
+		            POSTER_ORGNAME,
+		            POSTER_SAVNAME
+		        )
+		        VALUES
+		        (
+		            MC_MOVIE_FILE_NO_SEQ.NEXTVAL,
+		            #{MOVIE_NO},
+		            #{POSTER_ORGNAME},
+		            #{POSTER_SAVNAME}
+		        )
+	    	]]>
 	</insert>
 
 	<!-- 영화 스틸컷 업로드 -->
 	<insert id="insertFile2" parameterType="hashmap">
-
-		<![CDATA[
-        INSERT INTO STILLCUT
-        (
-            STILLCUT_NO,
-            MOVIE_NO,
-            STILLCUT_ORGNAME,
-            STILLCUT_SAVNAME
-        )
-        VALUES
-        (
-            STILLCUT_NO_SEQ.NEXTVAL,
-            #{MOVIE_NO},
-            #{STILLCUT_ORGNAME},
-            #{STILLCUT_SAVNAME}
-        )
-    	]]>
+			<![CDATA[
+		        INSERT INTO STILLCUT
+		        (
+		            STILLCUT_NO,
+		            MOVIE_NO,
+		            STILLCUT_ORGNAME,
+		            STILLCUT_SAVNAME
+		        )
+		        VALUES
+		        (
+		            STILLCUT_NO_SEQ.NEXTVAL,
+		            #{MOVIE_NO},
+		            #{STILLCUT_ORGNAME},
+		            #{STILLCUT_SAVNAME}
+		        )
+	    	]]>
 	</insert>
 	
 	<!-- 영화 메인슬라이더이미지 업로드 -->
 	<insert id="insertFile3" parameterType="hashmap">
-
-		<![CDATA[
-        INSERT INTO MC_SLIDER
-        (
-            SLIDER_NO,
-            MOVIE_NO,
-            SLIDER_ORGNAME,
-            SLIDER_SAVNAME
-        )
-        VALUES
-        (
-            MC_SLIDER_NO_SEQ.NEXTVAL,
-            #{MOVIE_NO},
-            #{SLIDER_ORGNAME},
-            #{SLIDER_SAVNAME}
-        )
-    	]]>
+			<![CDATA[
+		        INSERT INTO MC_SLIDER
+		        (
+		            SLIDER_NO,
+		            MOVIE_NO,
+		            SLIDER_ORGNAME,
+		            SLIDER_SAVNAME
+		        )
+		        VALUES
+		        (
+		            MC_SLIDER_NO_SEQ.NEXTVAL,
+		            #{MOVIE_NO},
+		            #{SLIDER_ORGNAME},
+		            #{SLIDER_SAVNAME}
+		        )
+	    	]]>
 	</insert>
 
 	<insert id="insertComment" parameterType="hashmap"> <!-- MC_COMMENT_NO_SEQ -->
-
-		<![CDATA[
-        INSERT INTO MC_COMMENT
-        (
-            CMT_NO,
-            MOVIE_NO,
-            CMT_ID,
-            CMT_CONTENT,
-            CMT_REGDATE,
-            CMT_LIKE
-        )
-        VALUES
-        (
-            MC_COMMENT_NO_SEQ.NEXTVAL,
-            #{MOVIE_NO},
-            #{CMT_ID},
-            #{CMT_CONTENT},
-            SYSDATE,
-            #{CMT_LIKE}
-        )
-    	]]>
+			<![CDATA[
+		        INSERT INTO MC_COMMENT
+		        (
+		            CMT_NO,
+		            MOVIE_NO,
+		            CMT_ID,
+		            CMT_CONTENT,
+		            CMT_REGDATE,
+		            CMT_LIKE
+		        )
+		        VALUES
+		        (
+		            MC_COMMENT_NO_SEQ.NEXTVAL,
+		            #{MOVIE_NO},
+		            #{CMT_ID},
+		            #{CMT_CONTENT},
+		            SYSDATE,
+		            #{CMT_LIKE}
+		        )
+	    	]]>
 	</insert>
 
 	<!-- 영화 정보 수정 -->
 	<update id="modifyMovie" parameterType="hashMap">
-
-		<![CDATA[
-		update MC_MOVIE set 
-			MOVIE_NAME = #{MOVIE_NAME}, 
-			MOVIE_TYPE = #{MOVIE_TYPE}, 
-		    MOVIE_OPENDATE = #{MOVIE_OPENDATE}, 
-		    MOVIE_DIRECTOR = #{MOVIE_DIRECTOR}, 
-	        MOVIE_ACTOR = #{MOVIE_ACTOR}, 
-	        MOVIE_GENRE = #{MOVIE_GENRE}, 
-	        MOVIE_CONTENT = #{MOVIE_CONTENT}, 
-		    MOVIE_AGE = #{MOVIE_AGE},
-		    MOVIE_RUNTIME = #{MOVIE_RUNTIME},
-		    MOVIE_SUBTITLE = #{MOVIE_SUBTITLE}
-				where MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				UPDATE MC_MOVIE SET 
+				MOVIE_NAME = #{MOVIE_NAME}, 
+				MOVIE_TYPE = #{MOVIE_TYPE}, 
+				MOVIE_OPENDATE = #{MOVIE_OPENDATE}, 
+				MOVIE_DIRECTOR = #{MOVIE_DIRECTOR}, 
+			    MOVIE_ACTOR = #{MOVIE_ACTOR}, 
+			    MOVIE_GENRE = #{MOVIE_GENRE}, 
+			    MOVIE_CONTENT = #{MOVIE_CONTENT}, 
+				MOVIE_AGE = #{MOVIE_AGE},
+				MOVIE_RUNTIME = #{MOVIE_RUNTIME},
+				MOVIE_SUBTITLE = #{MOVIE_SUBTITLE}
+				WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</update>
 
 	<!-- 영화 포스터 수정 -->
 	<update id="updateFileList" parameterType="hashmap">
-    <![CDATA[
-        UPDATE MC_MOVIE_FILE SET
-            DEL_GB = 'Y'
-        WHERE
-            MOVIE_NO = #{MOVIE_NO} 
-    ]]>
+		    <![CDATA[
+		        UPDATE MC_MOVIE_FILE SET
+		            DEL_GB = 'Y'
+		        WHERE
+		            MOVIE_NO = #{MOVIE_NO} 
+		    ]]>
 	</update>
 
 	<!-- 영화 스틸컷 수정 -->
 	<update id="updateFileList2" parameterType="hashmap">
-    <![CDATA[
-        UPDATE STILLCUT SET
-            DEL_GB = 'Y'
-        WHERE
-            MOVIE_NO = #{MOVIE_NO} 
-    ]]>
+		    <![CDATA[
+		        UPDATE STILLCUT SET
+		            DEL_GB = 'Y'
+		        WHERE
+		            MOVIE_NO = #{MOVIE_NO} 
+		    ]]>
 	</update>
 	
 	<!-- 영화 슬라이더 수정 -->
 	<update id="updateFileList3" parameterType="hashmap">
-    <![CDATA[
-        UPDATE MC_SLIDER SET
-            DEL_GB = 'Y'
-        WHERE
-            MOVIE_NO = #{MOVIE_NO} 
-    ]]>
+		    <![CDATA[
+		        UPDATE MC_SLIDER SET
+		            DEL_GB = 'Y'
+		        WHERE
+		            MOVIE_NO = #{MOVIE_NO} 
+		    ]]>
 	</update>
 
 	<!-- 영화 포스터 수정 -->
 	<update id="modifyFile" parameterType="hashmap">
-		<![CDATA[
-		
-		UPDATE MC_MOVIE_FILE SET
-            DEL_GB = 'N'
-        WHERE
-            FILE_NO = #{FILE_NO}  
-
-		]]>
+			<![CDATA[
+				UPDATE MC_MOVIE_FILE SET
+		            DEL_GB = 'N'
+		        WHERE
+		            FILE_NO = #{FILE_NO}  
+			]]>
 	</update>
 
 	<!-- 영화 스틸컷 수정 -->
 	<update id="modifyFile2" parameterType="hashmap">
-		<![CDATA[
-		UPDATE STILL SET
-            DEL_GB = 'N'
-        WHERE
-            STILLCUT_NO = #{STILLCUT_NO} 
-		]]>
+			<![CDATA[
+				UPDATE STILL SET
+		            DEL_GB = 'N'
+		        WHERE
+		            STILLCUT_NO = #{STILLCUT_NO} 
+			]]>
 	</update>
 	
 	<!-- 영화 슬라이더 수정 -->
 	<update id="modifyFile3" parameterType="hashmap">
-		<![CDATA[
-		UPDATE MC_SLIDER
-            DEL_GB = 'N'
-        WHERE
-            SLIDER_NO = #{SLIDER_NO} 
-		]]>
+			<![CDATA[
+				UPDATE MC_SLIDER
+		            DEL_GB = 'N'
+		        WHERE
+		            SLIDER_NO = #{SLIDER_NO} 
+			]]>
 	</update>
 	
 	<!-- 영화 평점 수정 -->
 	<update id = "modifyGrade" parameterType = "hashmap">
-		<![CDATA[
-		UPDATE MC_MOVIE SET
-			MOVIE_GRADE = #{MOVIE_GRADE}
-		WHERE
-			MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				UPDATE MC_MOVIE SET
+					MOVIE_GRADE = #{MOVIE_GRADE}
+				WHERE
+					MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</update>
 
 	<!-- 영화 삭제 -->
 	<delete id="deleteMovie" parameterType="hashmap">
-		<![CDATA[
-		delete from MC_MOVIE 
-			where MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				DELETE FROM MC_MOVIE 
+					WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</delete>
 
 	<!-- 영화 포스터 삭제 -->
 	<delete id="deleteFile" parameterType="hashmap">
-		<![CDATA[
-		delete form MC_MOVIE_FILE
-			where MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				DELETE FORM MC_MOVIE_FILE
+					WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</delete>
 
 
 	<!-- 영화 스틸컷 삭제 -->
 	<delete id="deleteFile2" parameterType="hashmap">
-		<![CDATA[
-		delete from STILLCUT 
-			where MOVIE_NO = #{MOVIE_NO}
-		]]>
+			<![CDATA[
+				DELETE FROM STILLCUT 
+					WHERE MOVIE_NO = #{MOVIE_NO}
+			]]>
 	</delete>
 
+	<!-- 코멘트 삭제 -->
 	<delete id="deleteComment" parameterType="hashmap">
-
-		<![CDATA[
-		DELETE FROM MC_COMMENT 
-			WHERE CMT_NO = #{CMT_NO}
-		]]>
+			<![CDATA[
+				DELETE FROM MC_COMMENT 
+					WHERE CMT_NO = #{CMT_NO}
+			]]>
 	</delete>
 	
 	<!--관리자 영화 검색 -->
 	<select id="movieSearch" resultType="hashmap" parameterType="hashmap">
-		select 
-			m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE, m.MOVIE_CONTENT, 
-			m.MOVIE_GRADE, m.MOVIE_AGE, f.FILE_NO, f.POSTER_ORGNAME, f.POSTER_SAVNAME, f.DEL_GB
-				FROM MC_MOVIE m INNER JOIN MC_MOVIE_FILE f 
-					ON m.MOVIE_NO = f.MOVIE_NO 
-						WHERE f.DEL_GB = 'N'
+		SELECT 
+			M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE, M.MOVIE_CONTENT, 
+			M.MOVIE_GRADE, M.MOVIE_AGE, F.FILE_NO, F.POSTER_ORGNAME, F.POSTER_SAVNAME, F.DEL_GB
+				FROM MC_MOVIE M INNER JOIN MC_MOVIE_FILE F 
+					ON M.MOVIE_NO = F.MOVIE_NO 
+						WHERE F.DEL_GB = 'N'
 							<choose>
 								<when test = "MOVIE_NAME != NULL">
-									AND m.MOVIE_NAME like '%'||#{MOVIE_NAME}||'%'
+									AND M.MOVIE_NAME LIKE '%'||#{MOVIE_NAME}||'%'
 								</when>
 								<when test = "MOVIE_DIRECTOR != NULL">
-									AND m.MOVIE_DIRECTOR like '%'||#{MOVIE_DIRECTOR}||'%'
+									AND M.MOVIE_DIRECTOR LIKE '%'||#{MOVIE_DIRECTOR}||'%'
 								</when>
 								<when test = "MOVIE_ACTOR != NULL">
-									AND m.MOVIE_ACTOR like '%'||#{MOVIE_ACTOR}||'%'
+									AND M.MOVIE_ACTOR LIKE '%'||#{MOVIE_ACTOR}||'%'
 								</when>
 							</choose>
-							order by m.MOVIE_NO desc
+							ORDER BY M.MOVIE_NO DESC
 	</select>
 	
 	<!-- 메인화면 영화검색 -->
 	<select parameterType="hashmap" resultType="hashmap" id="MainMovieSearch">
-	select m.MOVIE_NO, m.MOVIE_NAME, m.MOVIE_TYPE, m.MOVIE_OPENDATE, m.MOVIE_DIRECTOR, m.MOVIE_ACTOR, m.MOVIE_GENRE,
-	m.MOVIE_CONTENT,m.MOVIE_GRADE, m.MOVIE_AGE, f.FILE_NO, f.POSTER_ORGNAME, f.POSTER_SAVNAME, f.DEL_GB
-	FROM MC_MOVIE m INNER JOIN MC_MOVIE_FILE f ON m.MOVIE_NO = f.MOVIE_NO
-	WHERE f.DEL_GB = 'N' 
-	AND m.MOVIE_NAME like '%' || #{searchKeyword} || '%'
-	OR m.MOVIE_DIRECTOR like '%' || #{searchKeyword} || '%' 
-	OR m.MOVIE_ACTOR like '%' || #{searchKeyword} || '%' 
-	OR m.MOVIE_GENRE like '%' || #{searchKeyword} || '%' 
-	OR m.MOVIE_CONTENT like '%' || #{searchKeyword} || '%'
-	order by m.MOVIE_NO desc 
+		SELECT M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_OPENDATE, M.MOVIE_DIRECTOR, M.MOVIE_ACTOR, M.MOVIE_GENRE,
+		M.MOVIE_CONTENT,M.MOVIE_GRADE, M.MOVIE_AGE, F.FILE_NO, F.POSTER_ORGNAME, F.POSTER_SAVNAME, F.DEL_GB
+		FROM MC_MOVIE M INNER JOIN MC_MOVIE_FILE F ON M.MOVIE_NO = F.MOVIE_NO
+		WHERE F.DEL_GB = 'N' 
+		AND (M.MOVIE_NAME LIKE '%' || #{searchKeyword} || '%'
+		OR M.MOVIE_DIRECTOR LIKE '%' || #{searchKeyword} || '%' 
+		OR M.MOVIE_ACTOR LIKE '%' || #{searchKeyword} || '%' 
+		OR M.MOVIE_GENRE LIKE '%' || #{searchKeyword} || '%' 
+		OR M.MOVIE_CONTENT LIKE '%' || #{searchKeyword} || '%')
+		ORDER BY M.MOVIE_NO DESC 
 	</select>
 </mapper>

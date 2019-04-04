@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/main/head.jspf"%>
 <link rel="stylesheet" type="text/css" href="/moviecube/resources/css/member.css"/>
-<script src="//code.jquery.com/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 function aaaa(){
@@ -59,11 +59,23 @@ function aaaa(){
 </script>
 </head>
 
-<body>
+<body class="animsition" style="animation-duration: 1500ms; opacity: 1;">
+
+<c:if test="${empty sessionScope.userLoginInfo}">
+	<script type="text/javascript">
+		alert("로그인 해주세요.");
+		window.location.replace("/moviecube/main.do");
+	</script>
+</c:if>
+
+
+<c:if test="${not empty sessionScope.userLoginInfo}">
 
 <%@ include file="/WEB-INF/views/main/body_header.jspf"%>
 <%@ include file="/WEB-INF/views/main/wishList.jspf" %>
 <%@ include file="/WEB-INF/views/member/loginForm.jspf" %>
+<%@ include file="/WEB-INF/views/member/updatePassword.jspf" %>
+<%@ include file="/WEB-INF/views/member/deleteMember.jspf" %>
 
 <div id="container" class="container">
 
@@ -95,31 +107,50 @@ function aaaa(){
 		</div>
 
 		<div class="personal_info_last">
-			<button type="button" class="img_btn psw_change mr6 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" onclick="">비밀번호 변경</button>
-			<button type="button" class="img_btn personal_quit mr6 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" onclick="">회원탈퇴</button>
+			<button type="button" class="img_btn psw_change mr6 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04 js-show-modal3">비밀번호 변경</button>
+			<button type="button" class="img_btn personal_quit mr6 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04 js-show-modal4">회원탈퇴</button>
 		</div>
 
 		<div class="user_wrap">
-		<form id="update" name="update" method="post">
 			<div id="userJoinContainer" class="form-style">
 				<div class="clearfix">
 					<span class="text-sub mb10">*표시 항목은 필수입력 항목입니다.</span>
 				</div>
-
+				
 				<!-- 프로필과 아이디 -->
 				<div class="clearfix myInfoArea1">
-					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left" data-original="" data-image="">
+					<c:choose>
+					<c:when test="${empty map.PROFILE_SAVNAME}">
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/a78f715f334f4bfba308d4b32b2c54b2.jpg" alt="프로필" class="img-circle pull-left">
+					</c:when>
+					<c:otherwise>
+					<img name="photo" id="profilePhotoImg1" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/${map.PROFILE_SAVNAME}" alt="프로필" class="img-circle pull-left">
+					</c:otherwise>
+					</c:choose>
 					<div class="pull-left textArea">
+					<form id="enter" name="enter" enctype="multipart/form-data" method="post">
 						<span class="profile_btn_wrap">
 							<strong>${sessionScope.userLoginInfo.MEMBER_ID}</strong>
+							<input type="hidden" name="MEMBER_NO" value="${sessionScope.userLoginInfo.MEMBER_NO}">
 							<div>
-							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04">찾아보기</button>
+							<input type="file" name="PROFILE_ORGNAME" style="text-indent: 0px; border: 0px;">
+							<c:choose>
+							<c:when test="${empty map1.PROFILE_SAVNAME}">
+							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileEnter()">입력</button>
+							</c:when>
+							<c:otherwise>
+							<button id="imgUpdateBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileUpdate()">수정</button>
+							</c:otherwise>
+							</c:choose>
 							<button id="imgDeleteBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileDel()">삭제</button>
 							</div>
 						</span>
+					</form>
 					</div>
 				</div>
 
+				<form id="update" name="update" method="post">
+				<input type="hidden" name="MEMBER_ID" value="${sessionScope.userLoginInfo.MEMBER_ID}">
 				<h4>기본정보 (필수입력)</h4>
 				<table class="form-table">
 					<caption class="blind2">개인정보(필수입력)수정:비밀번호 입력,이름,생년월일,휴대폰,이메일 수정</caption>
@@ -129,33 +160,33 @@ function aaaa(){
 					</colgroup>
 						<tbody><tr><th scope="row" id="th_myInfo_password"><label for="inputtext2">*비밀번호</label></th>
 						<td headers="th_myInfo_password">
-							<input type="text" id="psw" name="password">
+							<input type="password" id="psw" name="MEMBER_PASSWD1">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row" id="th_myInfo_name"><label for="inputtext4">*이름</label></th>
 						<td headers="th_myInfo_name">
-							<input type="text" id="memberName" name="memberName" value="${sessionScope.userLoginInfo.MEMBER_NAME}" fieldname="이름" required="">
+							<input type="text" id="memberName" name="MEMBER_NAME" value="${sessionScope.userLoginInfo.MEMBER_NAME}" fieldname="이름">
 						</td>
 					</tr>
 
 					<tr>
 						<th scope="row" id="th_myInfo_birthday"><label id="modUserInfo_birthday" for="inputtext5">*생년월일</label></th>
 						<td headers="th_myInfo_birthday">
-							<input type="text" id="memberAge" name="memberAge" value="${sessionScope.userLoginInfo.MEMBER_AGE}" fieldname="생일" required="" maxlength="10">
+							<input type="text" id="memberAge" name="MEMBER_AGE" value="${sessionScope.userLoginInfo.MEMBER_AGE}" fieldname="생일" placeholder="YYYY/MM/DD" maxlength="10">
 						</td>
 					</tr>
 
 					<tr>
 						<th scope="row" id="th_myInfo_mobile"><label id="modUserInfo_phone" for="inputtext8">*휴대폰</label></th>
 						<td headers="th_myInfo_mobile">
-							<input type="text" id="memberPhone" name="memberPhone" value="${sessionScope.userLoginInfo.MEMBER_PHONE}" fieldname="생일" required="" maxlenght="11">
+							<input type="text" id="memberPhone" name="MEMBER_PHONE" value="${sessionScope.userLoginInfo.MEMBER_PHONE}" fieldname="생일" maxlenght="11">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row" id="th_myInfo_email"><label id="modUserInfo_email" for="inputtext9">*이메일</label></th>
 						<td headers="th_myInfo_email">
-							<input type="text" name="emailaddr" value="${sessionScope.userLoginInfo.MEMBER_EMAIL}" fieldname="이메일" validate="email" required="">
+							<input type="text" id="memberEmail" name="MEMBER_EMAIL" value="${sessionScope.userLoginInfo.MEMBER_EMAIL}" fieldname="이메일" validate="email">
 						</td>
 					</tr>
 				</tbody></table>
@@ -229,8 +260,8 @@ function aaaa(){
 				</h2>
 				<div class="agree_area">
 					<p class="txt">이벤트, 신규 서비스, 할인 혜택 등의 소식을 전해드립니다. (소멸포인트 및 공지성 안내 또는 거래정보와 관련된 내용은 수신동의 여부와 상관없이 발송됩니다.)</p>
-					<label class="radio-inline" style="display: inline-block;"> <span style="vertical-align: middle; display: inline-block; width: 18px; height: 18px; position: relative;"><input type="radio" style="position: absolute; width: 16px; height: 16px; padding: 0px; margin: 0px;" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked></span> <strong>동의</strong></label>
-					<label class="radio-inline" style="display: inline-block;"> <span style="vertical-align: middle; display: inline-block; width: 18px; height: 18px; position: relative;"><input type="radio" style="position: absolute; width: 16px; height: 16px; padding: 0px; margin: 0px;" id="smsReceiveYn" name="smsReceiveYn" value="N"></span> <strong>동의 않음</strong></label>
+					<label class="radio-line" style="display: inline-block;"> <span style="vertical-align: middle; display: inline-block; width: 18px; height: 18px; position: relative;"><input type="radio" style="position: absolute; width: 16px; height: 16px; padding: 0px; margin: 0px;" id="marketingYn" name="marketingYn" value="Y" checked></span> <strong>동의</strong></label>
+					<label class="radio-line" style="display: inline-block;"> <span style="vertical-align: middle; display: inline-block; width: 18px; height: 18px; position: relative;"><input type="radio" style="position: absolute; width: 16px; height: 16px; padding: 0px; margin: 0px;" id="marketingYn" name="marketingYn" value="N"></span> <strong>동의 않음</strong></label>
 				</div>
 			</div>
 		</div>
@@ -240,8 +271,9 @@ function aaaa(){
 				<button type="button" class="img_btn user cancel mr7 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" onclick="history.back()">취소</button>
 				<button type="button" class="img_btn user modify ml7 flex-c-m stext-111 cl0 bg1 bor2 hov-btn4 trans-04" id="up">수정</button>
 			</div>
+		</form>
 		</div>
-	</form>
+
 	
 	<script>
 	$(function(){
@@ -256,15 +288,68 @@ function aaaa(){
                 $('#psw').focus();
                 return false;
 			}
+			
+			if($('#memberName').val()==""){
+				modalContents.text("비밀번호는 필수 입력사항입니다.");
+                modal.modal('show');
+                $('#memberName').focus();
+                return false;
+			}
+			
+			if($('#memberAge').val()==""){
+				modalContents.text("비밀번호는 필수 입력사항입니다.");
+                modal.modal('show');
+                $('#memberAge').focus();
+                return false;
+			}
+			
+			if($('#memberPhone').val()==""){
+				modalContents.text("비밀번호는 필수 입력사항입니다.");
+                modal.modal('show');
+                $('#memberPhone').focus();
+                return false;
+			}
+			
+			if($('#memberEmail').val()==""){
+				modalContents.text("비밀번호는 필수 입력사항입니다.");
+                modal.modal('show');
+                $('#memberEmail').focus();
+                return false;
+			}
 				return update();
 		});
 	});
+	
+	function update(){
+    	var update = document.getElementById("update");
+		update.action="/moviecube/member/updateMember.do";
+		update.submit();
+	}
+	
+	function profileEnter(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileEnter.do";
+		Enter.submit();
+	}
+	
+	function profileUpdate(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileUpdate.do";
+		Enter.submit();
+	}
+	
+	function profileDel(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileDelete.do";
+		Enter.submit();
+	}
 	</script>
 	</div>
 </div>
 
 <%@ include file="/WEB-INF/views/main/script.jspf" %>
 
-
+</div>
+</c:if>
 </body>
 </html>

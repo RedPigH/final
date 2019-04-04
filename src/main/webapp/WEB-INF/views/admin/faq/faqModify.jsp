@@ -60,10 +60,9 @@
 							<th scope="row">타입</th>
 							<td>
 								<select name="FAQ_TYPE" class="slct w200">
-									<option value="영화관" <c:if test="${map.FAQ_TYPE == '영화관'}"> selected</c:if>>영화관</option>
-									<option value="상영관" <c:if test="${map.FAQ_TYPE == '상영관'}"> selected</c:if>>상영관</option>
 									<option value="영화예매" <c:if test="${map.FAQ_TYPE == '영화예매'}"> selected</c:if>>영화예매</option>
-							<%-- 	<option value="멤버쉽" <c:if test="${map.FAQ_TYPE == '멤버쉽'}"> selected</c:if>>멤버쉽</option> --%>
+									<option value="영화관" <c:if test="${map.FAQ_TYPE == '영화관'}"> selected</c:if>>영화관</option>
+									<option value="멤버쉽" <c:if test="${map.FAQ_TYPE == '멤버쉽'}"> selected</c:if>>멤버쉽</option>
 									<option value="기타" <c:if test="${map.FAQ_TYPE == '기타'}"> selected</c:if>>기타</option>
 								</select>
 							</td>

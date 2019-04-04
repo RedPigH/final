@@ -4,82 +4,90 @@
 
 <mapper namespace="qna">
 
+	<!-- QNA 리스트 -->
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
-<![CDATA[
-SELECT
-QNA_NO,
-QNA_SUB,
-QNA_ID,
-QNA_REGDATE,
-RE_LEVEL
-FROM 
-MC_QNA
-ORDER BY 
-REF DESC, RE_LEVEL ASC
-]]>
+		<![CDATA[
+			SELECT
+			QNA_NO,
+			QNA_SUB,
+			QNA_ID,
+			QNA_REGDATE,
+			RE_LEVEL
+			FROM 
+			MC_QNA
+			ORDER BY 
+			REF DESC, RE_LEVEL ASC
+		]]>
 	</select>
 
+	<!-- 멤버 한명의 QnA 리스트 불러오기 -->
+	<select id="selectQnaListByMember" resultType="hashmap" parameterType="hashmap">
+		<![CDATA[
+		SELECT * FROM MC_QNA WHERE QNA_ID = #{QNA_ID} AND ROWNUM BETWEEN 1 AND 5 ORDER BY QNA_NO DESC
+		]]>
+	</select>
+
+	<!-- QNA 작성 -->
 	<insert id="insertQna" parameterType="hashmap"
 		useGeneratedKeys="true" keyProperty="QNA_NO">
 		<selectKey keyProperty="QNA_NO" resultType="string"
 			order="BEFORE"> SELECT MC_QNA_NO_SEQ.NEXTVAL FROM DUAL </selectKey> 
 			<![CDATA[ 
-		INSERT INTO MC_QNA 
-		( 
-		QNA_NO, 
-		QNA_SUB, 
-		QNA_ID, 
-		QNA_CONTENT,
-		QNA_REGDATE, 
-		REF, 
-		RE_LEVEL, 
-		RE_STEP 
-		) 
-		VALUES 
-		( 
-		
-        MC_QNA_NO_SEQ.NEXTVAL,
-		#{QNA_SUB}, 
-		#{QNA_ID},
-		#{QNA_CONTENT}, 
-		SYSDATE,  
-		MC_QNA_NO_SEQ.CURRVAL,
-		0,
-		0
-		)
-		]]>
+				INSERT INTO MC_QNA 
+				( 
+				QNA_NO, 
+				QNA_SUB, 
+				QNA_ID, 
+				QNA_CONTENT,
+				QNA_REGDATE, 
+				REF, 
+				RE_LEVEL, 
+				RE_STEP 
+				) 
+				VALUES 
+				( 
+				
+		        MC_QNA_NO_SEQ.NEXTVAL,
+				#{QNA_SUB}, 
+				#{QNA_ID},
+				#{QNA_CONTENT}, 
+				SYSDATE,  
+				MC_QNA_NO_SEQ.CURRVAL,
+				0,
+				0
+				)
+			]]>
 	</insert>
 
-
+	<!-- QNA 답변 -->
 	<insert id="replyQna" parameterType="hashmap"
 		useGeneratedKeys="true" keyProperty="QNA_NO">
 		<selectKey keyProperty="QNA_NO" resultType="string"
 			order="BEFORE"> SELECT MC_QNA_NO_SEQ.NEXTVAL FROM DUAL </selectKey> 
-		<![CDATA[ 
-		INSERT INTO MC_QNA
-		(
-		QNA_SUB,
-		QNA_NO,
-		QNA_ID,
-		QNA_CONTENT,
-		QNA_REGDATE,
-		REF,
-		RE_STEP,
-		RE_LEVEL
-		)
-		VALUES
-		(
-		#{QNA_SUB},
-	    #{QNA_NO},
-		#{QNA_ID},
-		#{QNA_CONTENT},
-		SYSDATE,
-		#{REF},
-		#{RE_STEP},
-		#{RE_LEVEL}
-		)	]]>
-
-
+			<![CDATA[ 
+				INSERT INTO MC_QNA
+				(
+				QNA_SUB,
+				QNA_NO,
+				QNA_ID,
+				QNA_CONTENT,
+				QNA_REGDATE,
+				REF,
+				RE_STEP,
+				RE_LEVEL
+				)
+				VALUES
+				(
+				#{QNA_SUB},
+			    #{QNA_NO},
+				#{QNA_ID},
+				#{QNA_CONTENT},
+				SYSDATE,
+				#{REF},
+				#{RE_STEP},
+				#{RE_LEVEL}
+				)	
+			]]>
 	</insert>
 
 	<select id="selectQnaDetail1" parameterType="hashmap" resultType="hashmap"> <!-- 파일 없을 때 상세보기 -->
@@ -96,127 +104,140 @@ REF DESC, RE_LEVEL ASC
 		]]>
 	</select>
 
-
-
 	<select id="selectQnaDetail2" parameterType="hashmap" resultType="hashmap">  <!-- 파일 있을 때 상세보기 -->
 		<![CDATA[
-			SELECT q.QNA_NO, 
-			q.QNA_ID, 
-			q.QNA_SUB, 
-			q.QNA_CONTENT, 
-			q.QNA_REGDATE, 
-			q.QNA_STATUS, 
-			f.QNA_FILE_NO,  
-			f.QNA_ORGNAME, 
-			f.QNA_SAVNAME 
+			SELECT Q.QNA_NO, 
+			Q.QNA_ID, 
+			Q.QNA_SUB, 
+			Q.QNA_CONTENT, 
+			Q.QNA_REGDATE, 
+			Q.QNA_STATUS, 
+			F.QNA_FILE_NO,  
+			F.QNA_ORGNAME, 
+			F.QNA_SAVNAME 
 			FROM 
-			MC_QNA q LEFT OUTER JOIN MC_QNA_FILE f 
-			ON q.QNA_NO = f.QNA_NO
-			WHERE q.QNA_NO = #{QNA_NO} AND f.DEL_GB='N'
+			MC_QNA Q LEFT OUTER JOIN MC_QNA_FILE F 
+			ON Q.QNA_NO = F.QNA_NO
+			WHERE Q.QNA_NO = #{QNA_NO} AND F.DEL_GB='N'
+		]]>
+	</select>
+	
+	<!-- 관리자 QNA 상세보기 -->
+	<select id="selectQnaAdminDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[ 
+			SELECT * FROM MC_QNA WHERE REF = #{QNA_NO} AND QNA_NO != #{QNA_NO}
 		]]>
 	</select>
 
-
-
+	<!-- QNA 수정 -->
 	<update id="updateQna" parameterType="hashmap">
-	<![CDATA[
-	UPDATE MC_QNA
-	SET
-	QNA_SUB = #{QNA_SUB},
-	QNA_CONTENT = #{QNA_CONTENT}
-	WHERE
-	QNA_NO = #{QNA_NO, jdbcType=INTEGER}
-	]]>
+		<![CDATA[
+			UPDATE MC_QNA
+			SET
+			QNA_SUB = #{QNA_SUB},
+			QNA_CONTENT = #{QNA_CONTENT}
+			WHERE
+			QNA_NO = #{QNA_NO, jdbcType=INTEGER}
+		]]>
 	</update>
 
-	<!-- <update id="updateQna" parameterType="hashmap" useGeneratedKeys="true" 
-		keyProperty="QNA_NO"> <selectKey keyProperty="QNA_NO" resultType="string" 
-		order="BEFORE"> SELECT MC_QNA_NO_SEQ.NEXTVAL FROM DUAL </selectKey> <![CDATA[ 
-		<![CDATA[ UPDATE MC_QNA SET QNA_SUB = #{QNA_SUB}, QNA_CONTENT = #{QNA_CONTENT} 
-		REF = #{REF}, RE_STEP = #{RE_STEP}, RE_LEVEL = #{RE_LEVEL} WHERE QNA_NO = 
-		#{QNA_NO, jdbcType=INTEGER} ]]> </update> -->
-
+	<!-- QNA 삭제 -->
 	<delete id="deleteQna" parameterType="hashmap">
-    <![CDATA[
-    DELETE MC_QNA
-    WHERE
-    QNA_NO = #{QNA_NO}
-    ]]>
+	    <![CDATA[
+		    DELETE MC_QNA
+		    WHERE
+		    QNA_NO = #{QNA_NO}
+	    ]]>
 	</delete>
 
+	<!-- QNA 파일 업로드 -->
 	<insert id="insertQnaFile" parameterType="hashmap">
-	<![CDATA[
-	INSERT INTO MC_QNA_FILE
-	(
-	QNA_FILE_NO,
-	QNA_NO,
-	QNA_ORGNAME,
-	QNA_SAVNAME
-	)
-	VALUES
-	(
-	MC_QNA_FILE_NO_SEQ.NEXTVAL,
-	#{QNA_NO}+1,
-	#{QNA_ORGNAME},
-	#{QNA_SAVNAME}
-		)
-	]]></insert>
+		<![CDATA[
+			INSERT INTO MC_QNA_FILE
+			(
+			QNA_FILE_NO,
+			QNA_NO,
+			QNA_ORGNAME,
+			QNA_SAVNAME
+			)
+			VALUES
+			(
+			MC_QNA_FILE_NO_SEQ.NEXTVAL,
+			#{QNA_NO}+1,
+			#{QNA_ORGNAME},
+			#{QNA_SAVNAME}
+			)
+		]]>
+	</insert>
 
+	<!-- QNA 파일 업로드 -->
 	<insert id="insertQnaFile2" parameterType="hashmap">
-	<![CDATA[
-	INSERT INTO MC_QNA_FILE
-	(
-	QNA_FILE_NO,
-	QNA_NO,
-	QNA_ORGNAME,
-	QNA_SAVNAME
-	)
-	VALUES
-	(
-	MC_QNA_FILE_NO_SEQ.NEXTVAL,
-	#{QNA_NO},
-	#{QNA_ORGNAME},
-	#{QNA_SAVNAME}
-		)
-	]]></insert>
-
-
+		<![CDATA[
+			INSERT INTO MC_QNA_FILE
+			(
+			QNA_FILE_NO,
+			QNA_NO,
+			QNA_ORGNAME,
+			QNA_SAVNAME
+			)
+			VALUES
+			(
+			MC_QNA_FILE_NO_SEQ.NEXTVAL,
+			#{QNA_NO},
+			#{QNA_ORGNAME},
+			#{QNA_SAVNAME}
+			)
+		]]>
+	</insert>
+   
+	<!-- QNA 삭제 -->
 	<delete id="deleteQnaFile" parameterType="hashmap">
-	<![CDATA[
-	UPDATE MC_QNA_FILE SET
-	DEL_GB = 'Y'
-	WHERE QNA_NO = #{QNA_NO}
-	]]></delete>
+		<![CDATA[
+			UPDATE MC_QNA_FILE SET
+			DEL_GB = 'Y'
+			WHERE QNA_NO = #{QNA_NO}
+		]]>
+	</delete>
 
+	<!-- QNA 수정 -->
 	<update id="updateQnaFile" parameterType="hashmap">
-	<![CDATA[
-	UPDATE MC_QNA_FILE
-	SET
-	(
-	DEL_GB = 'N' 
-	WHERE
-	QNA_FILE_NO = #{QNA_FILE_NO}
-	]]>
+		<![CDATA[
+			UPDATE MC_QNA_FILE
+			SET
+			DEL_GB = 'N' 
+			WHERE
+			QNA_FILE_NO = #{QNA_FILE_NO}
+		]]>
 	</update>
 
+	<!-- QNA 답변 상태 변경 -->
+	<update id="updateQnaStatus" parameterType = "hashmap">
+		<![CDATA[
+			UPDATE MC_QNA 
+			SET QNA_STATUS = 1
+			WHERE QNA_NO = #{QNA_NO}
+		]]>
+	</update>
 
-
+	<!-- QNA 파일 리스트 -->
 	<select id="selectQnaFileList" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-	SELECT
-	QNA_FILE_NO,
-	QNA_ORGNAME,
-	QNA_SAVNAME
-	FROM 
-	MC_QNA_FILE 
-	WHERE 
-	QNA_NO = #{QNA_NO}
-	]]></select>
+		<![CDATA[
+			SELECT
+			QNA_FILE_NO,
+			QNA_ORGNAME,
+			QNA_SAVNAME
+			FROM 
+			MC_QNA_FILE 
+			WHERE 
+			QNA_NO = #{QNA_NO}
+		]]>
+	</select>
 	
 	<select id="checkQnaFile" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-	SELECT COUNT(*) AS CNT FROM MC_QNA_FILE WHERE QNA_NO = #{QNA_NO} AND DEL_GB = 'N'
-	]]></select>
+		<![CDATA[
+			SELECT COUNT(*) AS CNT FROM MC_QNA_FILE WHERE QNA_NO = #{QNA_NO} AND DEL_GB = 'N'
+		]]>
+	</select>
 	
 
 </mapper>

@@ -52,12 +52,26 @@ function selectFaqType(num){
         				  $("#faqList").append(
         						  '<tr class="table_row">'
         							+'<td class="column-1">'+data.faqList[idx].FAQ_NO+'</td>'
-        							+'<td class="column-2"><a href="/faqDetail.do?faq_no="' + data.faqList[idx].FAQ_NO + '>' + data.faqList[idx].FAQ_SUB
-        							+'<input type="hidden" id="FAQ_NO" value="'+data.faqList[idx].FAQ_NO+'"/></a></td>'
+        							+'<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;">'
+        							+'<a href="/moviecube/faqDetail.do?faq_no='+data.faqList[idx].FAQ_NO+'"' +
+        									'style="color: #555;">'+data.faqList[idx].FAQ_SUB
+        							+'<input type="hidden" id="FAQ_NO" value="'+data.faqList[idx].FAQ_NO+'"/>' 
+        							+'</a></td>'
         							+'<td class="column-3">'+data.faqList[idx].FAQ_TYPE+'</td>'
         							+'</tr>'
         				  )
         				}
+        			} else {
+        				$("#faqList").append(
+      						  '<tr class="table_row">'
+      						    +'<td class="column-1"></td>'
+      							+'<td class="column-2" style="text-align: -webkit-center;">'
+      							+'<a href="javascript:void(0);"' 
+      							+'style="color: #555;">검색 결과가 없습니다'
+      							+'</a></td>'
+      							+'<td class="column-3"></td>'
+      							+'</tr>'
+      							)
         			}
         		},
 
@@ -78,11 +92,11 @@ function selectFaqType(num){
 			
 			
 			
-	<form class="bg0 p-t-75 p-b-85">
+	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-t-50">
-			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm">
-					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px">자주 묻는 질문들
+			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm" style="justify-content: center;">
+					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px;;">자주 묻는 질문들
 					</h4>
 				</div>
 				</div>
@@ -92,7 +106,7 @@ function selectFaqType(num){
 			   	    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  onclick="refreshFAQpage()">전체 FAQ</button>
 			        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE1" value="영화예매" onClick="selectFaqType(1)">영화예매</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE2" value="영화관" onClick="selectFaqType(2)">영화관</button>
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="상영관" onClick="selectFaqType(3)">상영관</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE3" value="멤버쉽" onClick="selectFaqType(3)">멤버쉽</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " id="FAQ_TYPE4" value="기타" onClick="selectFaqType(4)">기타</button>
 				</div>
 				
@@ -102,7 +116,7 @@ function selectFaqType(num){
 					<div class="m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart" style="margin: 0 0 0 0;">
-								<tbody>
+								<tbody id="faqList">
 									<tr class="table_head">
 										<th class="column-1">글번호</th>
 										<th class="column-2">제목</th>
@@ -116,7 +130,7 @@ function selectFaqType(num){
 			
 								<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 									<td class="column-1">${row.FAQ_NO}</td>
-									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">${row.FAQ_SUB}
+									<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">${row.FAQ_SUB}
 									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
 									<td class="column-3">${row.FAQ_TYPE}</td>		
 								</tr>
@@ -126,8 +140,7 @@ function selectFaqType(num){
 								<c:otherwise>
 									<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 									<td class="column-1"></td>
-									<td class="column-2"><a href="javascript:void(0);" name="FAQ_SUB" style="color: #555;">등록된 게시물이 없습니다.
-									<input type="hidden" id="FAQ_NO" value="${row.FAQ_NO}"/></a></td>
+									<td class="column-2">등록된 게시물이 없습니다.</td>
 									<td class="column-3"></td>		
 								</tr>
 								</c:otherwise>
@@ -136,9 +149,9 @@ function selectFaqType(num){
 								</tbody>
 							</table>
 						</div>
-
-						<div
-							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-l-40 p-lr-15-sm">
+						
+						<form>
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-l-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<div class="paging">${pagingHtml}</div>
 							</div>
@@ -159,11 +172,12 @@ function selectFaqType(num){
 									
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 
 			
 			
@@ -197,7 +211,7 @@ function selectFaqType(num){
          
 	function fn_openBoardDetail(obj){
         var comSubmit = new ComSubmit();
-        comSubmit.setUrl("<c:url value='faqDetail.do'/>");
+        comSubmit.setUrl("<c:url value='faqDetail2.do'/>");
         comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO").val());
         comSubmit.addParam("currentPage", "${currentPage}");
         comSubmit.submit();

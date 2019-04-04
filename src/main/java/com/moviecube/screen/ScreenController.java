@@ -107,40 +107,7 @@ public class ScreenController {
 		mv.setViewName("/admin/screen/screenList");
 		return mv;
 	}
-/*		ModelAndView mv = new ModelAndView("/admin/screenList");
-
-		List<Map<String, Object>> screenList = screenService.selectScreenList(commandMap.getMap());
-		
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty() || request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		}else{
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		totalCount = screenList.size();
-		
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "screenList");
-		pagingHtml = paging.getPagingHtml().toString();
-		
-		int lastCount = totalCount;
-		//System.out.println(paging.getEndCount());
-		//System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		screenList = screenList.subList(paging.getStartCount(), lastCount);
-		
-		mv.addObject("screenList", screenList);
-		mv.addObject("list", screenList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/admin/screen/screenList");
-		return mv;
-*/
 	
-
 	@RequestMapping(value = "/screenDetail.do")
 	public ModelAndView screenDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -188,6 +155,10 @@ public class ScreenController {
 	@RequestMapping(value = "/screenWriteForm.do")
 	public ModelAndView screenWriteForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/screen/screenWrite");
+		
+		List<Map<String, Object>> cinemalist = cinemaService.selectCinemaList(commandMap.getMap());
+		
+		mv.addObject("cinemalist", cinemalist);
 
 		return mv;
 	}

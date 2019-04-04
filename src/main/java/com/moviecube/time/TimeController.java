@@ -48,7 +48,7 @@ public class TimeController {
 
 	private int currentPage = 1;
 	private int totalCount;
-	private int blockCount = 5;
+	private int blockCount = 10;
 	private int blockpaging = 5;
 	private String pagingHtml;
 	private Paging paging;
@@ -179,22 +179,19 @@ public class TimeController {
 		return mv;
 	}
 
-	@RequestMapping("/selectscreenList.do")
-	@ResponseBody
-	public ResponseEntity<List<Map<String, Object>>> selectscreenList(String cinema_no) throws Exception {
-		ResponseEntity<List<Map<String, Object>>> entity = null;
-		CommandMap smap = new CommandMap();
-		smap.put("CINEMA_NO", cinema_no);
-		try {
-			List<Map<String, Object>> screenlist = cinemaService.selectCinemaScreen(smap.getMap());
-			entity = new ResponseEntity<List<Map<String, Object>>>(screenlist, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return entity;
-	}
-
+	/*
+	 * @RequestMapping("/selectscreenList.do")
+	 * 
+	 * @ResponseBody public ResponseEntity<List<Map<String, Object>>>
+	 * selectscreenList(String cinema_no) throws Exception {
+	 * ResponseEntity<List<Map<String, Object>>> entity = null; CommandMap smap =
+	 * new CommandMap(); smap.put("CINEMA_NO", cinema_no); try { List<Map<String,
+	 * Object>> screenlist = cinemaService.selectCinemaScreen(smap.getMap()); entity
+	 * = new ResponseEntity<List<Map<String, Object>>>(screenlist, HttpStatus.OK); }
+	 * catch (Exception e) { e.printStackTrace(); }
+	 * 
+	 * return entity; }
+	 */
 	@RequestMapping(value = "/timeModifyForm.do")
 	public ModelAndView timeUpdateForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/time/timeModify");
@@ -236,15 +233,14 @@ public class TimeController {
 
 	@RequestMapping(value = "/ScreenSelect.do")
 	@ResponseBody
-	public ModelAndView selectAjaxScreen(HttpServletRequest request, HttpServletResponse response, String param)
+	public ModelAndView selectAjaxScreen(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		String cinema_no = param;
 
 		CommandMap map = new CommandMap();
 
-		map.put("CINEMA_NO", cinema_no);
+		map.put("MOVIE_NO", request.getParameter("MOVIE_NO"));
+		map.put("CINEMA_NO", request.getParameter("CINEMA_NO"));
 
 		List<Map<String, Object>> screenList = screenService.selectCinemaScreen(map.getMap());
 		

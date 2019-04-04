@@ -84,7 +84,7 @@
 	</select>
 	
 	<!-- ID 찾기 -->
-	<select id = "findId" parameterType = "hashmap" resultType = "String">
+	<select id = "findId" parameterType = "hashmap" resultType = "hashmap">
 		<![CDATA[
 			SELECT
 			 MEMBER_ID
@@ -98,7 +98,7 @@
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id = "findPasswd" parameterType = "hashmap" resultType = "String"><!--승표  -->
+	<select id = "findPasswd" parameterType = "hashmap" resultType = "hashmap"><!--승표  -->
 		<![CDATA[
 			SELECT
 			 MEMBER_PASSWD1
@@ -106,20 +106,41 @@
 			 MC_MEMBER
 			WHERE
 			 MEMBER_ID=#{MEMBER_ID}
-			 AND MEMBER_NAME=#{MEMBER_NAME1}
-			 AND MEMBER_PHONE=#{MEMBER_PHONE1}
+			 AND MEMBER_NAME=#{MEMBER_NAME}
+			 AND MEMBER_PHONE=#{MEMBER_PHONE}
 		]]>
 	</select>
 	
 	<!-- 회원 정보 수정 -->
 	<!-- 1. 비밀번호 변경 -->
 	<update id="passwdUpdate" parameterType = "hashmap">
-		
+		<![CDATA[
+			UPDATE
+			 MC_MEMBER
+			SET
+			 MEMBER_PASSWD1=#{MEMBER_PASSWDA},
+			 MEMBER_PASSWD2=#{MEMBER_PASSWDB}
+			WHERE
+			 MEMBER_ID=#{MEMBER_ID} AND MEMBER_PASSWD1=#{MEMBER_PASSWD1}
+		]]>
 	</update>
 	
 	<!-- 2. 기본 정보 변경 -->
 	<update id = "informUpdate" parameterType = "hashmap">
-		
+		<![CDATA[
+			UPDATE
+			 MC_MEMBER
+			SET
+			 MEMBER_NAME = #{MEMBER_NAME},
+			 MEMBER_AGE = #{MEMBER_AGE},
+			 MEMBER_PHONE = #{MEMBER_PHONE},
+			 MEMBER_EMAIL = #{MEMBER_EMAIL},
+			 MEMBER_ZIPCODE = #{MEMBER_ZIPCODE},
+			 MEMBER_ADDRESS1 = #{MEMBER_ADDRESS1},
+			 MEMBER_ADDRESS2 = #{MEMBER_ADDRESS2}
+			WHERE
+			 MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWD1=#{MEMBER_PASSWD1}
+		]]>
 	</update>
 	
 	<!-- 3. 마일리지 update -->
@@ -147,4 +168,48 @@
 		WHERE MEMBER_NO = #{MEMBER_NO}
 		]]>
 	</delete>
+	
+	<insert id="insertFile" parameterType="hashmap">
+
+		<![CDATA[
+        INSERT INTO MC_MEMBER_FILE
+        (
+            FILE_NO,
+            MEMBER_NO,
+            PROFILE_ORGNAME,
+            PROFILE_SAVNAME
+        )
+        VALUES
+        (
+            MC_MEMBER_FILE_NO_SEQ.NEXTVAL,
+            #{MEMBER_NO},
+            #{PROFILE_ORGNAME},
+            #{PROFILE_SAVNAME}
+        )
+    	]]>
+	</insert>
+	
+	<select id="selectP" resultType="hashmap" parameterType="hashmap">
+		<![CDATA[
+		SELECT * FROM MC_MEMBER m INNER JOIN MC_MEMBER_FILE f ON m.MEMBER_NO = f.MEMBER_NO WHERE f.DEL_GB = 'N' AND m.MEMBER_NO = #{MEMBER_NO}
+		]]>
+	</select>
+	
+	<delete id="deleteFile" parameterType="hashmap">
+	<![CDATA[
+		UPDATE MC_MEMBER_FILE SET
+		DEL_GB = 'Y'
+		WHERE MEMBER_NO = #{MEMBER_NO}
+	]]></delete>
+
+	<update id="updateFile" parameterType="hashmap">
+	<![CDATA[
+		UPDATE MC_MEMBER_FILE
+		SET
+		(
+		DEL_GB = 'N' 
+		WHERE
+		MEMBER_NO = #{MEMBER_NO}
+	]]>
+	</update>
 </mapper>

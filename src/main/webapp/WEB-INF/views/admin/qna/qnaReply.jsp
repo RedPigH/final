@@ -13,7 +13,6 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <link rel="stylesheet" type="text/css" href="<%= cp %>/resources/css/admin_import.css" />
 <script src="<%= cp %>/resources/js/jquery-1.10.2.min.js"></script>
-<%-- <script src="<%= cp %>/resources/js/common.js"></script> --%>
 <script src="<%= cp %>/resources/js/admin_common.js"></script>
 </head>
 
@@ -43,7 +42,7 @@
 	</div>
 	
 	<div class="admin_ct">
-		<h3 class="sub_tit">Q&amp;A 답변 ${map.QNA_NOM}</h3>
+		<h3 class="sub_tit">Q&amp;A 답변 </h3>
 		<form id="frm">
 			<div class="tbl_type_01">
 				<table>
@@ -63,7 +62,7 @@
 						<tr>
 							<th scope="row">작성자</th>
 							<td>
-								<input type="text" class="txt w200" id="QNA_ID" name="QNA_ID" />
+								<input type="text" class="txt w200" id="QNA_ID" name="QNA_ID" value = "${sessionScope.userLoginInfo.MEMBER_ID}"/>
 								<font color="red"></font>
 							</td>
 						</tr>
@@ -121,7 +120,6 @@
             var qna_no = "${map.QNA_NOM}";
             comSubmit.setUrl("<c:url value='qnaReply.do' />");
             comSubmit.addParam("REF", qna_no);
-            alert(qna_no);
             comSubmit.submit();
         }
     </script>

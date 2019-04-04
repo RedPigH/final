@@ -124,6 +124,7 @@
 							<th scope="row">관람등급</th><!--  -->
 							<td>
 								<select name="MOVIE_AGE" class="slct w200" value="${map.MOVIE_AGE}">
+									<option value="0" <c:if test="${map.MOVIE_TYPE == '전체'}"> selected</c:if>>전체</option>
 									<option value="12" <c:if test="${map.MOVIE_TYPE == '12'}"> selected</c:if>>12</option>
 									<option value="15" <c:if test="${map.MOVIE_TYPE == '15'}"> selected</c:if>>15</option>
 									<option value="19" <c:if test="${map.MOVIE_TYPE == '19'}"> selected</c:if>>19</option>

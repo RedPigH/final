@@ -21,8 +21,8 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-10 col-lg-7 col-xl-7 m-lr-auto m-b-50">
-				<h4 class="mtext-109 cl2 p-b-30"> 공지사항 </h4>
+			<div class="col-sm-10 col-lg-7 col-xl-7 m-lr-auto m-b-50" >
+				<h4 class="mtext-109 cl2 p-b-30" style="text-align: -webkit-center;"> 공지사항 </h4>
 				<div class="flex-w flex-t bor12 p-b-13">
 					<div class="size-198" style="margin-top: 20px">
 						<span class="mtext-110 cl2" >글번호 </span>

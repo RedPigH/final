@@ -97,184 +97,7 @@ public class FAQController {
 		mv.addObject("faqList", faqList);
 		mv.setViewName("/faq/faqList");
 		return mv;
-	}	
-	
-	@RequestMapping(value = "/faqList1.do")
-	public ModelAndView faqList1(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		List<Map<String, Object>> faqList = faqService.selectFaqList1(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		totalCount = faqList.size();
-
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "faqList1");
-		pagingHtml = paging.getPagingHtml().toString();
-
-		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		faqList = faqList.subList(paging.getStartCount(), lastCount);
-
-		mv.addObject("faqList", faqList);
-		mv.addObject("list", faqList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/faq/faqList");
-		return mv;
-	}
-
-	@RequestMapping(value = "/faqList2.do")
-	public ModelAndView faqList2(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		List<Map<String, Object>> faqList = faqService.selectFaqList2(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		totalCount = faqList.size();
-
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "faqList2");
-		pagingHtml = paging.getPagingHtml().toString();
-
-		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		faqList = faqList.subList(paging.getStartCount(), lastCount);
-
-		mv.addObject("faqList", faqList);
-		mv.addObject("list", faqList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/faq/faqList");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/faqList3.do")
-	public ModelAndView faqList3(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		List<Map<String, Object>> faqList = faqService.selectFaqList3(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		totalCount = faqList.size();
-
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "faqList3");
-		pagingHtml = paging.getPagingHtml().toString();
-
-		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		faqList = faqList.subList(paging.getStartCount(), lastCount);
-
-		mv.addObject("faqList", faqList);
-		mv.addObject("list", faqList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/faq/faqList");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/faqList4.do")
-	public ModelAndView faqList4(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		List<Map<String, Object>> faqList = faqService.selectFaqList4(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		totalCount = faqList.size();
-
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "faqList4");
-		pagingHtml = paging.getPagingHtml().toString();
-
-		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		faqList = faqList.subList(paging.getStartCount(), lastCount);
-
-		mv.addObject("faqList", faqList);
-		mv.addObject("list", faqList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/faq/faqList");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/faqList5.do")
-	public ModelAndView faqList5(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		List<Map<String, Object>> faqList = faqService.selectFaqList5(commandMap.getMap());
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		totalCount = faqList.size();
-
-		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "faqList5");
-		pagingHtml = paging.getPagingHtml().toString();
-
-		int lastCount = totalCount;
-		// System.out.println(paging.getEndCount());
-		// System.out.println(totalCount);
-		if (paging.getEndCount() < totalCount) {
-			lastCount = paging.getEndCount() + 1;
-		}
-
-		faqList = faqList.subList(paging.getStartCount(), lastCount);
-
-		mv.addObject("faqList", faqList);
-		mv.addObject("list", faqList);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("totalCount", totalCount);
-		mv.setViewName("/faq/faqList");
-		return mv;
-	}
-	
-	
+	}		
 	
 	@RequestMapping(value = "/faqWriteForm.do")
 	public ModelAndView faqWriteForm(CommandMap commandMap) throws Exception {
@@ -300,9 +123,27 @@ public class FAQController {
 	}
 
 	@RequestMapping(value = "/faqDetail.do")
-	public ModelAndView faqDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView faqDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/faq/faqDetail");
+	
+		String faq_no = request.getParameter("faq_no");
+		commandMap.put("FAQ_NO", faq_no);
 
+		System.out.println(" 디테일 페이지 값 확인  +++++++++ FAQ_NO : " + commandMap.get("FAQ_NO"));
+		Map<String, Object> map = faqService.selectFaqDetail(commandMap.getMap());
+		mv.addObject("map", map);
+
+		return mv;
+	}
+	
+	@RequestMapping(value = "/faqDetail2.do")
+	public ModelAndView faqDetail2(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/faq/faqDetail");
+/*	
+		String faq_no = request.getParameter("faq_no");
+		commandMap.put("FAQ_NO", faq_no);
+*/
+		System.out.println(" 디테일 페이지 값 확인  +++++++++ FAQ_NO : " + commandMap.get("FAQ_NO"));
 		Map<String, Object> map = faqService.selectFaqDetail(commandMap.getMap());
 		mv.addObject("map", map);
 
@@ -344,19 +185,10 @@ public class FAQController {
 		
 		
 		String FAQ_TYPE = request.getParameter("FAQ_TYPE");
-//		String FAQ_TYPE2 = request.getParameter("FAQ_TYPE2");
-//		String FAQ_TYPE3 = request.getParameter("FAQ_TYPE3");
-//		String FAQ_TYPE4 = request.getParameter("FAQ_TYPE4");
-		
 		System.out.println(" 값 확인0 +++++++++++" + request.getParameter("FAQ_TYPE"));
-//		System.out.println(" 값 확인1 +++++++++++" + request.getParameter("FAQ_TYPE2"));
-//		System.out.println(" 값 확인2 +++++++++++" + request.getParameter("FAQ_TYPE3"));
-//		System.out.println(" 값 확인3 +++++++++++" + request.getParameter("FAQ_TYPE4"));
-		
+
 		commandMap.put("FAQ_TYPE", FAQ_TYPE);
-//		commandMap.put("FAQ_TYPE", FAQ_TYPE2);
-//		commandMap.put("FAQ_TYPE", FAQ_TYPE3);
-//		commandMap.put("FAQ_TYPE", FAQ_TYPE4);
+
 		System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("FAQ_TYPE"));
 		
 		List<Map<String, Object>> faqList = faqService.selectFaqType(commandMap.getMap());
@@ -366,14 +198,6 @@ public class FAQController {
 
 		return mv;
 		
-//		CommandMap map = new CommandMap();
-//		commandMap.get("FAQ_TYPE");
-//		System.out.println(" 값 확인 +++++++++++" + commandMap.get("FAQ_TYPE"));
-//		map.put("FAQ_TYPE", commandMap.get("FAQ_TYPE"));
-//		List<Map<String, Object>> faqList = faqService.selectFaqType(map.getMap());
-		
-//		mv.setViewName("jsonView");
-//		mv.addObject("faqList", faqList);	
-//		return mv;
+
 	}
 }

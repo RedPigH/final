@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%  pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
 
 
 
@@ -13,32 +16,33 @@
          <h3 class="ltext-105 cl5">MOVIECUBE</h3>
       </div>
 
-      <div class="flex-w flex-sb-m p-b-52">
+      <div class="flex-w flex-sb-m p-b-30">
          <div class="flex-w flex-l-m filter-tope-group m-tb-10">
             <button
-               class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-               data-filter="*">전체 영화</button>
+               class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
+               id = "allmovie"
+               data-filter=".all">전체 영화</button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-               data-filter=".women">개봉일순</button>
+            <button class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+               data-filter=".lately">개봉일순</button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-               data-filter=".men">예매율순</button>
+            <button class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+               data-filter=".grade">평점순</button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-               data-filter=".bag">평점순</button>
+            <button class="stext-105 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+               data-filter=".comment">리뷰수순</button>
 
          </div>
 
          <div class="flex-w flex-c-m m-tb-10">
-            <div
+           <!--  <div
                class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                <i
                   class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                <i
                   class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
             	   조건 검색
-            </div>
+            </div> -->
 
             <div
                class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
@@ -65,7 +69,7 @@
          
 
          <!-- Filter -->
-         <div class="dis-none panel-filter w-full p-t-10">
+        <!--  <div class="dis-none panel-filter w-full p-t-10">
             <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                <div class="filter-col1 p-r-15 p-b-27">
                   <div class="mtext-102 cl2 p-b-15">장르</div>
@@ -156,7 +160,7 @@
 				    검색</button>
                </div>
             </div>
-         </div>
+         </div> -->
       </div>
 
       <div class="row isotope-grid">
@@ -165,7 +169,7 @@
          <c:choose>
             <c:when test="${fn:length(list) > 0 }">
                <c:forEach items="${list}" var="row">
-                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item all">
                      <!-- Block2 -->
                      <div class="block2">
                         <div class="block2-pic hov-img0" id="forMovieModal" style="border-radius:10px">
@@ -183,8 +187,275 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                            <div class="block2-txt-child1 flex-col-l ">
-                              <a href="resources/product-detail.html"
-                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6">
+                              <a href="javascript:void(0);"
+                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" onclick="toModal(${row.MOVIE_NO });">
+                                 ${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
+                                 id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
+                           </div>
+
+                           <div class="block2-txt-child2 flex-r p-t-3 ${row.MOVIE_NO}">
+
+
+                              <c:choose>
+                                 <c:when test="${WishList != null}">
+                                    <c:set var="redHeart" value="false"/>
+                                    <c:forEach var="idx" items="${WishList}">
+                                       <c:if test="${idx.MOVIE_NO == row.MOVIE_NO}">
+                                          <c:set var="redHeart" value="true" />
+                                       </c:if>
+                                    </c:forEach>
+                                    <c:choose>
+                                       <c:when test="${redHeart}">
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2"
+                                             onclick="deleteWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:when>
+                                       <c:otherwise>
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
+                                             onclick="addWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:otherwise>
+                                    </c:choose>
+                                 </c:when>
+                                 <c:otherwise>
+                                    <a href="javascript:void(0);" class="btn-addwish-b2 dis-block pos-relative"
+                                       onclick="loginAlert();"> <img
+                                       class="icon-heart1 dis-block trans-04"
+                                       src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                       <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                       src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                 </c:otherwise>
+                              </c:choose>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </c:when>
+            <c:otherwise>
+											<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
+            </c:otherwise>
+         </c:choose>
+         
+           <c:choose>
+            <c:when test="${fn:length(LatelyList) > 0 }">
+               <c:forEach items="${LatelyList}" var="row">
+                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item lately">
+                     <!-- Block2 -->
+                     <div class="block2">
+                        <div class="block2-pic hov-img0" id="forMovieModal" style="border-radius:10px">
+                           <img
+                              src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
+                              alt="영화포스터" />
+                           <!-- height 뺐음 -->
+
+
+                           <a href="#" id="gahyun" onclick="toModal(${row.MOVIE_NO });" 
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                              상세보기 </a>
+
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                           <div class="block2-txt-child1 flex-col-l ">
+                              <a href="javascript:void(0);"
+                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" onclick="toModal(${row.MOVIE_NO });">
+                                 ${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
+                                 id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
+                           </div>
+
+                           <div class="block2-txt-child2 flex-r p-t-3 ${row.MOVIE_NO}">
+
+
+                              <c:choose>
+                                 <c:when test="${WishList != null}">
+                                    <c:set var="redHeart" value="false"/>
+                                    <c:forEach var="idx" items="${WishList}">
+                                       <c:if test="${idx.MOVIE_NO == row.MOVIE_NO}">
+                                          <c:set var="redHeart" value="true" />
+                                       </c:if>
+                                    </c:forEach>
+                                    <c:choose>
+                                       <c:when test="${redHeart}">
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2"
+                                             onclick="deleteWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:when>
+                                       <c:otherwise>
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
+                                             onclick="addWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:otherwise>
+                                    </c:choose>
+                                 </c:when>
+                                 <c:otherwise>
+                                    <a href="javascript:void(0);" class="btn-addwish-b2 dis-block pos-relative"
+                                       onclick="loginAlert();"> <img
+                                       class="icon-heart1 dis-block trans-04"
+                                       src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                       <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                       src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                 </c:otherwise>
+                              </c:choose>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </c:when>
+            <c:otherwise>
+											<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
+            </c:otherwise>
+         </c:choose>
+         
+           <c:choose>
+            <c:when test="${fn:length(GradeMovieList) > 0 }">
+               <c:forEach items="${GradeMovieList}" var="row">
+                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item grade">
+                     <!-- Block2 -->
+                     <div class="block2">
+                        <div class="block2-pic hov-img0" id="forMovieModal" style="border-radius:10px">
+                           <img
+                              src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
+                              alt="영화포스터" />
+                           <!-- height 뺐음 -->
+
+
+                           <a href="#" id="gahyun" onclick="toModal(${row.MOVIE_NO });" 
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                              상세보기 </a>
+
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                           <div class="block2-txt-child1 flex-col-l ">
+                              <a href="javascript:void(0);"
+                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" onclick="toModal(${row.MOVIE_NO });">
+                                 ${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
+                                 id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
+                           </div>
+
+                           <div class="block2-txt-child2 flex-r p-t-3 ${row.MOVIE_NO}">
+
+
+                              <c:choose>
+                                 <c:when test="${WishList != null}">
+                                    <c:set var="redHeart" value="false"/>
+                                    <c:forEach var="idx" items="${WishList}">
+                                       <c:if test="${idx.MOVIE_NO == row.MOVIE_NO}">
+                                          <c:set var="redHeart" value="true" />
+                                       </c:if>
+                                    </c:forEach>
+                                    <c:choose>
+                                       <c:when test="${redHeart}">
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2"
+                                             onclick="deleteWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:when>
+                                       <c:otherwise>
+                                          <a href="javascript:void(0);" id="${row.MOVIE_NO}"
+                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
+                                             onclick="addWishList(${row.MOVIE_NO});"> <img
+                                             class="icon-heart1 dis-block trans-04"
+                                             src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                             <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                          </a>
+                                       </c:otherwise>
+                                    </c:choose>
+                                 </c:when>
+                                 <c:otherwise>
+                                    <a href="javascript:void(0);" class="btn-addwish-b2 dis-block pos-relative"
+                                       onclick="loginAlert();"> <img
+                                       class="icon-heart1 dis-block trans-04"
+                                       src="resources/images/icons/icon-heart-01.png" alt="ICON">
+
+                                       <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                       src="resources/images/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                 </c:otherwise>
+                              </c:choose>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </c:when>
+            <c:otherwise>
+											<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<div class="block2" style="text-align: -webkit-center;">
+										<span class="mtext-110 cl2" style="font-family: MaplestoryLight; font-size: 25px">영화가 없습니다ㅠㅠ</span>
+									</div>
+									</div>
+            </c:otherwise>
+         </c:choose>
+         
+           <c:choose>
+            <c:when test="${fn:length(CommentMovieList) > 0 }">
+               <c:forEach items="${CommentMovieList}" var="row">
+                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item comment">
+                     <!-- Block2 -->
+                     <div class="block2">
+                        <div class="block2-pic hov-img0" id="forMovieModal" style="border-radius:10px">
+                           <img
+                              src="/moviecube/resources/upload/movie/poster/${row.POSTER_SAVNAME}"
+                              alt="영화포스터" />
+                           <!-- height 뺐음 -->
+
+
+                           <a href="javascript:void(0);" id="gahyun" onclick="toModal(${row.MOVIE_NO });" 
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                              상세보기 </a>
+
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                           <div class="block2-txt-child1 flex-col-l ">
+                              <a href="javascript:void(0);"
+                                 class="stext-105 cl3 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" onclick="toModal(${row.MOVIE_NO });">
                                  ${row.MOVIE_NAME}</a> <span class="stext-104 cl3"
                                  id="MOVIE_GENRE"> 장르 : ${row.MOVIE_GENRE} </span>
                            </div>

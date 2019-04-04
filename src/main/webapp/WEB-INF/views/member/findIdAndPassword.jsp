@@ -49,7 +49,7 @@
 			<div class="mtext-110 cl2 m-b-20">아이디 찾기</div>
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="nav-item"><a class="bg6 cl6 nav-link active" data-toggle="tab" role="tab" href="#find_id_easy" title="간편 아이디 찾기">간편찾기</a></li>
-				<li class="nav-item"><a class="bg6 cl6 nav-link" href="#find_id_hard" role="tab" data-toggle="tab" title="본인인증으로 아이디 찾기">본인인증으로 찾기</a></li>
+			<!-- 	<li class="nav-item"><a class="bg6 cl6 nav-link" href="#find_id_hard" role="tab" data-toggle="tab" title="본인인증으로 아이디 찾기">본인인증으로 찾기</a></li> -->
 			</ul>
 
 			<div class="tab-content">
@@ -86,15 +86,15 @@
 				<!-- //아이디 간편찾기 -->
 
 				<!-- 아이디 본인인증으로 찾기// -->
-				<div class="tab-pane" id="find_id_hard" role="tabpanel" aria-expanded="false">
+				<!-- <div class="tab-pane" id="find_id_hard" role="tabpanel" aria-expanded="false">
 					<div class="find_hard_wrap">
 						<div class="pt50">아이핀(i-PIN)으로 찾기</div>
 						<button type="button" title="새 창 열림" class="img_btn user mt13 mb40" onclick="fnPopupIPIN('FINDID')">인증기관을 통해 인증 후 확인</button>
 						<div>휴대폰으로 찾기</div>
 						<button type="button" title="새 창 열림" class="img_btn user mt13" onclick="fnPopupCheckPlus('FINDID')">인증기관을 통해 인증 후 확인</button>
 					</div>
-				</div>
-				<!-- //아이디 본인인증으로 찾기 -->
+				</div> -->
+				<!-- //아이디 본인인증으로 찾기  -->
 			</div>
 		</div>
 
@@ -102,7 +102,7 @@
 			<div class="mtext-110 cl2 m-b-20">비밀번호 찾기</div>
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="nav-item"><a class="bg6 cl6 nav-link active" href="#find_pw_easy" role="tab" data-toggle="tab" title="간편 비밀번호 찾기">간편찾기</a></li>
-				<li class="nav-item"><a class="bg6 cl6 nav-link" href="#find_pw_hard" role="tab" data-toggle="tab" title="본인인증으로 비밀번호 찾기">본인인증으로 찾기</a></li>
+				<!-- <li class="nav-item"><a class="bg6 cl6 nav-link" href="#find_pw_hard" role="tab" data-toggle="tab" title="본인인증으로 비밀번호 찾기">본인인증으로 찾기</a></li> -->
 			</ul>
 
 			<div class="tab-content">
@@ -134,7 +134,7 @@
 					</ul>
 					
 					<div class="submit_wrap">
-						<button type="submit" id="fp" class="flex-c-m stext-107 float-r cl13 size-301 bor21 p-lr-15 hov-tag2 trans-04 m-r-5 m-b-5"><span class="blind">확인</span></button> 
+						<button type="button" id="fp" class="flex-c-m stext-107 float-r cl13 size-301 bor21 p-lr-15 hov-tag2 trans-04 m-r-5 m-b-5"><span class="blind">확인</span></button> 
 					</div>
 				</form>
 				</div>
@@ -142,7 +142,7 @@
 				<!-- //비번 간편찾기 -->
 
 				<!-- 비번 본인인증으로 찾기// -->
-				<div class="tab-pane" id="find_pw_hard" role="tabpanel" aria-expanded="false">
+				<!-- <div class="tab-pane" id="find_pw_hard" role="tabpanel" aria-expanded="false">
 					<div class="find_hard_wrap">
 						<div class="radio_wrap pt45">
 							<span class="iradio_minimal checked" style="vertical-align: middle; display: inline-block; width: 18px; height: 18px; position: relative;" aria-checked="false" aria-disabled="false"><input type="radio" title="비밀번호 본인인증 아이핀 선택" id="user_radio1" name="find_pw_radio" value="IPIN" class="icheck" style="position: absolute; top: 0px; left: 0px; display: block; width: 16px; height: 16px; padding: 0px; margin: 0px; background: rgb(255, 255, 255); z-index: 0; border: 0px; opacity: 1;"><ins class="iCheck-helper" style="position:absolute; width:16px; height:16px; top:0px; left:0px; background-color:#fff; z-index:0"></ins></span>
@@ -159,7 +159,7 @@
 						</div>
 						<button type="button" class="img_btn user mt13" title="새 창 열림" onclick="findPasswordByAuth()">인증기관을 통해 인증 후 확인</button>
 					</div>
-				</div>
+				</div> -->
 				<!-- //비번 본인인증으로 찾기 -->
 			</div>
 		</div>
@@ -210,27 +210,26 @@
 						 	$('#phone').focus();
 						 	return false;
 					 }
-				  
-					 /* var name = $('#name').val();
-					 var age = $('#age').val();
-					 var phone = $('#phone').val()e */;
-					/*  var sendData = { "MEMBER_NAME" : $('#name').val() , "MEMBER_AGE" : $('#age').val() , "MEMBER_PHONE" : $('#phone').val() };
-					 alert($('#name').val()); */
-					/*  var data2 = {"MEMBER_NAME":name, "MEMBER_AGE":age, "MEMBER_PHONE":phone};
-					 var data = JSON.stringify(data2); */
-
-					 var sendData = $('#findId').serialize();
-					 alert(sendData);
+					 
+					 var name = $("#name").val();
+					 var age = $("#age").val();
+					 var phone = $("#phone").val();
+					 
+					 var data = {
+					 	"MEMBER_NAME" : name,
+					 	"MEMBER_AGE" : age,
+					 	"MEMBER_PHONE" : phone
+					 }
+					 
 					 $.ajax({
 					 	type : "POST",
-					 	data : sendData,
-						url : "/moviecube/member/find.do",
+						url : "<c:url value='/member/find.do'/>",
 						dataType : "json",
-						contentType : "application/json:charset=UTF-8",
+						data : data,
+						
 						success : function(data){
-							alert("회원님의 아이디는["+id+"]입니다.");
-					 		if(data.id != null){
-					 			modalContents.text("회원님의 아이디는["+id+"]입니다.");
+					 		if(data.findid.MEMBER_ID != null){
+					 			modalContents.text("회원님의 아이디는["+data.findid.MEMBER_ID+"]입니다.");
 							 	modal.modal('show');
 						 	}
 						},
@@ -271,25 +270,21 @@
 					 var name1 = $("#name1").val();
 					 var phone1 = $("#phone1").val();
 					 
-					 var findpw = new FormData();
-					 
-					 
-					 
-					 findpw.append('id', id);
-					 findpw.append('name1', name1);
-					 findpw.append('phone1', phone1);
+					 var data = {
+						"MEMBER_ID" : id,
+						"MEMBER_NAME" : name1,
+						"MEMBER_PHONE" : phone1
+					 }
 					 
 					 $.ajax({
-							async: false,
-						 	type : "POST",
-						 	data : findpw,
-							url : "/moviecube/member/find1.do",
-							dataType : "json",
-							contentType : false,
-							processData: false,
+						type : "POST",
+						url : "<c:url value='/member/find1.do'/>",
+						dataType : "json",
+						data : data,
+							
 							success : function(data){
-						 		if(data.pw != null){
-						 			modalContents.text("회원님의 비밀번호는["+pw+"]입니다.");
+						 		if(data.findpw.MEMBER_PASSWD1 != null){
+						 			modalContents.text("회원님의 비밀번호는["+data.findpw.MEMBER_PASSWD1+"]입니다.");
 								 	modal.modal('show');
 							 	}
 							},

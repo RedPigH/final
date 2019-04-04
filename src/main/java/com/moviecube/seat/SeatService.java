@@ -19,6 +19,8 @@ public interface SeatService {
 	
 	Map<String, Object> selectSeat(Map<String, Object> map) throws Exception;
 	
+	List<Map<String, Object>> selectResSeat(Map<String, Object> map) throws Exception;
+	
 	Map<String, Object> selectSeatNo(Map<String, Object> map) throws Exception;
 
 	void insertSeat(Map<String, Object> map) throws Exception;
@@ -29,6 +31,8 @@ public interface SeatService {
 	void insertResSeat(Map<String, Object> map) throws Exception;
 
 	void updateSeatStatus(Map<String, Object> map) throws Exception;
+	
+	void ResDeleteStatus(Map<String, Object> map) throws Exception;
 
 	void deleteSeat(Map<String, Object> map) throws Exception;
 	

@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <% String cp = request.getContextPath(); %>
-<%  pageContext.setAttribute("br", "<br/>");
-	pageContext.setAttribute("cn", "\n");
+<%  pageContext.setAttribute("br", "<br>");
+	pageContext.setAttribute("cn", "\r\n");
 %>
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -110,8 +110,8 @@
 		<%-- <p class="summary">${fn : replace(map.MOVIE_SUBTITLE,cn,br)}</p> --%>
 		
 		<h3 class="sub_tit">줄거리</h3>
-		<p class="summary">${map.MOVIE_CONTENT}</p> 
-		<%-- <p class="summary">${fn : replace(map.MOVIE_CONTENT,cn,br)}</p> --%>
+		<%-- <p class="summary">${map.MOVIE_CONTENT}</p>  --%>
+		<p class="summary">${fn : replace(map.MOVIE_CONTENT,cn,br)}</p>
 		
 		<h3 class="sub_tit">슬라이드 이미지</h3>
 		<div class="movie_steel">

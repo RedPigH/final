@@ -451,16 +451,17 @@ function deleteWishList2() {
 									+'class="flex-col-m stext-101 cl0 size-111 bg1 bor1 hov-btn2 p-lr-20 trans-04">'
 										+'<div class="size-196">'
 											+'<span class="mtext-110 cl2"'
-												+'style="font-family: NanumGothicExtraBold">['+data.optionTimeList[idx].MOVIE_NAME+']</span>'
+												+'style="font-family: MaplestoryLight">['+data.optionTimeList[idx].MOVIE_NAME+']</span>'
 										+'</div>'
 										+'<div class="flex-sb size-196">'
-										+'<span class="mtext-110 cl2">'+data.optionTimeList[idx].CINEMA_NAME+'</span> <span'
-										+'class="mtext-110 cl2">'+data.optionTimeList[idx].MOVIE_TYPE+'</span> <span'
-										+'class="mtext-110 cl2">'+data.optionTimeList[idx].START_TIME+"~"+data.optionTimeList[idx].END_TIME
+										+'<span class="mtext-110 cl2" style="font-family: MaplestoryLight">'+data.optionTimeList[idx].CINEMA_NAME+'</span>'
+										+'<span class="mtext-110 cl2" style="font-family: MaplestoryLight">'+data.optionTimeList[idx].MOVIE_TYPE+'</span>'
+										+'<span class="mtext-110 cl2" style="font-family: MaplestoryLight">'+data.optionTimeList[idx].START_TIME+'~'+data.optionTimeList[idx].END_TIME
 										+'</span>'
 										+'</div>'
 										+'</a>'
-										+'</div>')
+										+'</div>'
+										)
 							}
 					} else {
 						$("#timeList").append(

@@ -19,8 +19,8 @@
 	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-t-50">
-			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm">
-					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px">공지사항
+			<div class="flex-w flex-sb-m p-t-18 p-b-30 p-lr-50 p-lr-15-sm" style="justify-content: center;">
+					<h4 class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px;">공지사항
 					</h4>
 				</div>
 				</div>
@@ -43,7 +43,7 @@
 
 												<tr class="table_row" style="border-bottom: 1px dashed #edeaea;">
 													<td class="column-1">${row.NOTICE_NO}</td>
-													<td class="column-2"><a href="javascript:void(0);" name="NOTICE_SUB"
+													<td class="column-2" style="padding-left:10px; text-align: -webkit-auto;"><a href="javascript:void(0);" name="NOTICE_SUB"
 														style="color: #555;">${row.NOTICE_SUB} <input
 															type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO}" /></a></td>
 													<td class="column-3"><c:set var="TextValue"

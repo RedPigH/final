@@ -18,6 +18,12 @@ public class QnaServiceImpl implements QnaService {
 	private QnaDAO qnaDAO;
 
 	@Override
+	public Map<String, Object> selectQnaAdminDetail(Map<String, Object> map) throws Exception {
+		return qnaDAO.selectQnaAdminDetail(map); 
+
+	}
+	
+	@Override
 	public Map<String, Object> selectQnaDetail1(Map<String, Object> map) throws Exception {
 		return qnaDAO.selectQnaDetail1(map); 
 
@@ -34,6 +40,11 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public List<Map<String, Object>> selectQnaList(Map<String, Object> map) throws Exception {
 		return qnaDAO.selectQnaList(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectQnaListByMember(Map<String, Object> map) throws Exception {
+		return qnaDAO.selectQnaListByMember(map);
 	}
 
 	@Override
@@ -106,6 +117,11 @@ public class QnaServiceImpl implements QnaService {
 	public void updateQna(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void updateQnaStatus(Map<String, Object> map) throws Exception{
+		qnaDAO.updateQnaStatus(map);
 	}
 
 	@Override

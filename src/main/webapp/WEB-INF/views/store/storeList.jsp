@@ -21,7 +21,7 @@
 		$("#h_modal_store_price").text(price);
 		
 		var content = "상품 설명 : " + store_content;
-		$("#h_modal_store_content").text(content);
+		$("#h_modal_store_content").html(content);
 		
 		var img_url = "/moviecube/resources/upload/store/"
 			+ img_savname;
@@ -56,7 +56,7 @@
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button
-						class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
+						class="mtext-109 cl2 p-b-30" style="padding-bottom: 0px;"
 						data-filter="*">상품 목록</button>
 				</div>
 			</div>
