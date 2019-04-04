@@ -221,10 +221,23 @@ function get_reviews(currentPage) {
 			var text_comment = "";
 			
 			$("#reviewCount").text("리뷰 (" + data.totalCount + ")");
+			
+		 	var profile_img = "";
+			profile_img = "<img src='/moviecube/resources/images/icons/default_profile.png' alt='AVATAR'>";
+			profile_img = "<img src='/moviecube/resources/upload/mypage/'"+ ${sessionScope.profile_savname} + "alt='AVATAR'>";
+			
 
 			for(var i = 0; i < comment_list_length; i++) {
 				var cmt_no = data.comment_paging_list[i].CMT_NO;
 				cmt_id = data.comment_paging_list[i].CMT_ID;
+				//프사뿌려주는 부분 추가요
+				if(data.comment_paging_list[i].profile_savname == 0) {
+					profile_img = "<img src='/moviecube/resources/images/icons/default_profile.png' alt='AVATAR'>";
+				}
+				else {
+					profile_img = "<img src='/moviecube/resources/upload/mypage/"+ data.comment_paging_list[i].profile_savname + "' alt='AVATAR'>";
+				}
+				// 프사  여기까지요
 				
 				if(member_id == cmt_id) { // 로그인한 아이디와 댓글 아이디가 같으면 삭제버튼을 추가해줌.
 					var delete_button2 = "<a href='javascript:deleteReview(" + cmt_no + ")' style='float: right;'>" + "<p><font size='2' class='cl6'>삭제</font></p></a>";
@@ -236,12 +249,14 @@ function get_reviews(currentPage) {
 				cmt_like = Number(data.comment_paging_list[i].CMT_LIKE);
 				var rating_text = "";
 				
+				
+				
 				for(var j = 0 ; j < cmt_like; j++) {
 					rating_text = rating_text + "<i class='zmdi zmdi-star'></i> ";
 				}
 				text_comment = text_comment + "<div class='flex-w flex-t' id='comment_start'>" +
 				"<div class='wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6'>" + 
-				"<img src='/moviecube/resources/images/icons/default_profile.png' alt='AVATAR'>" + 
+				profile_img + 
 				"</div>" + 
 				"<div class='size-207'>" + 
 				"<div class='flex-w flex-sb-m p-b-17'>" + 
@@ -267,7 +282,7 @@ function get_reviews(currentPage) {
 <script>
 function writeReview() {
 	var movie_no = $("#h_modal_movie_no").val();
-	var member_id = "${sessionScope.userLoginInfo.MEMBER_ID}";
+	var member_id = "${sessionScope.userLoginInfo.MEMBER_ID}"; 
 	
 	/* 여기부터 validation 처리부분 */
 	if(member_id.length == 0) {

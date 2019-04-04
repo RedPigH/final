@@ -1,10 +1,12 @@
 package com.moviecube.movie;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.moviecube.common.CommandMap;
+import com.moviecube.member.MemberService;
 
 @Controller
 public class MovieController {
@@ -21,6 +24,9 @@ public class MovieController {
 
 	@Resource(name = "movieService")
 	private MovieService movieService;
+	
+	@Resource(name = "memberService")   
+	private MemberService memberService;
 
 	@RequestMapping(value = "/movieList.do")
 	public ModelAndView movieList(CommandMap commandMap) throws Exception {
@@ -63,8 +69,24 @@ public class MovieController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/movieDetail2.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView movieDetail2(CommandMap commandMap, HttpServletRequest request) throws Exception { // 모달을 위한 메서드
+	public ModelAndView movieDetail2(CommandMap commandMap, HttpServletRequest request)
+			throws Exception { // 모달을 위한 메서드
 		ModelAndView mv = new ModelAndView("redirect:/main");
+
+		/*
+		 * Map<String, Object> user = (Map<String, Object>)
+		 * session.getAttribute("userLoginInfo"); CommandMap cMap = new CommandMap();
+		 * 
+		 * cMap.put("MEMBER_NO", user.get("MEMBER_NO"));
+		 * 
+		 * Map<String, Object> tempMap = memberService.selectMemberFile(cMap.getMap());
+		 * Map<String, Object> tempMap2 = (Map<String, Object>) tempMap.get("map");
+		 * if(tempMap2.size() != 0) mv.addObject("profile_savname",
+		 * tempMap2.get("PROFILE_SAVNAME")); else { mv.addObject("profile_savname", 0);
+		 * }
+		 */
+		
+		
 
 		String movie_no = request.getParameter("movie_no");
 		commandMap.put("MOVIE_NO", movie_no);
@@ -74,17 +96,20 @@ public class MovieController {
 
 		String openDate = map2.get("MOVIE_OPENDATE").toString();
 		openDate = openDate.substring(0, 10);
-	
+
 		Map<String, Object> map3 = movieService.selectCommentCount(commandMap.getMap()); // 코멘트 카운트 가져올려고
 		mv.addObject("comment_count", map3.get("COMMENT_CNT"));
-		
+
 		map3.clear();
 		map3 = movieService.selectHotMovie(commandMap.getMap());
-		if(map3 == null) {
+		if (map3 == null) {
 			mv.addObject("ranking", 0);
-		}else {
+		} else {
 			mv.addObject("ranking", map3.get("RNUM"));
 		}
+
+		System.out.println("헐 제발" + map3.get("RNUM"));
+
 		mv.addObject("map", map.get("map"));
 
 		mv.addObject("openDate", openDate);
@@ -146,6 +171,7 @@ public class MovieController {
 		return mv;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/commentPaging.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView commentPaingList(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -207,7 +233,33 @@ public class MovieController {
 		commandMap.put("END_COUNT", endCount);
 
 		List<Map<String, Object>> comment_paging_list = movieService.selectCommentPaingList(commandMap.getMap());
+		for(int i = 0 ; i < comment_paging_list.size(); i ++) {
+			String c_id = (String) comment_paging_list.get(i).get("CMT_ID");
 
+			Map<String, Object> help = new HashMap();
+			help.put("MEMBER_ID", c_id);
+			
+			Map<String, Object> memberMap = memberService.checkId(help); // 맴버값 가져왔다. 아이디를 얻기 위해서 !
+			
+			String c_no =(memberMap.get("MEMBER_NO")).toString();
+			
+			Map<String, Object> help2 = new HashMap();
+			help2.put("MEMBER_NO", c_no);
+
+			Map<String, Object> tempMap = memberService.selectMemberFile(help2);
+			Map<String, Object> tempMap2 = (Map<String, Object>)tempMap.get("map");
+	
+			if(tempMap2 == null) {
+				comment_paging_list.get(i).put("profile_savname", 0);
+				
+			} else {
+				
+				comment_paging_list.get(i).put("profile_savname", tempMap2.get("PROFILE_SAVNAME"));
+			}
+
+		}
+		
+		
 		// 시작 페이지와 마지막 페이지 값 구하기.
 		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1; // 현재페이지가 6페이지라면 시작페지이지는 6부터 10까지 만들어주기 위한
 																			// 변수설정.
@@ -258,7 +310,7 @@ public class MovieController {
 		int all_like = Integer.parseInt(ReviewMap.get("ALL_LIKE").toString());
 		int cnt = Integer.parseInt(ReviewMap.get("CNT").toString());
 
-		double grade = all_like / (double)cnt;
+		double grade = all_like / (double) cnt;
 
 		CommandMap Grademap = new CommandMap();
 
@@ -269,7 +321,7 @@ public class MovieController {
 
 		mv.addObject("id_check", id_check);
 		mv.addObject("cnt", cnt);
-		
+
 		mv.setViewName("jsonView");
 
 		return mv;

@@ -36,6 +36,11 @@ public class MemberServiceImpl implements MemberService {
 	public int findUsedID(Map<String, Object> map) throws Exception {
 		return memberDAO.findUsedID(map);
 	}
+	
+	@Override
+	public Map<String, Object> checkId(Map<String, Object> map) throws Exception {
+		return memberDAO.checkId(map);
+	}
 
 	@Override
 	public Map<String, Object> checkUserIdAndPassword(Map<String, Object> map) throws Exception {

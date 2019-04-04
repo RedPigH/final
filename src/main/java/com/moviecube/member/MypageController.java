@@ -35,10 +35,15 @@ public class MypageController {
 	public ModelAndView findForm(CommandMap commandMap, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/member/myPage");
 
-		/* 멤버의 예매내역 */
+		/* 멤버의 예매내역 */		
 		Map<String, Object> user = (Map<String, Object>) session.getAttribute("userLoginInfo");
 		commandMap.put("MEMBER_NO", user.get("MEMBER_NO"));
 		List<Map<String, Object>> resList = reserveService.MyReservation(commandMap.getMap());
+		
+		Map<String, Object> tempMap = memberService.selectMemberFile(commandMap.getMap());
+		Map<String, Object> tempMap2 = (Map<String, Object>) tempMap.get("map");
+		
+		mv.addObject("profile_savname", tempMap2.get("PROFILE_SAVNAME"));
 
 		/* 멤버의 문의내역 */
 		commandMap.put("QNA_ID", user.get("MEMBER_NAME"));
@@ -53,9 +58,12 @@ public class MypageController {
 		return mv;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/member/updateMemberForm.do")
-	public ModelAndView updateMemberForm(CommandMap commandMap) throws Exception {
+	public ModelAndView updateMemberForm(CommandMap commandMap, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/member/updateMember");
+		Map<String, Object> user = (Map<String, Object>) session.getAttribute("userLoginInfo");
+		commandMap.put("MEMBER_NO", user.get("MEMBER_NO"));
 		
 		Map<String,Object> map = memberService.selectMemberFile(commandMap.getMap());
 		
