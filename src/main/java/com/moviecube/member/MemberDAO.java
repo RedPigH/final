@@ -71,6 +71,11 @@ public class MemberDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("member.selectP", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMemberFile1(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.selectPF", map);
+	}
+	
 	public void deleteFile(Map<String, Object> map) throws Exception{
 		  delete("member.deleteFile", map);
 	}

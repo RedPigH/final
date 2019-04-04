@@ -96,6 +96,9 @@ public class MemberServiceImpl implements MemberService {
 			Map<String, Object> tempMap = memberDAO.selectMemberFile(map);	
 			resultMap.put("map", tempMap);
 			
+			Map<String, Object> tempMap1 = memberDAO.selectMemberFile1(map);		
+			resultMap.put("map1", tempMap1);
+			
 			return resultMap;
 		}
 	  
@@ -119,9 +122,7 @@ public class MemberServiceImpl implements MemberService {
 	  }
 	  
 	  @Override
-		public void deleteProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
-			
-			List<Map<String,Object>> fileList = fileUtils.parseInsertFileInfo(map, request);
-				memberDAO.deleteFile(fileList.get(0)); 	
+		public void deleteFile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+				memberDAO.deleteFile(map); 	
 	  }
 }

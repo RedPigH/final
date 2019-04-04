@@ -246,7 +246,7 @@ public class MemberController {
 
 			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
 			
-			memberService.deleteProfile(commandMap.getMap(), request);
+			memberService.deleteFile(commandMap.getMap(), request);
 			
 			return mv;
 	  }

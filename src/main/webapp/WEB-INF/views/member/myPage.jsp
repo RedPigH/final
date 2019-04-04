@@ -43,9 +43,7 @@
                                     src="http://image2.megabox.co.kr/mop/home/mypage/main_title3.png"
                                     alt="개인정보">
                               </h3>
-                              <a href="/moviecube/member/updateMemberForm.do"
-                                 style="display: block;"
-                                 class="flex-c-m stext-107 cl13 float-r size-301 bor21 p-lr-15 hov-tag2 trans-04">정보수정</a>
+                              <a href="/moviecube/member/updateMemberForm.do" style="display: block;" class="flex-c-m stext-107 cl13 float-r size-301 bor21 p-lr-15 hov-tag2 trans-04">정보수정</a>
                            </div>
 
                            <ul>
@@ -77,38 +75,14 @@
 
 
                            <script type="text/javascript">
-                              $('span.btn_sms')
-                                    .children('button')
-                                    .click(
-                                          function() {
-                                             $('span.btn_sms')
-                                                   .children(
-                                                         'button')
-                                                   .removeClass(
-                                                         'active');
-                                             $('span.btn_sms')
-                                                   .children(
-                                                         'button')
-                                                   .each(
-                                                         function() {
-                                                            $(
-                                                                  this)
-                                                                  .attr(
-                                                                        "title",
-                                                                        $(
-                                                                              this)
-                                                                              .val());
-                                                         });
-                                             $(this).addClass(
-                                                   'active');
-                                             $(this)
-                                                   .attr(
-                                                         'title',
-                                                         $(
-                                                               this)
-                                                               .val()
-                                                               + ' 선택됨');
-                                          });
+                              $('span.btn_sms').children('button').click(function() {
+                              	$('span.btn_sms').children('button').removeClass('active');
+                                	$('span.btn_sms').children('button').each(function() {
+										$(this).attr("title", $(this).val());
+                                    });
+                                    $(this).addClass('active');
+                                $(this).attr('title', $(this).val() + ' 선택됨');
+                              });
                            </script>
                            <script>
                               
