@@ -19,6 +19,11 @@ public class MemberDAO extends AbstractDAO {
 	public void insertMember(Map<String, Object> map) throws Exception {
 		insert("member.insertMember", map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> checkId(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.checkId", map);
+	}
 
 	public int findUsedID(Map<String, Object> map) throws Exception {
 		return (Integer) selectOne("member.findUsedID", map);

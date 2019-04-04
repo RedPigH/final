@@ -9,6 +9,8 @@ public interface MemberService {
 	 void insertMember(Map<String, Object> map)throws Exception; 
 	 
 	 int findUsedID(Map<String, Object> map) throws Exception;
+	 
+	 Map<String, Object> checkId(Map<String, Object> map) throws Exception;
 	
 	 Map<String, Object> checkUserIdAndPassword(Map<String, Object> map)throws Exception;
 	 

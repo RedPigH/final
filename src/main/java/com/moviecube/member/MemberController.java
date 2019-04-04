@@ -149,7 +149,7 @@ public class MemberController {
 		  
 		  mv.setViewName("jsonView");
 		  mv.addObject("findid", findid);
-
+		  
 		  return mv;
 	  }
 	 
@@ -231,6 +231,7 @@ public class MemberController {
 		  
 		  return mv;
 	  }
+
 	  
 	  @RequestMapping(value = "/member/profileEnter.do")
 		public ModelAndView insertMyPage(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -269,7 +270,7 @@ public class MemberController {
 
 			commandMap.getMap().put("MEMBER_NO", MEMBER_NO);
 			
-			memberService.deleteFile(commandMap.getMap(), request);
+			memberService.deleteProfile(commandMap.getMap(), request);
 			
 			return mv;
 	  }
