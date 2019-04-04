@@ -72,9 +72,20 @@ public class MemberDAO extends AbstractDAO {
 	public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("member.selectP", map);
 	}
+<<<<<<< HEAD
 
 	public void deleteFile(Map<String, Object> map) throws Exception {
 		delete("member.deleteFile", map);
+=======
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMemberFile1(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.selectPF", map);
+	}
+	
+	public void deleteFile(Map<String, Object> map) throws Exception{
+		  delete("member.deleteFile", map);
+>>>>>>> fbc79a6148eb13047b07f752ef5a8bfe56edb379
 	}
 
 	public void updateProfile(Map<String, Object> map) throws Exception { // 여기서 파일삭제까지 같이 할 예정
