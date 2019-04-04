@@ -55,13 +55,24 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/member/updateMemberForm.do")
-	public ModelAndView updateMemberForm(CommandMap commandMap) throws Exception {
+	public ModelAndView updateMemberForm(CommandMap commandMap, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/member/updateMember");
 		
-		Map<String,Object> map = memberService.selectMemberFile(commandMap.getMap());
-		
-		mv.addObject("map", map.get("map"));
+		if(session.getAttribute("userLoginInfo") != null){
+			
+			Map<String, Object> user = (Map<String, Object>) session.getAttribute("userLoginInfo");
+			
+			CommandMap commandmap = new CommandMap();
+			
+			commandmap.put("MEMBER_NO", user.get("MEMBER_NO"));
+			
+			Map<String,Object> map = memberService.selectMemberFile(commandmap.getMap());
+			
+			mv.addObject("map", map.get("map"));
+			mv.addObject("map1", map.get("map1"));
 
+		}
+		
 		return mv;
 	}
 }

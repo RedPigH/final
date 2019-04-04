@@ -84,7 +84,7 @@
 	</select>
 	
 	<!-- ID 찾기 -->
-	<select id = "findId" parameterType = "hashmap" resultType = "hashmap">
+	<select id = "findId" parameterType = "hashmap" resultType = "String">
 		<![CDATA[
 			SELECT
 			 MEMBER_ID
@@ -98,7 +98,7 @@
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id = "findPasswd" parameterType = "hashmap" resultType = "hashmap"><!--승표  -->
+	<select id = "findPasswd" parameterType = "hashmap" resultType = "String"><!--승표  -->
 		<![CDATA[
 			SELECT
 			 MEMBER_PASSWD1
@@ -106,8 +106,8 @@
 			 MC_MEMBER
 			WHERE
 			 MEMBER_ID=#{MEMBER_ID}
-			 AND MEMBER_NAME=#{MEMBER_NAME}
-			 AND MEMBER_PHONE=#{MEMBER_PHONE}
+			 AND MEMBER_NAME=#{MEMBER_NAME1}
+			 AND MEMBER_PHONE=#{MEMBER_PHONE1}
 		]]>
 	</select>
 	
@@ -193,9 +193,21 @@
 		
 		<![CDATA[
 		SELECT m.MEMBER_NO, f.PROFILE_ORGNAME, f.PROFILE_SAVNAME
-			FROM MC_MEMBER m, MC_MEMBER_FILE f
+		FROM MC_MEMBER m, MC_MEMBER_FILE f
 		WHERE m.MEMBER_NO = f.MEMBER_NO
-		AND f.DEL_GB='N' and m.MEMBER_NO = #{MEMBER_NO}
+		AND f.MEMBER_NO=#{MEMBER_NO}
+		AND f.DEL_GB='N'
+		]]>
+	</select>
+	
+	<select id="selectPF" resultType="hashmap" parameterType="hashmap">
+		
+		<![CDATA[
+		SELECT m.MEMBER_NO, f.PROFILE_ORGNAME, f.PROFILE_SAVNAME
+		FROM MC_MEMBER m, MC_MEMBER_FILE f
+		WHERE m.MEMBER_NO = f.MEMBER_NO
+		AND f.MEMBER_NO=#{MEMBER_NO}
+		AND f.DEL_GB='N'
 		]]>
 	</select>
 	

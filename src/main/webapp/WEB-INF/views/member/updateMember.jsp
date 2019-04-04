@@ -120,11 +120,11 @@ function aaaa(){
 				<!-- 프로필과 아이디 -->
 				<div class="clearfix myInfoArea1">
 					<c:choose>
-					<c:when test="${map.PROFILE_SAVNAME} == null}">
-					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="프로필" class="img-circle pull-left">
+					<c:when test="${empty map.PROFILE_SAVNAME}">
+					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/a78f715f334f4bfba308d4b32b2c54b2.jpg" alt="프로필" class="img-circle pull-left">
 					</c:when>
 					<c:otherwise>
-					<img name="photo" id="profilePhotoImg" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/${map.PROFILE_SAVNAME}" alt="프로필" class="img-circle pull-left">
+					<img name="photo" id="profilePhotoImg1" style="width: 100px; height: 100px;" src="/moviecube/resources/upload/mypage/${map.PROFILE_SAVNAME}" alt="프로필" class="img-circle pull-left">
 					</c:otherwise>
 					</c:choose>
 					<div class="pull-left textArea">
@@ -135,7 +135,7 @@ function aaaa(){
 							<div>
 							<input type="file" name="PROFILE_ORGNAME" style="text-indent: 0px; border: 0px;">
 							<c:choose>
-							<c:when test="${map.PROFILE_SAVNAME} == null}">
+							<c:when test="${empty map1.PROFILE_SAVNAME}">
 							<button id="imgUploadBtn" class="img_btn flex-c-m stext-111 cl13 bor21 hov-tag2 trans-04" onclick="profileEnter()">입력</button>
 							</c:when>
 							<c:otherwise>
@@ -335,6 +335,12 @@ function aaaa(){
 	function profileUpdate(){
 		var Enter = document.getElementById("enter");
 		Enter.action="/moviecube/member/profileUpdate.do";
+		Enter.submit();
+	}
+	
+	function profileDel(){
+		var Enter = document.getElementById("enter");
+		Enter.action="/moviecube/member/profileDelete.do";
 		Enter.submit();
 	}
 	</script>

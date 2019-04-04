@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	  @Resource(name = "memberDAO")
 	  private MemberDAO memberDAO;
 	  
-	  @Resource(name="memberFileUtils")
+	  @Resource(name="memberFileUtils") // @Conponent �뼱�끂�뀒�씠�뀡�쓣 �씠�슜�븯�뿬 �벑濡앺븳 媛앹껜瑜� @Resource �뼱�끂�뀒�씠�뀡�쓣 �씠�슜�븯�뿬 媛앹껜瑜� �꽑�뼵 �븳�떎
 	  private memberFileUtils fileUtils;
 	  
 	  @Override
@@ -48,12 +48,12 @@ public class MemberServiceImpl implements MemberService {
 	  }
 	  
 	  @Override
-	  public Map<String, Object> findId(Map<String, Object> map) throws Exception{
+	  public String findId(Map<String, Object> map) throws Exception{
 		  return memberDAO.findId(map);
 	  }
 	  
 	  @Override
-	  public Map<String, Object> findPasswd(Map<String, Object> map) throws Exception{
+	  public String findPasswd(Map<String, Object> map) throws Exception{
 		  return memberDAO.findPasswd(map);
 	  }
 	  
@@ -83,38 +83,46 @@ public class MemberServiceImpl implements MemberService {
 	  }
 	  
 	  @Override
-      public void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception {
-         
-         List<Map<String,Object>> fileList = fileUtils.parseInsertFileInfo(map, request);
-            memberDAO.insertFile(fileList.get(0));    
-     }
-     
-     @Override
-      public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
-         Map<String, Object> resultMap = new HashMap<String,Object>();
-         
-         Map<String, Object> tempMap = memberDAO.selectMemberFile(map);   
-         resultMap.put("map", tempMap);
-         
-         return resultMap;
-      }
-     
-     @Override
-      public void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
-        
-            memberDAO.deleteFile(map);// qna_file_no가 null이라는건 수정하면서 파일삭제를 눌렀다는 것을 의미함.
+		public void insertMyPage(Map<String, Object> map, HttpServletRequest request) throws Exception {
+			
+			List<Map<String,Object>> fileList = fileUtils.parseInsertFileInfo(map, request);
+				memberDAO.insertFile(fileList.get(0)); 	
+	  }
+	  
+	  @Override
+		public Map<String, Object> selectMemberFile(Map<String, Object> map) throws Exception {
+			Map<String, Object> resultMap = new HashMap<String,Object>();
+			
+			Map<String, Object> tempMap = memberDAO.selectMemberFile(map);	
+			resultMap.put("map", tempMap);
+			
+			Map<String, Object> tempMap1 = memberDAO.selectMemberFile1(map);		
+			resultMap.put("map1", tempMap1);
+			
+			return resultMap;
+		}
+	  
+	  @Override
+		public void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		  
+				memberDAO.deleteFile(map);// qna_file_no가 null이라는건 수정하면서 파일삭제를 눌렀다는 것을 의미함.
 
-            List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+				List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
 
-            if (list.size() > 0) {
-               Map<String, Object> tempMap = null;
-               tempMap = list.get(0);
-               
-                  if (tempMap.get("IS_NEW").equals("Y")) {
-                     memberDAO.insertFile(tempMap);
-                  } else {
-                     memberDAO.updateProfile(tempMap);
-                  }
-            }
-     }
+				if (list.size() > 0) {
+					Map<String, Object> tempMap = null;
+					tempMap = list.get(0);
+					
+						if (tempMap.get("IS_NEW").equals("Y")) {
+							memberDAO.insertFile(tempMap);
+						} else {
+							memberDAO.updateProfile(tempMap);
+						}
+				}
+	  }
+	  
+	  @Override
+		public void deleteFile(Map<String, Object> map, HttpServletRequest request) throws Exception {
+				memberDAO.deleteFile(map); 	
+	  }
 }

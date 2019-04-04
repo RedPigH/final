@@ -33,4 +33,6 @@ public interface MemberService {
 	 Map<String,Object> selectMemberFile(Map<String,Object> map) throws Exception;
 	 
 	 void updateProfile(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	 
+	 void deleteFile(Map<String, Object> map, HttpServletRequest request) throws Exception;
 }
