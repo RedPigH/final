@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="time_seat">
+	
+	<!-- 시간별 좌석 생성 -->
+	<insert id="insertTimeSeat" parameterType = "hashmap">
+		<![CDATA[
+			INSERT INTO TIME_SEAT(
+				SEAT_NO,
+				TIME_NO,
+				STATUS
+			} 
+			VALUES
+			(
+				SEAT_NO = #{SEAT_NO},
+				TIME_NO = #{TIME_NO}
+			)
+		]]>
+	</insert>
+	
+	<!-- 상영시간별 예약된 좌석 리스트 -->
+	<select id="unableTimeSeat" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT T.SEAT_NO, S.SEAT_ROW, S.SEAT_COL, T.STATUS 
+			FROM TIME_SEAT T INNER JOIN SEAT S ON T.SEAT_NO = S.SEAT_NO
+			WHERE T.TIME_NO = #{TIME_NO} AND T.STATUS = 1
+		]]>
+	</select>
+	
+	<!-- 좌석 예매 상태 변경 -->
+	<update id="updateStaus" parameterType = "hashmap">
+		UPDATE TIME_SEAT
+		SET STATUS = 1
+		WHERE SEAT_NO = #{SEAT_NO} AND TIME_NO = #{TIME_NO}
+	</update>
+	
+	<!-- 좌석예매 취소 -->
+	<update id = "ResDeleteStatus" parameterType = "hashmap">
+		UPDATE TIME_SEAT
+		SET STATUS = 0
+		WHERE SEAT_NO = #{SEAT_NO} AND TIME_NO = #{TIME_NO}
+	</update>
+</mapper>

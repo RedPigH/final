@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<!-- 공지사항 리스트 -->
+	<select id="selectBoardList" parameterType="hashmap"
+		resultType="hashmap">
+			<![CDATA[
+				SELECT
+				NOTICE_NO,
+				NOTICE_SUB,
+				NOTICE_REGDATE
+				FROM 
+				MC_NOTICE
+				ORDER BY 
+				NOTICE_NO DESC
+			]]>
+	</select>
+
+	<!-- 공지사항 작성 -->
+	<insert id="insertBoard" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO MC_NOTICE
+			(
+			NOTICE_NO,
+			NOTICE_SUB,
+			NOTICE_CONTENT,
+			NOTICE_REGDATE
+			)
+			VALUES
+			(
+			MC_NOTICE_NO_SEQ.NEXTVAL,
+			#{NOTICE_SUB},
+			#{NOTICE_CONTENT},
+			SYSDATE
+		)
+		]]>
+	</insert>
+
+	<!-- 공지사항 상세보기 -->
+	<select id="selectBoardDetail" parameterType="hashmap"
+		resultType="hashmap">
+		<![CDATA[
+			SELECT
+			NOTICE_NO,
+			NOTICE_SUB,
+			NOTICE_CONTENT,
+			NOTICE_REGDATE
+			FROM
+			MC_NOTICE
+			WHERE
+			NOTICE_NO = #{NOTICE_NO}
+		]]>
+	</select>
+
+	<!-- 공지사항 수정 -->
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE MC_NOTICE
+			SET
+			NOTICE_SUB = #{NOTICE_SUB},
+			NOTICE_CONTENT = #{NOTICE_CONTENT}
+			WHERE
+			NOTICE_NO = #{NOTICE_NO}
+		]]>
+	</update>
+
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteBoard" parameterType="hashmap">
+	    <![CDATA[
+		    DELETE MC_NOTICE
+		    WHERE
+		    NOTICE_NO = #{NOTICE_NO}
+	    ]]>
+	</delete>
+	
+	<!-- 공지사항 검색 -->
+	<select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM MC_NOTICE 
+		WHERE 
+		<choose>
+			<when test = "NOTICE_SUB != NULL">
+				NOTICE_SUB LIKE '%'||#{NOTICE_SUB}||'%'
+			</when>
+			<when test = "NOTICE_CONTENT != NULL">
+				NOTICE_CONTENT LIKE '%'||#{NOTICE_CONTENT}||'%'
+			</when>
+		</choose>
+		ORDER BY NOTICE_NO DESC
+	</select>
+</mapper>

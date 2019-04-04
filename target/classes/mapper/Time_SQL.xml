@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="time">
+
+	<!-- 전체 상영 일정 리스트 -->
+	<select id="selectTimeList" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT M.MOVIE_NAME, M.MOVIE_TYPE, C.CINEMA_NAME, S.SCREEN_NAME, T.TIME_DATE, T.START_TIME, T.END_TIME, T.TIME_NO
+			FROM TIME T, CINEMA C, SCREEN S, MC_MOVIE M
+			WHERE
+			T.CINEMA_NO = C.CINEMA_NO AND 
+			T.SCREEN_NO = S.SCREEN_NO AND 
+			T.MOVIE_NO= M.MOVIE_NO
+			ORDER BY T.TIME_NO DESC
+		]]>
+	</select>
+	
+	<!-- 전체 상영 일정 리스트 -->
+	<select id = "selectAllTimeList" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT T.TIME_NO, M.MOVIE_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_AGE, T.START_TIME, T.END_TIME, C.CINEMA_NAME, SC.SCREEN_NAME, T.TIME_DATE, T.SCREEN_NO, MF.POSTER_SAVNAME,
+			(SELECT COUNT(*) FROM SEAT WHERE SCREEN_NO = SC.SCREEN_NO) AS TOTAL_SEAT, 
+			(SELECT COUNT(*) FROM TIME_SEAT WHERE TIME_NO = T.TIME_NO AND STATUS = 0) AS POSSIBLE_SEAT
+			FROM TIME T
+			INNER JOIN MC_MOVIE M ON M.MOVIE_NO = T.MOVIE_NO
+			INNER JOIN MC_MOVIE_FILE MF ON M.MOVIE_NO = MF.MOVIE_NO 
+			INNER JOIN CINEMA C ON C.CINEMA_NO = T.CINEMA_NO
+			INNER JOIN SCREEN SC ON SC.SCREEN_NO = T.SCREEN_NO		
+			ORDER BY T.START_TIME ASC
+		]]>
+	</select>
+	
+	<!-- 유저 선택 상영 일정 리스트 -->
+	<select id="optionTimeList" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT T.TIME_NO, M.MOVIE_NAME, M.MOVIE_TYPE, M.MOVIE_AGE, T.START_TIME, T.END_TIME, C.CINEMA_NAME, SC.SCREEN_NAME, T.TIME_DATE, T.SCREEN_NO,
+			(SELECT COUNT(*) FROM SEAT WHERE SCREEN_NO = SC.SCREEN_NO) AS TOTAL_SEAT, 
+			(SELECT COUNT(*) FROM TIME_SEAT WHERE TIME_NO = T.TIME_NO AND STATUS = 0) AS POSSIBLE_SEAT
+			FROM TIME T
+			INNER JOIN MC_MOVIE M ON M.MOVIE_NO = T.MOVIE_NO
+			INNER JOIN CINEMA C ON C.CINEMA_NO = T.CINEMA_NO
+			INNER JOIN SCREEN SC ON SC.SCREEN_NO = T.SCREEN_NO
+			WHERE TO_CHAR(T.TIME_DATE,'YYYY-MM-DD') = #{TIME_DATE} 
+		]]>
+			<choose>
+				<when test = "MOVIE_NAME0 != NULL and MOVIE_NAME1 == NULL">
+					AND M.MOVIE_NAME = #{MOVIE_NAME0}
+				</when>
+				<when test = "MOVIE_NAME0 != NULL and MOVIE_NAME1 != NULL and MOVIE_NAME2 == NULL">
+					AND (M.MOVIE_NAME = #{MOVIE_NAME0} OR M.MOVIE_NAME = #{MOVIE_NAME1})
+				</when>
+				<when test = "MOVIE_NAME0 != NULL and MOVIE_NAME1 != NULL and MOVIE_NAME2 != NULL and MOVIE_NAME3 == NULL">
+					AND (M.MOVIE_NAME = #{MOVIE_NAME0} OR M.MOVIE_NAME = #{MOVIE_NAME1} OR M.MOVIE_NAME = #{MOVIE_NAME2})
+				</when>
+				<when test = "MOVIE_NAME0 != NULL and MOVIE_NAME1 != NULL and MOVIE_NAME2 != NULL and MOVIE_NAME3 != NULL">
+					AND (M.MOVIE_NAME = #{MOVIE_NAME0} OR M.MOVIE_NAME = #{MOVIE_NAME1} OR M.MOVIE_NAME = #{MOVIE_NAME2} OR M.MOVIE_NAME = #{MOVIE_NAME3})
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			<choose>
+				<when test = "CINEMA_NO0 != NULL and CINEMA_NO1 == NULL">
+					AND C.CINEMA_NO = #{CINEMA_NO0}
+				</when>
+				<when test = "CINEMA_NO0 != NULL and CINEMA_NO1 != NULL and CINEMA_NO2 == NULL">
+					AND (C.CINEMA_NO = #{CINEMA_NO0} OR C.CINEMA_NO = #{CINEMA_NO1})
+				</when>
+				<when test = "CINEMA_NO0 != NULL and CINEMA_NO1 != NULL and CINEMA_NO2 != NULL and CINEMA_NO3 == NULL">
+					AND (C.CINEMA_NO = #{CINEMA_NO0} OR C.CINEMA_NO = #{CINEMA_NO1} OR C.CINEMA_NO = #{CINEMA_NO2})
+				</when>
+				<when test = "CINEMA_NO0 != NULL and CINEMA_NO1 != NULL and CINEMA_NO2 != NULL and CINEMA_NO3 != NULL">
+					AND (C.CINEMA_NO = #{CINEMA_NO0} OR C.CINEMA_NO = #{CINEMA_NO1} OR C.CINEMA_NO = #{CINEMA_NO2} OR C.CINEMA_NO = #{CINEMA_NO3})
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			ORDER BY T.START_TIME ASC
+	</select>
+	
+	<select id="selectOneTime" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT M.MOVIE_NO, M.MOVIE_NAME, C.CINEMA_NO, C.CINEMA_NAME, S.SCREEN_NO, S.SCREEN_NAME, T.TIME_DATE, T.START_TIME, T.END_TIME, T.TIME_NO, F.POSTER_SAVNAME
+			FROM TIME T, CINEMA C, SCREEN S, MC_MOVIE M, MC_MOVIE_FILE F
+			WHERE 
+			T.CINEMA_NO = C.CINEMA_NO AND 
+			T.SCREEN_NO = S.SCREEN_NO AND 
+			T.MOVIE_NO = M.MOVIE_NO AND
+			T.MOVIE_NO = F.MOVIE_NO AND
+			T.TIME_NO = #{TIME_NO}  AND F.DEL_GB = 'N'
+		]]>
+	</select>
+	
+	
+	<!-- 상영일정 등록 -->
+	<insert id="insertTime" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="TIME_NO">
+		<selectKey keyProperty="TIME_NO" resultType="int"
+			order="BEFORE">
+			SELECT MC_TIME_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+	<![CDATA[
+		INSERT INTO TIME
+		(
+			TIME_NO,
+			MOVIE_NO,
+			CINEMA_NO,
+			SCREEN_NO,
+			TIME_DATE,
+			START_TIME,
+			END_TIME
+		)
+		VALUES
+		(
+			#{TIME_NO},
+			#{MOVIE_NO},
+			#{CINEMA_NO},
+			#{SCREEN_NO},
+			#{TIME_DATE},
+			#{START_TIME},
+			#{END_TIME}
+		)
+	]]>
+	</insert>
+	
+	<update id="updateTime" parameterType = "hashmap">
+		<![CDATA[
+			UPDATE TIME 
+			SET
+				MOVIE_NO = #{MOVIE_NO},
+				CINEMA_NO = #{CINEMA_NO},
+				SCREEN_NO = #{SCREEN_NO},
+				TIME_DATE = #{TIME_DATE},
+				START_TIME = #{START_TIME},
+				END_TIME = #{END_TIME},
+				MOVIE_CNT = #{MOVIE_CNT}
+			WHERE
+				TIME_NO = #{TIME_NO}
+		]]>
+	</update>
+	
+	
+	<!-- 상영일정 삭제 -->
+	<delete id="deleteTime" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM TIME
+			WHERE TIME_NO = #{TIME_NO}
+		]]>
+	</delete>
+	
+	<!-- 타임 검색 -->
+	<select id="timeSearch" resultType="hashmap" parameterType="hashmap">
+		SELECT M.MOVIE_NAME, M.MOVIE_TYPE, C.CINEMA_NAME, S.SCREEN_NAME, T.TIME_DATE, T.START_TIME, T.END_TIME, T.TIME_NO
+			FROM TIME T, CINEMA C, SCREEN S, MC_MOVIE M
+			WHERE
+			T.CINEMA_NO = C.CINEMA_NO AND 
+			T.SCREEN_NO = S.SCREEN_NO AND 
+			T.MOVIE_NO= M.MOVIE_NO
+			<choose>
+				<when test = "MOVIE_NAME != NULL">
+					AND M.MOVIE_NAME LIKE '%'||#{MOVIE_NAME}||'%'
+				</when>
+				<when test = "CINEMA_NAME != NULL">
+					AND C.CINEMA_NAME LIKE '%'||#{CINEMA_NAME}||'%'
+				</when>
+				<when test = "SCREEN_NAME != NULL">
+					AND S.SCREEN_NAME LIKE '%'||#{SCREEN_NAME}||'%'
+				</when>
+			</choose>
+			ORDER BY t.TIME_NO DESC
+	</select>
+</mapper>

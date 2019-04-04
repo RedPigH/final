@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservation">
+
+	<!-- 예매하기 -->
+	<insert id="insertReservation" parameterType = "hashmap" useGeneratedKeys="true" keyProperty="RES_NO">
+		<selectKey keyProperty="RES_NO" resultType="int" order="BEFORE">
+			SELECT RESERVATION_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+			INSERT INTO RESERVATION
+			(
+				RES_NO,
+				MEMBER_NO,
+				TIME_NO,
+				RES_DATE,
+				TOTAL_PRICE
+			)
+			VALUES
+			(
+				#{RES_NO},
+				#{MEMBER_NO},
+				#{TIME_NO},
+				SYSDATE,
+				#{TOTAL_PRICE}
+			)
+	</insert>
+	
+	<!-- 예매 상영 시간 번호 -->
+	<select id="ResTime" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT TIME_NO FROM RESERVATION
+			WHERE RES_NO = #{RES_NO}
+		]]>
+	</select>
+	
+	<!-- 회원별 예매 리스트 -->
+	<select id="MyReservation" parameterType = "hashmap" resultType = "hashmap">
+		<![CDATA[
+			SELECT R.RES_NO, R.RES_DATE, M.MOVIE_NO, M.MOVIE_NAME, C.CINEMA_NO, C.CINEMA_NAME, S.SCREEN_NO, S.SCREEN_NAME, T.TIME_DATE, T.START_TIME, T.END_TIME, T.TIME_NO
+			FROM RESERVATION R
+			INNER JOIN TIME T ON R.TIME_NO = T.TIME_NO
+			INNER JOIN MC_MOVIE M ON T.MOVIE_NO = M.MOVIE_NO
+			INNER JOIN CINEMA C ON T.CINEMA_NO = C.CINEMA_NO
+			INNER JOIN SCREEN S ON T.SCREEN_NO = S.SCREEN_NO
+			WHERE MEMBER_NO = #{MEMBER_NO} AND SYSDATE <= TIME_DATE AND ROWNUM BETWEEN 1 AND 5
+		]]>	
+	</select>
+	
+	<!-- 예매 취소 -->
+	<delete id="deleteReservation" parameterType = "hashmap">
+		<![CDATA[
+			DELETE FROM RESERVATION
+			WHERE RES_NO = #{RES_NO}
+		]]>
+	</delete>
+
+</mapper>

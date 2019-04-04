@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cinema">
+
+	<!-- 영화관 리스트 -->
+	<select id="selectCinemaList" parameterType="hashmap"
+		resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM CINEMA 
+			ORDER BY CINEMA_NO ASC
+		]]>
+	</select>
+
+	<!-- 영화관 별 상영관 리스트 -->
+	<select id="selectCinemaScreen" parameterType="hashmap"
+		resultType="hashmap">
+		<![CDATA[
+			SELECT s.SCREEN_NO, s.SCREEN_NAME
+			FROM CINEMA c INNER JOIN SCREEN s
+			ON c.CINEMA_NO = s.CINEMA_NO
+			WHERE c.CINEMA_NO = #{CINEMA_NO}
+		]]>
+	</select>
+
+	<!-- 영화관 선택 -->
+	<select id="selectOneCinema" parameterType="hashmap"
+		resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM CINEMA
+			WHERE CINEMA_NO = #{CINEMA_NO}
+		]]>
+	</select>
+
+	<!-- 영화관 정보 작성 -->
+	<insert id="insertCinema" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="CINEMA_NO">
+		<selectKey keyProperty="CINEMA_NO" resultType="int"
+			order="BEFORE">
+			SELECT CINEMA_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			INSERT INTO CINEMA (
+				CINEMA_NO,
+				CINEMA_NAME,
+				CINEMA_CONTENT,
+				CINEMA_ADDRESS
+			)
+			VALUES
+			(
+				#{CINEMA_NO},
+				#{CINEMA_NAME},
+				#{CINEMA_CONTENT},
+				#{CINEMA_ADDRESS}
+			) 
+		]]>
+	</insert>
+
+	<!-- 영화관 정보 수정 -->
+	<update id="updateCinema" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CINEMA
+			SET
+				CINEMA_NAME = #{CINEMA_NAME},
+				CINEMA_CONTENT = #{CINEMA_CONTENT},
+				CINEMA_ADDRESS = #{CINEMA_ADDRESS}
+			WHERE CINEMA_NO = #{CINEMA_NO}
+		]]>
+	</update>
+
+	<!-- 영화관 정보 삭제 -->
+	<delete id="deleteCinema" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM CINEMA
+			WHERE CINEMA_NO = #{CINEMA_NO}
+		]]>
+	</delete>
+
+	<!-- 영화관 검색 -->
+	<select id="cinemaSearch" resultType="hashmap"
+		parameterType="hashmap">
+			SELECT * FROM CINEMA
+			WHERE
+			<choose>
+				<when test="CINEMA_NAME != NULL">
+					CINEMA_NAME LIKE '%'||#{CINEMA_NAME}||'%'
+				</when>
+				<when test="CINEMA_ADDRESS != NULL">
+					CINEMA_ADDRESS LIKE '%'||#{CINEMA_ADDRESS}||'%'
+				</when>
+				<when test="CINEMA_CONTENT != NULL">
+					CINEMA_CONTENT LIKE '%'||#{CINEMA_CONTENT}||'%'
+				</when>
+			</choose>
+			ORDER BY CINEMA_NO DESC
+	</select>
+</mapper>
